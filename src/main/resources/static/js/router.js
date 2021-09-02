@@ -6,6 +6,12 @@
  */
 export default function router(URI) {
     const routes = {
+        '/': {
+            returnView: Home,
+            state: {},
+            uri: '/',
+            title: 'Home',
+        },
 
     };
 
