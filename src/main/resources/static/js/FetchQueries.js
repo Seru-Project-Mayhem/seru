@@ -41,7 +41,7 @@ export function cheapSharkTenToTwentyGet(){
 		"method": "GET",
 		"headers": {
 			"x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",
-			"x-rapidapi-key": "31054d8f05msheef4cef580b190cp1c805djsnd8b214e9350e"
+			"x-rapidapi-key": rapidApi_token,
 		}
 	})
 		.then(response => response.json())
@@ -59,7 +59,7 @@ export function cheapSharkTwentyToThirtyGet(){
 		"method": "GET",
 		"headers": {
 			"x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",
-			"x-rapidapi-key": "31054d8f05msheef4cef580b190cp1c805djsnd8b214e9350e"
+			"x-rapidapi-key": rapidApi_token,
 		}
 	})
 		.then(response => response.json())
