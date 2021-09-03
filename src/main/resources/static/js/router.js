@@ -1,9 +1,14 @@
+import Home from "./views/Home.js";
+
 
 /**
  * Returns the route object for a specific route based on the given URI
  * @param URI
  * @returns {*}
  */
+
+
+
 export default function router(URI) {
     const routes = {
         '/': {
@@ -11,7 +16,7 @@ export default function router(URI) {
             state: {},
             uri: '/',
             title: 'Home',
-        },
+        }
 
     };
 
