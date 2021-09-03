@@ -1,4 +1,5 @@
-import Home, {cardBuilder} from "./views/Home.js";
+import Home from "./views/Home.js";
+import {getAllGames} from "./FetchQueries.js";
 
 
 /**
@@ -14,7 +15,7 @@ export default function router(URI) {
             state: {},
             uri: '/',
             title: 'Home',
-            viewEvent: cardBuilder,
+            viewEvent: getAllGames,
         }
     };
 

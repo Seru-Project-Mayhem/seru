@@ -19,7 +19,7 @@ export function freeToGameGet(){
 }
 
 export function cheapSharkZeroToTenGet(){
-	return fetch("https://cheapshark-game-deals.p.rapidapi.com/deals?lowerPrice=0&steamRating=0&desc=true&output=json&steamworks=false&sortBy=Savings&AAA=0&pageSize=25&exact=0&upperPrice=10&pageNumber=0&onSale=0&metacritic=0", {
+	fetch("https://cheapshark-game-deals.p.rapidapi.com/deals?lowerPrice=0&steamRating=0&desc=true&output=json&steamworks=false&sortBy=Savings&AAA=0&pageSize=25&exact=0&upperPrice=10&pageNumber=0&onSale=0&metacritic=0", {
 		"method": "GET",
 		"headers": {
 			"x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",
@@ -29,6 +29,7 @@ export function cheapSharkZeroToTenGet(){
 		.then(response => response.json())
 		.then(data => {
 			console.log(data);
+			cardBuilder(data)
 		})
 		.catch(err => {
 			console.error(err);
@@ -46,6 +47,7 @@ export function cheapSharkTenToTwentyGet(){
 		.then(response => response.json())
 		.then(data => {
 			console.log(data);
+			cardBuilder(data)
 		})
 		.catch(err => {
 			console.error(err);
@@ -63,8 +65,16 @@ export function cheapSharkTwentyToThirtyGet(){
 		.then(response => response.json())
 		.then(data => {
 			console.log(data);
+			cardBuilder(data)
 		})
 		.catch(err => {
 			console.error(err);
 		});
+}
+
+export function getAllGames(){
+	freeToGameGet();
+	cheapSharkZeroToTenGet();
+	cheapSharkTenToTwentyGet();
+	cheapSharkTwentyToThirtyGet();
 }
