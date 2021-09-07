@@ -1,4 +1,4 @@
-import {cardBuilder} from "./views/Home.js";
+import {cheapSharkCardBuilder, freeCardBuilder} from "./views/Home.js";
 import {rapidApi_token} from "./ApiKeys/keys.js";
 
 export function freeToGameGet(){
@@ -12,6 +12,8 @@ export function freeToGameGet(){
 		.then(response => response.json())
 		.then(data => {
 			console.log(data);
+			freeCardBuilder(data);
+
 		})
 		.catch(err => {
 			console.error(err);
@@ -29,7 +31,7 @@ export function cheapSharkZeroToTenGet(){
 		.then(response => response.json())
 		.then(data => {
 			console.log(data);
-			cardBuilder(data)
+			cheapSharkCardBuilder(data)
 		})
 		.catch(err => {
 			console.error(err);
@@ -47,7 +49,7 @@ export function cheapSharkTenToTwentyGet(){
 		.then(response => response.json())
 		.then(data => {
 			console.log(data);
-			cardBuilder(data)
+			cheapSharkCardBuilder(data)
 		})
 		.catch(err => {
 			console.error(err);
@@ -65,7 +67,7 @@ export function cheapSharkTwentyToThirtyGet(){
 		.then(response => response.json())
 		.then(data => {
 			console.log(data);
-			cardBuilder(data)
+			cheapSharkCardBuilder(data)
 		})
 		.catch(err => {
 			console.error(err);
