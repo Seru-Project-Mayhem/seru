@@ -1,10 +1,12 @@
 package com.codeup.capstonestarter.data.user;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 @Entity
 @Table(name="users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long User_ID;
@@ -14,7 +16,7 @@ public class User {
 
     @Email
     @Column(nullable = false)
-    private String Email;
+    private String email;
 
     @Column(nullable = false)
     private String Password;
@@ -26,10 +28,10 @@ public class User {
     public enum Role {USER, ADMIN};
 
     public User(Long user_ID, String username, String email, String password, Role role) {
-        User_ID = user_ID;
-        username = username;
-        Email = email;
-        Password = password;
+        this.User_ID = user_ID;
+        this.username = username;
+        this.email = email;
+        this.Password = password;
         this.role = role;
     }
 
@@ -45,7 +47,7 @@ public class User {
     }
 
     public void setUser_ID(Long user_ID) {
-        User_ID = user_ID;
+        this.User_ID = user_ID;
     }
 
     public String getUsername() {
@@ -53,15 +55,15 @@ public class User {
     }
 
     public void setUsername(String username) {
-        username = username;
+        this.username = username;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getPassword() {
@@ -69,7 +71,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.Password = password;
     }
 
     public Role getRole() {
