@@ -1,7 +1,10 @@
 package com.codeup.capstonestarter.data.user;
 
+import com.codeup.capstonestarter.data.rating.Rating;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.Collection;
 
 @Entity
 @Table(name="users")
@@ -26,6 +29,9 @@ public class User {
     private Role role = Role.USER;
 
     public enum Role {USER, ADMIN};
+
+    @OneToMany(mappedBy = "user")
+    private Collection<Rating> ratings;
 
     public User(Long user_ID, String username, String email, String password, Role role) {
         this.User_ID = user_ID;
