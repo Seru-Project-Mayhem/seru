@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value ="/api/users", headers = "Accept=application/json", produces = "application/json")
 public class UsersController {
+
     private final UsersRepository usersRepository;
     private final PasswordEncoder passwordEncoder;
 
