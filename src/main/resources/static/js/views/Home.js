@@ -13,18 +13,22 @@ export default function Home(props) {
         </header>
         <main>
        
-            <div id="container" class="row">
-                <p>
-                    This is where all the cards and game images are going.
-                </p>  
+             <div id="container-free" class="row">
+             
+            </div>
+
+           <div id="container-zerototen" class="row">
+           
+          </div>
+           
+           <div id="container-tentotwenty" class="row">
+           
+           </div>
+           
+           <div id="container-twentytothirty" class="row">
                   
             </div>
             
-             <div id="container-free" class="row">
-             
-             <p></p>
-</div>
-           
         </main>
     `;
 }
@@ -47,7 +51,6 @@ export function cheapSharkCardBuilder(listOfGames) {
   </div>
 </div>`
     })
-    $("#container").append(card);
     console.log(card);
     return card;
 }

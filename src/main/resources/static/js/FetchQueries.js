@@ -31,7 +31,7 @@ export function cheapSharkZeroToTenGet(){
 		.then(response => response.json())
 		.then(data => {
 			console.log(data);
-			cheapSharkCardBuilder(data)
+			$("#container-zerototen").append(cheapSharkCardBuilder(data));
 		})
 		.catch(err => {
 			console.error(err);
@@ -49,7 +49,7 @@ export function cheapSharkTenToTwentyGet(){
 		.then(response => response.json())
 		.then(data => {
 			console.log(data);
-			cheapSharkCardBuilder(data)
+			$("#container-tentotwenty").append(cheapSharkCardBuilder(data));
 		})
 		.catch(err => {
 			console.error(err);
@@ -67,7 +67,7 @@ export function cheapSharkTwentyToThirtyGet(){
 		.then(response => response.json())
 		.then(data => {
 			console.log(data);
-			cheapSharkCardBuilder(data)
+			$("#container-twentytothirty").append(cheapSharkCardBuilder(data));
 		})
 		.catch(err => {
 			console.error(err);
