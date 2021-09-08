@@ -1,5 +1,7 @@
-import {cheapSharkCardBuilder, freeCardBuilder, freeCardBuilder2} from "./views/Home.js";
+import {cheapSharkCardBuilder, freeCardBuilder} from "./views/Home.js";
 import {rapidApi_token} from "./ApiKeys/keys.js";
+import {freeCardBuilder2} from "./views/FreeToPlay.js";
+
 
 export function freeToGameHomeGet(){
 	fetch("https://free-to-play-games-database.p.rapidapi.com/api/games", {
