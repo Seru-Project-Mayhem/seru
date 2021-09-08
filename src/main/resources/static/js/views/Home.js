@@ -5,7 +5,7 @@ export default function Home(props) {
             <h1 class="text-center">Seru</h1>
         </header>
         <main>
-
+            <div class="container-parent">
             <h2 class="text-center">Free to play</h2>
              <div id="container-free" class="row d-flex justify-content-center">
              
@@ -22,7 +22,7 @@ export default function Home(props) {
            <div id="container-twentytothirty" class="row d-flex justify-content-center">
                   
             </div>
-    
+        </div>
             <footer style="margin-top: 10em"></footer>
             
         </main>

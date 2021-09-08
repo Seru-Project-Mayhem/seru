@@ -7,7 +7,9 @@ h1 {
 }
 
 body {
-    background-image: url("assets/hexagons.jpeg");
+    background-image: url("assets/wallpaper1.jpeg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .container {
@@ -21,3 +23,8 @@ h2 {
     color: white;
 }
 
+.container-parent{
+    background-color: #272727;
+    margin-left: 15%;
+    margin-right: 15%;
+}
