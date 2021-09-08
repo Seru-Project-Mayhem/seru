@@ -18,4 +18,5 @@ export default function FreeToPlayView(){
 export function apiData(data){
     let jsonData = data;
     console.log(jsonData);
+
 }

@@ -154,9 +154,32 @@ export function cheapSharkTwentyToThirtyGet(){
 		});
 }
 
+// STOP!!! DON'T DELETE THIS SECTION WE WILL NEED IT FOR THE DATABASE
+
+// export function cheapSharkGetAll(){
+//
+// 	fetch("https://cheapshark-game-deals.p.rapidapi.com/deals?lowerPrice=0&steamRating=0&desc=0&output=json&steamworks=0&sortBy=store&AAA=0&pageSize=60&exact=0&upperPrice=50&pageNumber=10&onSale=false&metacritic=0&storeID=1%2C2%2C3%2C7%2C11%2C15%2C16%2C23%2C24%2C25%2C29%2C30%2C31", {
+// 		"method": "GET",
+// 		"headers": {
+// 			"x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",
+// 			"x-rapidapi-key": rapidApi_token,
+// 		}
+// 	})
+// 		.then(response => response.json())
+// 		.then(data => {
+// 			console.log(data);
+// 		})
+// 		.catch(err => {
+// 			console.error(err);
+// 		});
+// }
+
+
+
 export function getAllGames(){
 	freeToGameHomeGet();
 	cheapSharkZeroToTenHomeGet();
 	cheapSharkTenToTwentyHomeGet();
 	cheapSharkTwentyToThirtyHomeGet();
+	// cheapSharkGetAll();
 }
