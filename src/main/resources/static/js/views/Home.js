@@ -1,9 +1,3 @@
-import {
-    freeToGameGet,
-    cheapSharkZeroToTenGet,
-    cheapSharkTwentyToThirtyGet,
-    cheapSharkTenToTwentyGet
-} from "../FetchQueries.js";
 
 export default function Home(props) {
     return `

@@ -14,22 +14,23 @@ export default function FreeToPlayView(){
 }
 
 export function freeCardBuilder2(listOfGames) {
-    console.log("Success in List of free to play games");
-    let card = '';
-    listOfGames.forEach(function (games){
-        card += `
+
+    return listOfGames.map(game => {
+        return `
 <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="${games.thumbnail}" alt="Card image cap">
+  <img class="card-img-top" src="${game.thumbnail}" alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-title" > ${games.title}</h5>
-     <p class="card-text" > ${games.short_description} </p>
+    <h5 class="card-title" > ${game.title}</h5>
+     <p class="card-text" > ${game.short_description} </p>
     <p class="card-text" > Free to play </p>
-    <p class="card-text">${games.game_url}</p>
     
-    <button class="btn-get">Get Now</button>
+    <button class="btn-get" onclick=" window.open('${game.game_url}','_blank')">Get Now</button>
   </div>
 </div>`
     })
-    $(".container-free-to-play-page").append(card);
-    return card;
+}
+
+export function apiData(data){
+    let jsonData = data;
+    console.log(jsonData);
 }

@@ -1,6 +1,6 @@
 import {cheapSharkCardBuilder, freeCardBuilder} from "./views/Home.js";
 import {rapidApi_token} from "./ApiKeys/keys.js";
-import {freeCardBuilder2} from "./views/FreeToPlay.js";
+import {apiData, freeCardBuilder2} from "./views/FreeToPlay.js";
 
 
 export function freeToGameHomeGet(){
@@ -34,11 +34,11 @@ export function freeToGameGet(){
 	})
 		.then(response => response.json())
 		.then(data => {
+			apiData(data)
 			const size = 25;
 			const items = data.slice(0, size);
 			console.log(data);
-			freeCardBuilder2(items);
-			$("#container-free-to-play-page").append(freeCardBuilder(items));
+			$(".container-free-to-play-page").append(freeCardBuilder2(items));
 		})
 		.catch(err => {
 			console.error(err);
