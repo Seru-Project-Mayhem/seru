@@ -1,8 +1,9 @@
 import Home from "./views/Home.js";
-import {getAllGames} from "./FetchQueries.js";
+import {freeToGameGet, getAllGames} from "./FetchQueries.js";
 import Login from "./views/Login.js";
 import LoginEvent from "./auth.js";
 import Register, {RegisterEvent} from "./views/Register.js";
+import FreeToPlayView from "./views/FreeToPlay.js";
 
 
 /**
@@ -33,6 +34,12 @@ export default function router(URI) {
             uri: '/register',
             title: "Register",
             viewEvent: RegisterEvent
+        },
+        '/freetoplay': {
+            returnView: FreeToPlayView,
+            state: {},
+            uri: '/freetoplay',
+            viewEvent: freeToGameGet
         }
     };
 

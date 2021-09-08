@@ -6,28 +6,30 @@ import {
 } from "../FetchQueries.js";
 
 export default function Home(props) {
-    console.log("Get er done")
     return `
         <header>
-            <h1>Seru</h1>
+            <h1 class="text-center">Seru</h1>
         </header>
         <main>
-       
-             <div id="container-free" class="row">
+
+            <h2 class="text-center">Free to play</h2>
+             <div id="container-free" class="row d-flex justify-content-center">
              
             </div>
-
-           <div id="container-zerototen" class="row">
+            <h2 class="text-center">$0 - $10</h2>
+           <div id="container-zerototen" class="row d-flex justify-content-center">
            
           </div>
-           
-           <div id="container-tentotwenty" class="row">
+           <h2 class="text-center">$10 - $20</h2>
+           <div id="container-tentotwenty" class="row d-flex justify-content-center">
            
            </div>
-           
-           <div id="container-twentytothirty" class="row">
+           <h2 class="text-center">$20 - $30</h2>
+           <div id="container-twentytothirty" class="row d-flex justify-content-center">
                   
             </div>
+    
+            <footer style="margin-top: 10em"></footer>
             
         </main>
     `;
@@ -51,14 +53,13 @@ export function cheapSharkCardBuilder(listOfGames) {
   </div>
 </div>`
     })
-    console.log(card);
     return card;
 }
 
 export function freeCardBuilder(listOfGames) {
-    console.log("Success")
+    console.log("Success");
     let card = '';
-    listOfGames.forEach(function (games) {
+    listOfGames.forEach(function (games){
         card += `
 <div class="card" style="width: 18rem;">
   <img class="card-img-top" src="${games.thumbnail}" alt="Card image cap">
@@ -66,14 +67,43 @@ export function freeCardBuilder(listOfGames) {
     <h5 class="card-title" > ${games.title}</h5>
      <p class="card-text" > ${games.short_description} </p>
     <p class="card-text" > Free to play </p>
+    <p class="card-text">${games.game_url}</p>
     
-  
-    <button><a href="${games.game_url}" class="btn btn-primary">Play Now</a></button>
+    <button onclick="redirectToGetGame()">Get Now</button>
   </div>
 </div>`
     })
     $("#container-free").append(card);
-    console.log(card);
     return card;
+}
+
+export function freeCardBuilder2(listOfGames) {
+    console.log("Success");
+    let card = '';
+    listOfGames.forEach(function (games){
+        card += `
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="${games.thumbnail}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title" > ${games.title}</h5>
+     <p class="card-text" > ${games.short_description} </p>
+    <p class="card-text" > Free to play </p>
+    <p class="card-text">${games.game_url}</p>
+    
+    <button onclick="redirectToGetGame()">Get Now</button>
+  </div>
+</div>`
+    })
+    $("#container-free-to-play-page").append(card);
+    return card;
+}
+
+
+
+function redirectToGetGame(){
+
+    console.log("we made it!");
+
+
 }
 
