@@ -36,54 +36,48 @@ export default function Home(props) {
 }
 
 export function cheapSharkCardBuilder(listOfGames) {
-    console.log("Success")
-    let card = '';
-    listOfGames.forEach(function (games) {
 
-        // let gameRating = Math.round($(games.SteamRatingPercent).val());
-        card += `
+    return listOfGames.map( game => {
+    let savings = parseFloat(game.savings).toFixed(1);
+      return  `
 <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="${games.thumb}" alt="Card image cap">
+  <img class="card-img-top" src="${game.thumb}" alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-title" > ${games.title}</h5>
-    <p class="card-text" > Current Price $${games.salePrice}</p>
-    <p class="card-text"> Total Savings ${games.savings}%</p>
-     <p class="card-text"> Normal Price ${games.normalPrice}</p>
-    <p class="card-text"> Steam Rating: ${games.SteamRatingPercent}</p>
+    <h5 class="card-title" > ${game.title}</h5>
+    <p class="card-text" > Current Price $${game.salePrice}</p>
+    <p class="card-text"> Total Savings ${savings}%</p>
+     <p class="card-text"> Normal Price ${game.normalPrice}</p>
+    <p class="card-text"> Steam Rating: ${game.SteamRatingPercent}</p>
     
     <a href="#" class="btn btn-primary">Get Now</a>
   </div>
 </div>`
-    })
-    return card;
+    });
+
 }
 
 export function freeCardBuilder(listOfGames) {
-    console.log("Success");
-    let card = '';
-    listOfGames.forEach(function (games){
-        card += `
+
+    return listOfGames.map(game => {
+        return `
 <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="${games.thumbnail}" alt="Card image cap">
+  <img class="card-img-top" src="${game.thumbnail}" alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-title" > ${games.title}</h5>
-     <p class="card-text" > ${games.short_description} </p>
+    <h5 class="card-title" > ${game.title}</h5>
+     <p class="card-text" > ${game.short_description} </p>
     <p class="card-text" > Free to play </p>
-    <p class="card-text">${games.game_url}</p>
+    <a target="_blank" href="https://google.com"></a>
     
-    <button onclick="redirectToGetGame()">Get Now</button>
+    <button type="button" class="btn-get" onclick=" window.open('${game.game_url}','_blank')">Get Now</button>
   </div>
 </div>`
-    })
-    $("#container-free").append(card);
-    return card;
-}
-
-
-function redirectToGetGame(){
-
-    console.log("we made it!");
+    });
 
 
 }
+
+
+
+
+
 
