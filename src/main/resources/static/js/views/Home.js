@@ -41,7 +41,7 @@ export function cheapSharkCardBuilder(listOfGames) {
     <p class="card-text" > Current Price $${game.salePrice}</p>
     <p class="card-text"> Total Savings ${savings}%</p>
      <p class="card-text"> Normal Price ${game.normalPrice}</p>
-    <p class="card-text"> Steam Rating: ${game.SteamRatingPercent}</p>
+    <p class="card-text"> Steam Rating: ${game.steamRatingPercent}</p>
     
     <a href="#" class="btn btn-primary">Get Now</a>
   </div>
