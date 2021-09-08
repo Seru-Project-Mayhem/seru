@@ -5,7 +5,7 @@ export default function FreeToPlayView(){
         <h1>Free to Play</h1>
     </header>    
     <main>
-    <div class="container-free-to-play-page row ">
+    <div class="container-free-to-play-page row d-flex justify-content-center">
         <p>Hello from Free to play</p>
     </div>
     </main>
@@ -26,7 +26,7 @@ export function freeCardBuilder2(listOfGames) {
     <p class="card-text" > Free to play </p>
     <p class="card-text">${games.game_url}</p>
     
-    <button onclick="">Get Now</button>
+    <button class="btn-get">Get Now</button>
   </div>
 </div>`
     })

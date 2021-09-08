@@ -16,7 +16,7 @@ export function freeToGameHomeGet(){
 			const size = 5;
 			const items = data.slice(0, size);
 			console.log(data);
-			freeCardBuilder(items);
+			$("#container-free").append(freeCardBuilder(items));
 
 		})
 		.catch(err => {
@@ -38,6 +38,7 @@ export function freeToGameGet(){
 			const items = data.slice(0, size);
 			console.log(data);
 			freeCardBuilder2(items);
+			$("#container-free-to-play-page").append(freeCardBuilder(items));
 		})
 		.catch(err => {
 			console.error(err);
