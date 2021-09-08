@@ -1,9 +1,18 @@
 import Home from "./views/Home.js";
-import {freeToGameGet, getAllGames} from "./FetchQueries.js";
+import {
+    cheapSharkTenToTwentyGet,
+    cheapSharkTwentyToThirtyGet,
+    cheapSharkZeroToTenGet,
+    freeToGameGet,
+    getAllGames
+} from "./FetchQueries.js";
 import Login from "./views/Login.js";
 import LoginEvent from "./auth.js";
 import Register, {RegisterEvent} from "./views/Register.js";
 import FreeToPlayView from "./views/FreeToPlay.js";
+import ZeroToTenView from "./views/ZeroToTen.js";
+import TenToTwentyView from "./views/TenToTwenty.js";
+import TwentyToThirtyView from "./views/TwentyToThirty.js";
 
 
 /**
@@ -40,6 +49,24 @@ export default function router(URI) {
             state: {},
             uri: '/freetoplay',
             viewEvent: freeToGameGet
+        },
+        '/0to10' : {
+            returnView: ZeroToTenView,
+            state: {},
+            uri: '/0to10',
+            viewEvent: cheapSharkZeroToTenGet
+        },
+        '/10to20' : {
+            returnView: TenToTwentyView,
+            state: {},
+            uri: '/10to20',
+            viewEvent: cheapSharkTenToTwentyGet
+        },
+        '/20to30' : {
+            returnView: TwentyToThirtyView,
+            state: {},
+            uri: '/20to30',
+            viewEvent: cheapSharkTwentyToThirtyGet
         }
     };
 
