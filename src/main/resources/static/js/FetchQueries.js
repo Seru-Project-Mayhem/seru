@@ -1,4 +1,5 @@
-import {cheapSharkCardBuilder, freeCardBuilder, SetFavoriteEvent} from "./views/Home.js";
+
+import {cheapSharkCardBuilder, freeCardBuilder, ratingEvent, SetFavoriteEvent} from "./views/Home.js";
 import {rapidApi_token} from "./ApiKeys/keys.js";
 import {apiData} from "./views/FreeToPlay.js";
 

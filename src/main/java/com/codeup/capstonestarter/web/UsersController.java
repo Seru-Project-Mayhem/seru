@@ -6,6 +6,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value ="/api/users", headers = "Accept=application/json", produces = "application/json")
 public class UsersController {
@@ -33,6 +35,9 @@ public class UsersController {
         return usersRepository.findByEmail(email).get();
     }
 
-
+@GetMapping
+    private List<User> getUsers(){
+        return usersRepository.findAll();
+}
 
 }
