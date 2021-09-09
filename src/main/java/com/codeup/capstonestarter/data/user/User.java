@@ -1,6 +1,7 @@
 package com.codeup.capstonestarter.data.user;
 
 import com.codeup.capstonestarter.data.rating.Rating;
+import com.codeup.capstonestarter.data.wishlist.Wishlist;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -33,12 +34,17 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Collection<Rating> ratings;
 
-    public User(Long user_ID, String username, String email, String password, Role role) {
+    @OneToMany(mappedBy = "user")
+    private Collection<Wishlist> wishlists;
+
+    public User(Long user_ID, String username, String email, String password, Role role, Collection<Rating> ratings, Collection<Wishlist> wishlists) {
         this.User_ID = user_ID;
         this.username = username;
         this.email = email;
         this.Password = password;
         this.role = role;
+        this.ratings = ratings;
+        this.wishlists = wishlists;
     }
 
     public User(String username) {
@@ -86,5 +92,21 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Collection<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(Collection<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
+    public Collection<Wishlist> getWishlists() {
+        return wishlists;
+    }
+
+    public void setWishlists(Collection<Wishlist> wishlists) {
+        this.wishlists = wishlists;
     }
 }
