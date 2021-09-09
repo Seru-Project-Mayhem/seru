@@ -1,4 +1,5 @@
-import {cheapSharkCardBuilder, freeCardBuilder, ratingEvent} from "./views/Home.js";
+
+import {cheapSharkCardBuilder, freeCardBuilder, ratingEvent, SetFavoriteEvent} from "./views/Home.js";
 import {rapidApi_token} from "./ApiKeys/keys.js";
 import {apiData} from "./views/FreeToPlay.js";
 
@@ -13,11 +14,11 @@ export function freeToGameHomeGet(){
 	})
 		.then(response => response.json())
 		.then(data => {
+			console.log("Adding free cards to DOM")
 			const size = 5;
 			const items = data.slice(0, size);
-			console.log(data);
 			$("#container-free").append(freeCardBuilder(items));
-
+			cheapSharkZeroToTenHomeGet();
 		})
 		.catch(err => {
 			console.error(err);
@@ -37,7 +38,6 @@ export function freeToGameGet(){
 			apiData(data)
 			const size = 25;
 			const items = data.slice(0, size);
-			console.log(data);
 			$("#container-free-to-play-page").append(freeCardBuilder(items));
 		})
 		.catch(err => {
@@ -55,8 +55,9 @@ export function cheapSharkZeroToTenHomeGet(){
 	})
 		.then(response => response.json())
 		.then(data => {
-			console.log(data);
 			$("#container-zerototen").append(cheapSharkCardBuilder(data));
+			cheapSharkTenToTwentyHomeGet();
+			console.log("Cheapshark card builder appended");
 		})
 		.catch(err => {
 			console.error(err);
@@ -73,7 +74,6 @@ export function cheapSharkZeroToTenGet(){
 	})
 		.then(response => response.json())
 		.then(data => {
-			console.log(data);
 			$("#container-zero-to-ten-page").append(cheapSharkCardBuilder(data));
 		})
 		.catch(err => {
@@ -91,8 +91,9 @@ export function cheapSharkTenToTwentyHomeGet(){
 	})
 		.then(response => response.json())
 		.then(data => {
-			console.log(data);
 			$("#container-tentotwenty").append(cheapSharkCardBuilder(data));
+			cheapSharkTwentyToThirtyHomeGet();
+			console.log("Cheapshark ten to twenty appended");
 		})
 		.catch(err => {
 			console.error(err);
@@ -109,7 +110,6 @@ export function cheapSharkTenToTwentyGet(){
 	})
 		.then(response => response.json())
 		.then(data => {
-			console.log(data);
 			$("#container-ten-to-twenty-page").append(cheapSharkCardBuilder(data));
 		})
 		.catch(err => {
@@ -128,8 +128,9 @@ export function cheapSharkTwentyToThirtyHomeGet(){
 	})
 		.then(response => response.json())
 		.then(data => {
-			console.log(data);
 			$("#container-twentytothirty").append(cheapSharkCardBuilder(data));
+			SetFavoriteEvent();
+			console.log("Cheapshark twenty to thirty appended");
 		})
 		.catch(err => {
 			console.error(err);
@@ -146,7 +147,6 @@ export function cheapSharkTwentyToThirtyGet(){
 	})
 		.then(response => response.json())
 		.then(data => {
-			console.log(data);
 			$("#container-twenty-to-thirty-page").append(cheapSharkCardBuilder(data));
 		})
 		.catch(err => {
@@ -175,12 +175,6 @@ export function cheapSharkTwentyToThirtyGet(){
 // }
 
 
-
 export function getAllGames(){
 	freeToGameHomeGet();
-	cheapSharkZeroToTenHomeGet();
-	cheapSharkTenToTwentyHomeGet();
-	cheapSharkTwentyToThirtyHomeGet();
-	ratingEvent();
-	// cheapSharkGetAll();
 }
