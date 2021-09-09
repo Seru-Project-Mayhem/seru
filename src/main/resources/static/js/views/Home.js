@@ -44,6 +44,8 @@ export function cheapSharkCardBuilder(listOfGames) {
     <p class="card-text"> Steam Rating: ${game.steamRatingPercent}</p>
     
     <a href="#" class="btn btn-primary">Get Now</a>
+    <button>Leave a Review</button>
+    
   </div>
 </div>`
     });
@@ -63,6 +65,7 @@ export function freeCardBuilder(listOfGames) {
     <a target="_blank" href="https://google.com"></a>
     
     <button type="button" class="btn-get" onclick=" window.open('${game.game_url}','_blank')">Get Now</button>
+    <button>Leave a Review</button>
   </div>
 </div>`
     });
