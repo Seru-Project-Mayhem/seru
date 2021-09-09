@@ -34,17 +34,18 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Collection<Rating> ratings;
 
-    @OneToMany(mappedBy = "user")
-    private Collection<Wishlist> wishlists;
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="Wishlist_id", referencedColumnName = "id")
+    private Wishlist wishlist;
 
-    public User(Long user_ID, String username, String email, String password, Role role, Collection<Rating> ratings, Collection<Wishlist> wishlists) {
+    public User(Long user_ID, String username, String email, String password, Role role, Collection<Rating> ratings, Wishlist wishlist) {
         this.User_ID = user_ID;
         this.username = username;
         this.email = email;
         this.Password = password;
         this.role = role;
         this.ratings = ratings;
-        this.wishlists = wishlists;
+        this.wishlist = wishlist;
     }
 
     public User(String username) {
@@ -102,11 +103,11 @@ public class User {
         this.ratings = ratings;
     }
 
-    public Collection<Wishlist> getWishlists() {
-        return wishlists;
+    public Wishlist getWishlist() {
+        return wishlist;
     }
 
-    public void setWishlists(Collection<Wishlist> wishlists) {
-        this.wishlists = wishlists;
+    public void setWishlist(Wishlist wishlist) {
+        this.wishlist = wishlist;
     }
 }

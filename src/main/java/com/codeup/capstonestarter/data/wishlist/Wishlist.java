@@ -1,5 +1,7 @@
 package com.codeup.capstonestarter.data.wishlist;
 
+import com.codeup.capstonestarter.data.user.User;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,23 +10,26 @@ public class Wishlist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long wishlist_id;
+    private Long id;
 
     private boolean is_active;
 
+    @OneToOne(mappedBy = "wishlist")
+    private User user;
+
     public Wishlist() {}
 
-    public Wishlist(Long wishlist_id, boolean is_active) {
-        this.wishlist_id = wishlist_id;
+    public Wishlist(Long id, boolean is_active) {
+        this.id = id;
         this.is_active = is_active;
     }
 
-    public Long getWishlist_id() {
-        return wishlist_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setWishlist_id(Long wishlist_id) {
-        this.wishlist_id = wishlist_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public boolean isIs_active() {
