@@ -34,18 +34,27 @@ export function cheapSharkCardBuilder(listOfGames) {
     return listOfGames.map( game => {
     let savings = parseFloat(game.savings).toFixed(1);
       return  `
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="${game.thumb}" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title" > ${game.title}</h5>
-    <p class="card-text" > Current Price $${game.salePrice}</p>
-    <p class="card-text"> Total Savings ${savings}%</p>
-     <p class="card-text"> Normal Price ${game.normalPrice}</p>
-    <p class="card-text"> Steam Rating: ${game.steamRatingPercent}</p>
-    
-    <a href="#" class="btn btn-primary">Get Now</a>
-    <button>Leave a Review</button>
-    
+<div class="flip-card" style="width: 18rem;">
+  <div class="flip-card-inner">
+  	<div class="flip-card-front">
+    	<img class="card-img-top" src="${game.thumb}" alt="Card image cap">
+  		<div class="card-body">
+    		<h5 class="card-title" > ${game.title}</h5>
+    		<p class="card-text" > Current Price $${game.salePrice}</p>
+    		<p class="card-text"> Total Savings ${savings}%</p>
+    		<p class="card-text"> Steam Rating: ${game.steamRatingPercent}</p>
+    		<a href="#" class="btn btn-primary">Get Now</a>
+    	</div>
+    </div>
+    <div class="flip-card-back">
+      <h5 class="card-title" > ${game.title}</h5>
+    	<p class="card-text" > Current Price $${game.salePrice}</p>
+    	<p class="card-text"> Total Savings ${savings}%</p>
+    	<p class="card-text"> Normal Price ${game.normalPrice}</p>
+    	<p class="card-text"> Steam Rating: ${game.steamRatingPercent}</p>
+    	<button class="review-btn">Leave a Review</button>
+   		<a href="#" class="btn btn-primary">Get Now</a>
+    </div>
   </div>
 </div>`
     });
@@ -56,25 +65,31 @@ export function freeCardBuilder(listOfGames) {
 
     return listOfGames.map(game => {
         return `
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="${game.thumbnail}" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title" > ${game.title}</h5>
-     <p class="card-text" > ${game.short_description} </p>
-    <p class="card-text" > Free to play </p>
-    <a target="_blank" href="https://google.com"></a>
-    
-    <button type="button" class="btn-get" onclick=" window.open('${game.game_url}','_blank')">Get Now</button>
-    <button>Leave a Review</button>
+<div class="flip-card" style="width: 18rem;">
+  <div class="flip-card-inner">
+  	<div class="flip-card-front">
+    	<img class="card-img-top" src="${game.thumbnail}" alt="Card image cap">
+  		<div class="card-body">
+    		<h5 class="card-title" > ${game.title}</h5>
+    		<p class="card-text" > Free to play </p>
+    		<button type="button" class="btn-get btn btn-primary" onclick=" window.open('${game.game_url}','_blank')">Get Now</button>
+    	</div>
+    </div>
+    <div class="flip-card-back">
+      <h5 class="card-title" > ${game.title}</h5>
+     	<p class="card-text" > ${game.short_description} </p>
+    	<p class="card-text" > Free to play </p>
+    	<button class="review-btn">Leave a Review</button>
+    	<button type="button" class="btn-get btn btn-primary" onclick=" window.open('${game.game_url}','_blank')">Get Now</button>
+    </div>
   </div>
 </div>`
     });
-
-
 }
 
-
-
-
-
-
+export function ratingEvent(){
+	$(".review-btn").on("click", function () {
+		$(this).siblings(".editRating").toggle();
+		console.log($(this));
+	})
+}
