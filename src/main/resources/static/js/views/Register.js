@@ -1,5 +1,5 @@
 import createView from "../createView.js";
-import login from "../auth.js";
+import {login} from "../auth.js";
 
 export default function Register(){
 
