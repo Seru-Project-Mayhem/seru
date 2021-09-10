@@ -516,3 +516,13 @@ h2 {
     color: white;
     transform: rotateY(180deg);
 }
+
+
+/*Navbar styling*/
+
+a:hover {
+    background-color: #FF0181;
+}
+
+#navbar-search {
+}
