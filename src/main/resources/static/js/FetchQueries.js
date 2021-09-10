@@ -172,6 +172,11 @@ export function postRating(rating){
 	fetch("http://localhost:8080/api/ratings", request)
 		.then(res => {
 			console.log(res.status);
+			if(res.status === 200){
+				alert("Post was successful");
+			} else {
+				alert("A problem has occurred");
+			}
 		}).catch(error => {
 		console.log(error);
 	});
