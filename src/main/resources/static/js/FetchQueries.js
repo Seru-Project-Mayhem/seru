@@ -37,9 +37,9 @@ export function freeToGameGet(){
 		.then(response => response.json())
 		.then(data => {
 			apiData(data)
-			const size = 25;
-			const items = data.slice(0, size);
-			$("#container-free-to-play-page").append(freeCardBuilder(items));
+			// const size = 25;
+			// const items = data.slice(0, size);
+			// $("#container-free-to-play-page").append(freeCardBuilder(items));
 		})
 		.catch(err => {
 			console.error(err);
