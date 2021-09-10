@@ -1,3 +1,4 @@
+import {postRating} from "../FetchQueries.js";
 
 export default function Home(props) {
     return `
@@ -132,6 +133,10 @@ export function freeCardBuilder(listOfGames) {
     	<p class="card-text" > Free to play </p>
     	<button class="review-btn">Leave a Review</button>
     	<button type="button" class="btn-get btn btn-primary" onclick=" window.open('${game.game_url}','_blank')">Get Now</button>
+    	<form>
+    	    <input class="editRating" type="number" min="0" max="10" step="0.5">
+    	    <button class="submitForm">Submit</button>
+        </form>
     </div>
   </div>
 </div>`
@@ -139,10 +144,19 @@ export function freeCardBuilder(listOfGames) {
 }
 
 export function ratingEvent(){
+    $("form").hide();
 	$(".review-btn").on("click", function () {
-		$(this).siblings(".editRating").toggle();
-		console.log($(this));
-	})
+		$(this).siblings("form").toggle();
+	});
+
+    $('.submitForm').on('click', function(){
+        let rating = $(this).siblings('editRating').val()
+        postRating(rating);
+    });
+    // $('.flip-card .flip-card-inner').dblclick(function() {
+    //     $(this).closest('.flip-card').toggleClass('hover');
+    //     $(this).css('transform, rotateY(180deg)');
+    // });
 }
 export function SetFavoriteEvent() {
     // $(document).ready(function () {

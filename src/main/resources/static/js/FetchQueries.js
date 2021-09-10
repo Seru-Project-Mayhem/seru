@@ -2,6 +2,7 @@
 import {cheapSharkCardBuilder, freeCardBuilder, ratingEvent, SetFavoriteEvent} from "./views/Home.js";
 import {rapidApi_token} from "./ApiKeys/keys.js";
 import {apiData} from "./views/FreeToPlay.js";
+import createView from "./createView.js";
 
 
 export function freeToGameHomeGet(){
@@ -130,7 +131,7 @@ export function cheapSharkTwentyToThirtyHomeGet(){
 		.then(data => {
 			$("#container-twentytothirty").append(cheapSharkCardBuilder(data));
 			SetFavoriteEvent();
-			console.log("Cheapshark twenty to thirty appended");
+			ratingEvent();
 		})
 		.catch(err => {
 			console.error(err);
@@ -152,6 +153,28 @@ export function cheapSharkTwentyToThirtyGet(){
 		.catch(err => {
 			console.error(err);
 		});
+}
+
+export function postRating(rating){
+	let post = {
+		rating: rating,
+	}
+
+	let request = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		redirect: 'follow',
+		body: JSON.stringify(post)
+	}
+
+	fetch("http://localhost:8080/api/ratings", request)
+		.then(res => {
+			console.log(res.status);
+		}).catch(error => {
+		console.log(error);
+	});
 }
 
 // STOP!!! DON'T DELETE THIS SECTION WE WILL NEED IT FOR THE DATABASE
