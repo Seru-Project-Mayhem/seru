@@ -132,6 +132,7 @@ export function freeCardBuilder(listOfGames) {
     	<p class="card-text" > Free to play </p>
     	<button class="review-btn">Leave a Review</button>
     	<button type="button" class="btn-get btn btn-primary" onclick=" window.open('${game.game_url}','_blank')">Get Now</button>
+    	<input class="editRating" type="number" min="0" max="10" step="0.5">
     </div>
   </div>
 </div>`
@@ -139,10 +140,16 @@ export function freeCardBuilder(listOfGames) {
 }
 
 export function ratingEvent(){
+    $(".editRating").hide();
 	$(".review-btn").on("click", function () {
 		$(this).siblings(".editRating").toggle();
 		console.log($(this));
 	})
+
+    $('.flip-card .flip-card-inner').click(function() {
+        $(this).closest('.flip-card').toggleClass('hover');
+        $(this).css('transform, rotateY(180deg)');
+    });
 }
 export function SetFavoriteEvent() {
     // $(document).ready(function () {

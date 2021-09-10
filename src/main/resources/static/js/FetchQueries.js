@@ -130,7 +130,7 @@ export function cheapSharkTwentyToThirtyHomeGet(){
 		.then(data => {
 			$("#container-twentytothirty").append(cheapSharkCardBuilder(data));
 			SetFavoriteEvent();
-			console.log("Cheapshark twenty to thirty appended");
+			ratingEvent();
 		})
 		.catch(err => {
 			console.error(err);
