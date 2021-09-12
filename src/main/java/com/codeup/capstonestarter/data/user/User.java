@@ -23,7 +23,7 @@ public class User {
     private String email;
 
     @Column(nullable = false)
-    private String Password;
+    private String password;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -42,7 +42,7 @@ public class User {
         this.User_ID = user_ID;
         this.username = username;
         this.email = email;
-        this.Password = password;
+        this.password = password;
         this.role = role;
         this.ratings = ratings;
         this.wishlist = wishlist;
@@ -80,11 +80,11 @@ public class User {
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(String password) {
-        this.Password = password;
+        this.password = password;
     }
 
     public Role getRole() {

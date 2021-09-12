@@ -5,7 +5,7 @@ export default function Home(props) {
         <header>
             <h1 class="text-center">Seru</h1>
         </header>
-        <main>
+        <main class="body-home">
             <div class="container-parent">
             <h2 class="text-center">Free to play</h2>
              <div id="container-free" class="row d-flex justify-content-center">
@@ -26,10 +26,6 @@ export default function Home(props) {
         </div>
             <footer style="margin-top: 10em"></footer>
         </main>
-        
-           <script>
-            
-        </script>
     `;
 }
 
@@ -47,7 +43,17 @@ export function cheapSharkCardBuilder(listOfGames) {
     		<p class="card-text" > Current Price $${game.salePrice}</p>
     		<p class="card-text"> Total Savings ${savings}%</p>
     		<p class="card-text"> Steam Rating: ${game.steamRatingPercent}</p>
-        <div class="var2">
+       
+    	</div>
+    </div>
+    <div class="flip-card-back">
+      <h5 class="card-title" > ${game.title}</h5>
+    	<p class="card-text" > Current Price $${game.salePrice}</p>
+    	<p class="card-text"> Total Savings ${savings}%</p>
+    	<p class="card-text"> Normal Price ${game.normalPrice}</p>
+    	<p class="card-text"> Steam Rating: ${game.steamRatingPercent}</p>
+    	<button class="review-btn">Leave a Review</button>
+    	 <div class="var2">
     <a class="button two inactive desktop">
         <div class="icon-with-text">
             <div class="icon-with-text__icon">
@@ -71,16 +77,6 @@ export function cheapSharkCardBuilder(listOfGames) {
         </div>
     </a>
 </div>
-    		<a href="#" class="btn btn-primary">Get Now</a>
-    	</div>
-    </div>
-    <div class="flip-card-back">
-      <h5 class="card-title" > ${game.title}</h5>
-    	<p class="card-text" > Current Price $${game.salePrice}</p>
-    	<p class="card-text"> Total Savings ${savings}%</p>
-    	<p class="card-text"> Normal Price ${game.normalPrice}</p>
-    	<p class="card-text"> Steam Rating: ${game.steamRatingPercent}</p>
-    	<button class="review-btn">Leave a Review</button>
    		<a href="#" class="btn btn-primary">Get Now</a>
     </div>
   </div>
@@ -100,6 +96,18 @@ export function freeCardBuilder(listOfGames) {
   		<div class="card-body">
     		<h5 class="card-title" > ${game.title}</h5>
     		<p class="card-text" > Free to play </p>
+       
+    	</div>
+    </div>
+    <div class="flip-card-back">
+      <h5 class="card-title" > ${game.title}</h5>
+     	<p class="card-text" > ${game.short_description} </p>
+    	<p class="card-text" > Free to play </p>
+    	<button class="review-btn">Leave a Review</button>
+    	<form>
+    	    <input class="editRating" type="number" min="0" max="10" step="0.5">
+    	    <button class="submitForm">Submit</button>
+        </form>
         <div class="var2">
     <a class="button two inactive desktop">
         <div class="icon-with-text">
@@ -124,19 +132,8 @@ export function freeCardBuilder(listOfGames) {
         </div>
     </a>
 </div>
-    		<button type="button" class="btn-get btn btn-primary" onclick=" window.open('${game.game_url}','_blank')">Get Now</button>
-    	</div>
-    </div>
-    <div class="flip-card-back">
-      <h5 class="card-title" > ${game.title}</h5>
-     	<p class="card-text" > ${game.short_description} </p>
-    	<p class="card-text" > Free to play </p>
-    	<button class="review-btn">Leave a Review</button>
-    	<button type="button" class="btn-get btn btn-primary" onclick=" window.open('${game.game_url}','_blank')">Get Now</button>
-    	<form>
-    	    <input class="editRating" type="number" min="0" max="10" step="0.5">
-    	    <button class="submitForm">Submit</button>
-        </form>
+            		<button type="button" class="btn-get btn btn-primary" onclick=" window.open('${game.game_url}','_blank')">Get Now</button>
+
     </div>
   </div>
 </div>`
