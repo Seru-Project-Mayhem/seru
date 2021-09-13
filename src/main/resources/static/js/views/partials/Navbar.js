@@ -1,3 +1,5 @@
+import {rapidApi_token} from "../../ApiKeys/keys.js";
+
 export default function Navbar(props) {
 
     return `
@@ -11,10 +13,109 @@ export default function Navbar(props) {
                     <a href="/register" data-link class="nav-link" style="color: white">Register</a>
               </div>
               <form class="d-flex" id="navbar-search">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="search-input">
+                    <button class="btn btn-outline-success" type="submit" id="btn-search">Search</button>
               </form>
             </div>
         </nav>
     `;
+}
+
+
+export function searchBarEvent(){
+
+    $("#btn-search").click(function () {
+
+        let searchQuery = $("#search-input").val();
+
+
+        fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?lowerPrice=0&steamRating=0&title=${searchQuery}&desc=0&output=json&steamworks=0&sortBy=Deal%20Rating&AAA=0&pageSize=60&exact=0&upperPrice=50&pageNumber=0&onSale=0&metacritic=0&storeID=1%2C2%2C3`, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",
+                "x-rapidapi-key": rapidApi_token,
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                renderSearchQueryResults(data)
+            })
+            .catch(err => {
+                console.error(err);
+            });
+
+    })
+
+
+}
+
+export function renderSearchQueryResults(gamesResults) {
+
+    $("#container-games").empty();
+    gamesResults.forEach(function (games) {
+        searchQueryCardBuilder(games)
+    })
+
+}
+
+
+
+export function searchQueryCardBuilder(results){
+
+
+        let savings = parseFloat(results.savings).toFixed(1);
+
+        let gameCard = `
+<div class="flip-card" style="width: 18rem;">
+  <div class="flip-card-inner">
+  	<div class="flip-card-front">
+    	<img class="card-img-top" src="${results.thumb}" alt="Card image cap">
+  		<div class="card-body">
+    		<h5 class="card-title" > ${results.title}</h5>
+    		<p class="card-text" > Current Price $${results.salePrice}</p>
+    		<p class="card-text"> Total Savings ${savings}%</p>
+    		<p class="card-text"> Steam Rating: ${results.steamRatingPercent}</p>
+       
+    	</div>
+    </div>
+    <div class="flip-card-back">
+      <h5 class="card-title" > ${results.title}</h5>
+    	<p class="card-text" > Current Price $${results.salePrice}</p>
+    	<p class="card-text"> Total Savings ${savings}%</p>
+    	<p class="card-text"> Normal Price ${results.normalPrice}</p>
+    	<p class="card-text"> Steam Rating: ${results.steamRatingPercent}</p>
+    	<button class="review-btn">Leave a Review</button>
+    	 <div class="var2">
+    <a class="button two inactive desktop">
+        <div class="icon-with-text">
+            <div class="icon-with-text__icon">
+                <div class="btn__effect">
+                    <svg class="heart-stroke icon-svg icon-svg--size-4 icon-svg--color-silver" viewBox="20 18 29 28" aria-hidden="true" focusable="false"><path d="M28.3 21.1a4.3 4.3 0 0 1 4.1 2.6 2.5 2.5 0 0 0 2.3 1.7c1 0 1.7-.6 2.2-1.7a3.7 3.7 0 0 1 3.7-2.6c2.7 0 5.2 2.7 5.3 5.8.2 4-5.4 11.2-9.3 15a2.8 2.8 0 0 1-2 1 3.4 3.4 0 0 1-2.2-1c-9.6-10-9.4-13.2-9.3-15 0-1 .6-5.8 5.2-5.8m0-3c-5.3 0-7.9 4.3-8.2 8.5-.2 3.2.4 7.2 10.2 17.4a6.3 6.3 0 0 0 4.3 1.9 5.7 5.7 0 0 0 4.1-1.9c1.1-1 10.6-10.7 10.3-17.3-.2-4.6-4-8.6-8.4-8.6a7.6 7.6 0 0 0-6 2.7 8.1 8.1 0 0 0-6.2-2.7z"></path>
+                    </svg>
+                    <svg class="heart-full icon-svg icon-svg--size-4 icon-svg--color-blue" viewBox="0 0 19.2 18.5" aria-hidden="true" focusable="false"><path d="M9.66 18.48a4.23 4.23 0 0 1-2.89-1.22C.29 10.44-.12 7.79.02 5.67.21 2.87 1.95.03 5.42.01c1.61-.07 3.16.57 4.25 1.76A5.07 5.07 0 0 1 13.6 0c2.88 0 5.43 2.66 5.59 5.74.2 4.37-6.09 10.79-6.8 11.5-.71.77-1.7 1.21-2.74 1.23z"></path></svg>
+                    <svg class="broken-heart" xmlns="http://www.w3.org/2000/svg" width="48" height="16" viewBox="5.707 17 48 16"><g fill="#0090E3">
+                        <path class="broken-heart--left" d="M29.865 32.735V18.703a4.562 4.562 0 0 0-3.567-1.476c-2.916.017-4.378 2.403-4.538 4.756-.118 1.781.227 4.006 5.672 9.737a3.544 3.544 0 0 0 2.428 1.025l-.008-.008.013-.002z"/>
+                        <path class="broken-heart--right" d="M37.868 22.045c-.135-2.588-2.277-4.823-4.697-4.823a4.258 4.258 0 0 0-3.302 1.487l-.004-.003v14.035a3.215 3.215 0 0 0 2.289-1.033c.598-.596 5.882-5.99 5.714-9.663z"/></g>
+                        <path class="broken-heart--crack" fill="none" stroke="#FFF" stroke-miterlimit="10" d="M29.865 18.205v14.573"/></svg>
+                    <div class="effect-group">
+                        <span class="effect"></span>
+                        <span class="effect"></span>
+                        <span class="effect"></span>
+                        <span class="effect"></span>
+                        <span class="effect"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
+   		<a href="#" class="btn btn-primary">Get Now</a>
+    </div>
+  </div>
+</div>`
+
+    $("#container-games").append(gameCard);
+
+
 }

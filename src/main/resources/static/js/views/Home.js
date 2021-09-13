@@ -124,7 +124,7 @@ export function infiniteScrollingEvent(value){
 
 export function cheapSharkCardBuilder(listOfGames) {
 
-    return listOfGames.map( game => {
+    return listOfGames.map(game => {
     let savings = parseFloat(game.savings).toFixed(1);
       return  `
 <div class="flip-card" style="width: 18rem;">

@@ -7,6 +7,7 @@ import {
 } from "./views/Home.js";
 import {rapidApi_token} from "./ApiKeys/keys.js";
 import {apiData} from "./views/FreeToPlay.js";
+import {searchBarEvent} from "./views/partials/Navbar.js";
 
 
 // export function freeToGameHomeGet(){
@@ -60,6 +61,7 @@ export function cheapSharkGet(){
 			SetFavoriteEvent();
 			ratingEvent();
 			priceSliderEvent();
+			searchBarEvent();
 		})
 		.catch(err => {
 			console.error(err);
