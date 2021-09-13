@@ -3,7 +3,7 @@ import {
 	cheapSharkCardBuilder,
 	priceSliderEvent,
 	ratingEvent,
-	SetFavoriteEvent,
+	SetFavoriteEvent, urlRedirectEvent,
 } from "./views/Home.js";
 import {rapidApi_token} from "./ApiKeys/keys.js";
 import {apiData} from "./views/FreeToPlay.js";
@@ -62,6 +62,7 @@ export function cheapSharkGet(){
 			ratingEvent();
 			priceSliderEvent();
 			searchBarEvent();
+			urlRedirectEvent();
 		})
 		.catch(err => {
 			console.error(err);
