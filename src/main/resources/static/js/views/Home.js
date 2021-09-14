@@ -81,7 +81,7 @@ export function cheapSharkCardBuilder(listOfGames) {
     	<p class="card-text"> Total Savings ${savings}%</p>
     	<p class="card-text"> Normal Price ${game.normalPrice}</p>
     	<p class="card-text"> Steam Rating: ${game.steamRatingPercent}</p>
-    	<button class="review-btn">Leave a Review</button>
+    	<a class="review-btn"  href="/review" onclick=" window.location.href = '/review'" > 
    		<a href="#" class="btn btn-primary">Get Now</a>
     </div>
   </div>
@@ -132,7 +132,7 @@ export function freeCardBuilder(listOfGames) {
       <h5 class="card-title" > ${game.title}</h5>
      	<p class="card-text" > ${game.short_description} </p>
     	<p class="card-text" > Free to play </p>
-    	<button class="review-btn">Leave a Review</button>
+    	<a class="review-btn"  href="/review" onclick=" window.location.href = '/review'" > 
     	<button type="button" class="btn-get btn btn-primary" onclick=" window.open('${game.game_url}','_blank')">Get Now</button>
     	<form>
     	    <input class="editRating" type="number" min="0" max="10" step="0.5">

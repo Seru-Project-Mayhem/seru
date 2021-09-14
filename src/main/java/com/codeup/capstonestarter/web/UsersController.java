@@ -21,7 +21,6 @@ public class UsersController {
     }
 
     @PostMapping("/create")
-    @PreAuthorize("!hasAuthority('USER') || (#oldPassword != null && !#oldPassword.isEmpty())")
     public void createUser(@RequestBody User user){
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
