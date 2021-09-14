@@ -7,6 +7,7 @@ import Login from "./views/Login.js";
 import LoginEvent from "./auth.js";
 import Register, {RegisterEvent} from "./views/Register.js";
 import FreeToPlayView from "./views/FreeToPlay.js";
+import Review, {reviewEvent} from "./views/Review.js";
 
 /**
  * Returns the route object for a specific route based on the given URI
@@ -42,7 +43,16 @@ export default function router(URI) {
             state: {},
             uri: '/freetoplay',
             viewEvent: freeToGameGet
-        }
+        },
+        '/review': {
+            returnView: Review,
+            state: {},
+            uri: '/Review',
+            viewEvent: reviewEvent
+        },
+
+
+
     };
 
     return routes[URI];
