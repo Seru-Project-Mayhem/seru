@@ -61,13 +61,13 @@ export function priceSliderEvent(){
 }
 
 export function userPriceSelectionQuery(value){
-
+let pageNumber = 0;
     $("#go-btn").click(function () {
 
         console.log("Value is: " + value);
         $("#container-games").empty();
 
-        fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?lowerPrice=0&desc=0&output=json&steamworks=0&sortBy=Reviews&AAA=true&pageSize=60&exact=0&upperPrice=${value}&pageNumber=0&onSale=0&metacritic=0&storeID=1`, {
+        fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?lowerPrice=0&desc=0&output=json&steamworks=0&sortBy=Reviews&AAA=true&pageSize=60&exact=0&upperPrice=${value}&pageNumber=${pageNumber}&onSale=0&metacritic=0&storeID=1`, {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",
@@ -79,7 +79,6 @@ export function userPriceSelectionQuery(value){
                 $("#container-games").append(cheapSharkCardBuilder(data));
                 SetFavoriteEvent();
                 ratingEvent();
-                priceSliderEvent();
                 infiniteScrollingEvent(value);
                 urlRedirectEvent();
                 // location.reload();
@@ -93,34 +92,35 @@ export function userPriceSelectionQuery(value){
 }
 
 export function infiniteScrollingEvent(value){
-    let pageNumber = 1;
+	let page = 1;
+	let currentScrollHeight = 0;
 
-    $(window).on("scroll", function() {
-        var scrollHeight = $(document).height();
-        var scrollPos = $(window).height() + $(window).scrollTop();
-        if(((scrollHeight - 300) >= scrollPos) / scrollHeight === 0){
+	$(window).on("scroll", () => {
+		const scrollHeight = $(document).height();
+		const scrollPos = Math.floor($(window).height() + $(window).scrollTop());
+		const isBottom = scrollHeight - 300 < scrollPos;
 
+		if (isBottom && currentScrollHeight < scrollHeight) {
 
-            fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?lowerPrice=0&desc=0&output=json&steamworks=0&sortBy=Reviews&AAA=true&pageSize=60&exact=0&upperPrice=${value}&pageNumber=${pageNumber}&onSale=0&metacritic=0&storeID=1`, {
-                "method": "GET",
-                "headers": {
-                    "x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",
-                    "x-rapidapi-key": rapidApi_token,
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log("Another 60 games are being added to the view");
-                    $("#container-games").append(cheapSharkCardBuilder(data));
-                    infiniteScrollingEvent(value);
-                    pageNumber += 1;
-                    // location.reload();
-                })
-                .catch(err => {
-                    console.error(err);
-                });
-        }
-    });
+			fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?lowerPrice=0&desc=0&output=json&steamworks=0&sortBy=Reviews&AAA=true&pageSize=60&exact=0&upperPrice=${value}&pageNumber=${page}&onSale=0&metacritic=0&storeID=1`, {
+				"method": "GET",
+				"headers": {
+					"x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",
+					"x-rapidapi-key": rapidApi_token,
+				}
+			})
+				.then(response => response.json())
+				.then(data => {
+					console.log("Another 60 games are being added to the view");
+					$("#container-games").append(cheapSharkCardBuilder(data));
+					page = page + 1;
+				})
+				.catch(err => {
+					console.error(err);
+				});
+			currentScrollHeight = scrollHeight;
+		}
+	});
 
 }
 
@@ -197,7 +197,6 @@ export function cheapSharkCardBuilder(listOfGames) {
         </div>
     </div>`
     });
-
 }
 
 
@@ -211,12 +210,8 @@ export function ratingEvent(){
         let rating = $(this).siblings('editRating').val()
         postRating(rating);
     });
-
-    // $('.flip-card .flip-card-inner').dblclick(function() {
-    //     $(this).closest('.flip-card').toggleClass('hover');
-    //     $(this).css('transform, rotateY(180deg)');
-    // });
 }
+
 export function SetFavoriteEvent() {
     console.log("Set favorite event was called")
         $(".button").click(function () {

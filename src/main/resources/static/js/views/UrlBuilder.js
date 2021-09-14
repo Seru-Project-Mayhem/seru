@@ -8,9 +8,11 @@ export function returnValidURL(steamAppID, gameTitle, store_ID){
 		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("-");
 		window.open(`https://www.gamersgate.com/product/${adjusted_title}/`, '_blank');
 	} else if (store_ID == 3){
+
 		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("-");
 		window.open(`https://www.greenmangaming.com/games/${adjusted_title}`, '_blank');
 	}else if (store_ID == 7){
+
 		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("-");
 		window.open(`https://www.gog.com/game/${adjusted_title}`, '_blank');
 	}else if (store_ID == 11){
@@ -22,12 +24,15 @@ export function returnValidURL(steamAppID, gameTitle, store_ID){
 		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("-");
 		window.open(`https://www.fanatical.com/en/game/${adjusted_title}`, "_blank");
 	}else if (store_ID == 16){
+
 		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("-");
 		window.open(`https://www.gamesrocket.com/${adjusted_title}.html`, '_blank');
 	}else if (store_ID == 23){
+
 		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("-");
 		window.open(`https://www.gamebillet.com/${adjusted_title}`, '_blank');
 	}else if (store_ID == 24){
+
 		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("-");
 		window.open(`https://www.voidu.com/en/${adjusted_title}`, '_blank');
 	}else if (store_ID == 25){
@@ -35,6 +40,7 @@ export function returnValidURL(steamAppID, gameTitle, store_ID){
 		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("-");
 		window.open(`https://www.epicgames.com/store/en-US/p/${adjusted_title}`, '_blank');
 	}else if (store_ID == 29){
+
 		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("-");
 		window.open(`https://2game.com/en-us/${adjusted_title}`, '_blank');
 	}else if (store_ID == 30){
@@ -42,6 +48,7 @@ export function returnValidURL(steamAppID, gameTitle, store_ID){
 		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("-");
 		window.open(`https://www.indiegala.com/store/game/${adjusted_title}/${steamAppID}`, '_blank');
 	}else if (store_ID == 31){
+
 		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("-");
 		window.open(`https://us.shop.battle.net/en-us/family/${adjusted_title}`, '_blank');
 	} else {
