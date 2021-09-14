@@ -1,4 +1,5 @@
 import {postRating} from "../FetchQueries.js";
+import {returnValidURL} from "../UrlBuilder";
 
 export default function Home(props) {
     return `
@@ -71,7 +72,7 @@ export function cheapSharkCardBuilder(listOfGames) {
         </div>
     </a>
 </div>
-    		<a href="#" class="btn btn-primary">Get Now</a>
+    		<a href="${returnValidURL(game.storeID, game)}" class="btn btn-primary">Get Now</a>
     	</div>
     </div>
     <div class="flip-card-back">
