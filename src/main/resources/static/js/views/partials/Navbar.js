@@ -24,7 +24,7 @@ export default function Navbar(props) {
 
 export function searchBarEvent(){
 
-    $("#btn-navbar").click(function () {
+    $("#btn-navbar").on('click', function () {
 
         let searchQuery = $(".search-input").val();
         console.log(typeof searchQuery);

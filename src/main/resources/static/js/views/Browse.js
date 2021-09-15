@@ -164,8 +164,9 @@ export function sideBarSearchEvent(){
 
     $(".btn-sidebar").on('click', function () {
 
+        console.log("sidebar button has been pressed!");
         let searchQuery = $("#sidebar-input").val();
-        console.log(typeof searchQuery);
+
         console.log("sidebar value is: " + searchQuery);
 
         fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?lowerPrice=0&steamRating=0&title=${searchQuery}&desc=0&output=json&steamworks=0&sortBy=Deal%20Rating&AAA=0&pageSize=60&exact=0&upperPrice=50&pageNumber=0&onSale=0&metacritic=0&storeID=1%2C2%2C3`, {

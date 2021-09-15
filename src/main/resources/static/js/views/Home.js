@@ -3,16 +3,11 @@ import {returnValidURL} from "./UrlBuilder.js";
 
 export default function Home(props) {
     return `
-<header>
-    <h1 class="text-center">Seru</h1>
-</header>
-<main>
           <header>
         <h1 class="text-center">Seru</h1>
     </header>
     <main>
-     
-            <hr><hr><hr>
+        <div class="container-parent">
 
             <div class="row d-flex justify-content-center" id="container-games">
 
