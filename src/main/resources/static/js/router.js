@@ -53,7 +53,7 @@ export default function router(URI) {
         },
         '/browse': {
             returnView: Browse,
-            state: {},
+            state: {games: "/browse/games"},
             uri: '/browse',
             viewEvent: cheapSharkBrowseGet
         }

@@ -66,7 +66,7 @@ export function cheapSharkCardBuilder(listOfGames) {
                 <p class="card-text"> Total Savings ${savings}%</p>
                 <p class="card-text"> Normal Price ${game.normalPrice}</p>
                 <p class="card-text"> Steam Rating: ${game.steamRatingPercent}</p>
-                <a class="review-btn"  href="/review" onclick=" window.location.href = '/review'" > Leave Review</a>
+                <a class="review-btn"  href="/review" onclick="window.location.href = '/review'" > Leave Review</a>
                 <div class="var2">
                     <a class="button two inactive desktop">
                         <div class="icon-with-text">

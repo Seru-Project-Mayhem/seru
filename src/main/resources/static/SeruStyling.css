@@ -492,7 +492,7 @@ h2 {
 
 /*Navbar styling*/
 
-.nav-link:hover {
+.nav:hover {
     background-color: #FF0181;
 }
 
