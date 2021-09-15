@@ -8,6 +8,7 @@ import LoginEvent from "./auth.js";
 import Register, {RegisterEvent} from "./views/Register.js";
 import FreeToPlayView from "./views/FreeToPlay.js";
 import Review, {reviewEvent} from "./views/Review.js";
+import Browse, {cheapSharkBrowseGet} from "./views/Browse.js";
 
 /**
  * Returns the route object for a specific route based on the given URI
@@ -50,6 +51,12 @@ export default function router(URI) {
             uri: '/Review',
             viewEvent: reviewEvent
         },
+        '/browse': {
+            returnView: Browse,
+            state: {},
+            uri: '/browse',
+            viewEvent: cheapSharkBrowseGet
+        }
 
 
 

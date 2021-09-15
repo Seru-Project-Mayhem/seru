@@ -1,34 +1,30 @@
-
 import {
-	cheapSharkCardBuilder,
-	priceSliderEvent,
+	cheapSharkCardBuilder, freeToGameCarouselView,
 	ratingEvent,
 	SetFavoriteEvent, urlRedirectEvent,
 } from "./views/Home.js";
 import {rapidApi_token} from "./ApiKeys/keys.js";
 import {apiData} from "./views/FreeToPlay.js";
 import {searchBarEvent} from "./views/partials/Navbar.js";
+import {sideBarSearchEvent} from "./views/Browse.js";
 
 
-// export function freeToGameHomeGet(){
-// 	fetch("https://free-to-play-games-database.p.rapidapi.com/api/games", {
-// 		"method": "GET",
-// 		"headers": {
-// 			"x-rapidapi-host": "free-to-play-games-database.p.rapidapi.com",
-// 			"x-rapidapi-key": rapidApi_token,
-// 		}
-// 	})
-// 		.then(response => response.json())
-// 		.then(data => {
-// 			console.log("Adding free cards to DOM")
-// 			const size = 5;
-// 			const items = data.slice(0, size);
-// 			$("#container-free").append(freeCardBuilder(items));
-// 		})
-// 		.catch(err => {
-// 			console.error(err);
-// 		});
-// }
+export function freeToGameHomeGet(){
+	fetch("https://free-to-play-games-database.p.rapidapi.com/api/games", {
+		"method": "GET",
+		"headers": {
+			"x-rapidapi-host": "free-to-play-games-database.p.rapidapi.com",
+			"x-rapidapi-key": rapidApi_token,
+		}
+	})
+		.then(response => response.json())
+		.then(data => {
+			freeToGameCarouselView(data);
+		})
+		.catch(err => {
+			console.error(err);
+		});
+}
 
 export function freeToGameGet(){
 	fetch("https://free-to-play-games-database.p.rapidapi.com/api/games", {
@@ -58,9 +54,10 @@ export function cheapSharkGet(){
 		.then(response => response.json())
 		.then(data => {
 			$("#container-games").append(cheapSharkCardBuilder(data));
+
 			SetFavoriteEvent();
 			ratingEvent();
-			priceSliderEvent();
+			sideBarSearchEvent();
 			searchBarEvent();
 			urlRedirectEvent();
 		})
@@ -98,4 +95,5 @@ export function postRating(rating){
 
 export function getAllGames(){
 	cheapSharkGet();
+	freeToGameHomeGet()
 }
