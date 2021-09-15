@@ -58,8 +58,6 @@ export default function router(URI) {
             viewEvent: cheapSharkBrowseGet
         }
 
-
-
     };
 
     return routes[URI];

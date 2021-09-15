@@ -7,20 +7,19 @@ export default function Home(props) {
     <h1 class="text-center">Seru</h1>
 </header>
 <main>
+          <header>
+        <h1 class="text-center">Seru</h1>
+    </header>
+    <main>
+     
+            <hr><hr><hr>
 
-    <div class="container-parent">
+            <div class="row d-flex justify-content-center" id="container-games">
 
-        <div>
-      
+            </div>
         </div>
-        <hr><hr><hr>
-        
-        <div class="row d-flex justify-content-center" id="container-games">
-
-        </div>
-    </div>
-    <footer style="margin-top: 10em"></footer>
-</main>
+        <footer style="margin-top: 10em"></footer>
+    </main>
     `;
 }
 
@@ -39,8 +38,16 @@ export function cheapSharkCardBuilder(listOfGames) {
 
     return listOfGames.map(game => {
     let savings = parseFloat(game.savings).toFixed(1);
+    let url = "assets/LOGOS/";
+    let svg = ".svg";
+    let store = url + game.storeID;
+    if(game.storeID == 1 || game.storeID == 3 || game.storeID == 7 || game.storeID == 11 || game.storeID == 15 ||
+       game.storeID == 25 || game.storeID == 30 || game.storeID == 31){
+        // store = url + game.storeID + svg;
+         store = store + svg;
+    }
 
-      return  `
+        return  `
     <div class="flip-card" style="width: 18rem;">
         <div class="flip-card-inner">
             <div class="flip-card-front">
@@ -56,8 +63,10 @@ export function cheapSharkCardBuilder(listOfGames) {
             <div class="flip-card-back">
                 <h5 class="card-title game-title"> ${game.title}</h5>
                 <p class="steam-id">${game.steamAppID}</p>
-                <p class="store-id">${game.storeID}</p>
-
+                <a>
+                     <img src= ${store} style="height: 50px; width: 50px">
+                     <p class="store-id">${game.storeID}</p>
+                </a>
                 <p class="card-text"> Current Price $${game.salePrice}</p>
                 <p class="card-text"> Total Savings ${savings}%</p>
                 <p class="card-text"> Normal Price ${game.normalPrice}</p>
