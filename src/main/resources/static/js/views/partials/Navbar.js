@@ -1,4 +1,6 @@
 import {rapidApi_token} from "../../ApiKeys/keys.js";
+import {ratingEvent, SetFavoriteEvent, urlRedirectEvent} from "../Home.js";
+import {sideBarSearchEvent} from "../Browse.js";
 
 export default function Navbar(props) {
 
@@ -6,15 +8,15 @@ export default function Navbar(props) {
         <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
           <div class="container-fluid">
               <div class="navbar-nav">
-                    <a href="/" data-link class="nav-link" style="color: white ">Home</a>
-                    
-                    <a href="/freetoplay" data-link class="nav-link" style="color: white">Free to Play</a>
-                    <a href="/login" data-link class="nav-link" style="color: white">Login</a>
-                    <a href="/register" data-link class="nav-link" style="color: white">Register</a>
+                    <a href="/" data-link class="nav-link nav" style="color: white ">Home</a>
+                    <a href="/freetoplay" data-link class="nav-link nav" style="color: white">Free to Play</a>
+                    <a href="/browse" data-link class="nav-link nav" style="color: white">Browse</a>
+                    <a href="/login" data-link class="nav-link nav" style="color: white">Login</a>
+                    <a href="/register" data-link class="nav-link nav" style="color: white">Register</a>
               </div>
               <form class="d-flex" id="navbar-search">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="search-input">
-                    <button class="btn btn-outline-success" type="submit" id="btn-search">Search</button>
+                    <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search" id="navbar-input">
+                    <button href="/browse" data-link class="btn btn-outline-success btn-search nav-link" type="submit" id="btn-navbar">Search</button>
               </form>
             </div>
         </nav>
@@ -24,9 +26,10 @@ export default function Navbar(props) {
 
 export function searchBarEvent(){
 
-    $("#btn-search").click(function () {
+    $("#btn-navbar").on('click', function () {
 
-        let searchQuery = $("#search-input").val();
+        let searchQuery = $("#navbar-input").val();
+
 
 
         fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?lowerPrice=0&steamRating=0&title=${searchQuery}&desc=0&output=json&steamworks=0&sortBy=Deal%20Rating&AAA=0&pageSize=60&exact=0&upperPrice=50&pageNumber=0&onSale=0&metacritic=0&storeID=1%2C2%2C3`, {
@@ -38,23 +41,26 @@ export function searchBarEvent(){
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 renderSearchQueryResults(data)
+                SetFavoriteEvent();
+                ratingEvent();
+                sideBarSearchEvent();
+                searchBarEvent();
+                urlRedirectEvent();
             })
             .catch(err => {
                 console.error(err);
             });
 
     })
-
-
 }
 
 export function renderSearchQueryResults(gamesResults) {
 
-    $("#container-games").empty();
+    $("#container-browse-games").empty();
     gamesResults.forEach(function (games) {
-        searchQueryCardBuilder(games)
+        searchQueryCardBuilder(games);
+
     })
 
 }
@@ -76,7 +82,7 @@ export function searchQueryCardBuilder(results){
     		<p class="card-text" > Current Price $${results.salePrice}</p>
     		<p class="card-text"> Total Savings ${savings}%</p>
     		<p class="card-text"> Steam Rating: ${results.steamRatingPercent}</p>
-       
+
     	</div>
     </div>
     <div class="flip-card-back">
@@ -115,7 +121,7 @@ export function searchQueryCardBuilder(results){
   </div>
 </div>`
 
-    $("#container-games").append(gameCard);
+    $("#container-browse-games").append(gameCard);
 
 
 }
