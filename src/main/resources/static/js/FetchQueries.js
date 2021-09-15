@@ -6,7 +6,7 @@ import {
 import {rapidApi_token} from "./ApiKeys/keys.js";
 import {apiData} from "./views/FreeToPlay.js";
 import {searchBarEvent} from "./views/partials/Navbar.js";
-import {sideBarSearchEvent} from "./views/Browse.js";
+import {sideBarCheckboxEvent, sideBarSearchEvent} from "./views/Browse.js";
 
 
 export function freeToGameHomeGet(){
@@ -54,10 +54,10 @@ export function cheapSharkGet(){
 		.then(response => response.json())
 		.then(data => {
 			$("#container-games").append(cheapSharkCardBuilder(data));
-
 			SetFavoriteEvent();
 			ratingEvent();
 			sideBarSearchEvent();
+			sideBarCheckboxEvent()
 			searchBarEvent();
 			urlRedirectEvent();
 		})

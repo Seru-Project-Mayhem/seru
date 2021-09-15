@@ -18,60 +18,60 @@ export default function Browse(){
             <section class="mb-4 stores">
 
                 <h6 class="font-weight-bold mb-3">Stores</h6>
-
+            <div id="checkboxList">
                 <div class="form-check pl-0 mb-3">
-                    <input type="checkbox" class="form-check-input filled-in" id="Steam">
+                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="1" id="Steam">
                     <label class="form-check-label small text-uppercase card-link-secondary" for="Steam">Steam</label>
                 </div>
                 <div class="form-check pl-0 mb-3">
-                    <input type="checkbox" class="form-check-input filled-in" id="GamersGate">
+                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="2" id="GamersGate">
                     <label class="form-check-label small text-uppercase card-link-secondary" for="GamersGate">Gamers Gate</label>
                 </div>
                 <div class="form-check pl-0 mb-3">
-                    <input type="checkbox" class="form-check-input filled-in" id="GreenManGaming">
+                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="3" id="GreenManGaming">
                     <label class="form-check-label small text-uppercase card-link-secondary" for="GreenManGaming">Green Man Gaming</label>
                 </div>
                 <div class="form-check pl-0 mb-3 pb-1">
-                    <input type="checkbox" class="form-check-input filled-in" id="GOG">
+                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="7" id="GOG">
                     <label class="form-check-label small text-uppercase card-link-secondary" for="GOG">GOG</label>
                 </div>
                 <div class="form-check pl-0 mb-3 pb-1">
-                    <input type="checkbox" class="form-check-input filled-in" id="HumbleStore">
+                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="11" id="HumbleStore">
                     <label class="form-check-label small text-uppercase card-link-secondary" for="HumbleStore">Humble Store</label>
                 </div>
                 <div class="form-check pl-0 mb-3 pb-1">
-                    <input type="checkbox" class="form-check-input filled-in" id="Fanatical">
+                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" id="Fanatical">
                     <label class="form-check-label small text-uppercase card-link-secondary" for="Fanatical">Fanatical</label>
                 </div>
                 <div class="form-check pl-0 mb-3 pb-1">
-                    <input type="checkbox" class="form-check-input filled-in" id="GamesRocket">
+                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="15" id="GamesRocket">
                     <label class="form-check-label small text-uppercase card-link-secondary" for="GamesRocket">Games Rocket</label>
                 </div>
                 <div class="form-check pl-0 mb-3 pb-1">
-                    <input type="checkbox" class="form-check-input filled-in" id="GameBillet">
+                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="23" id="GameBillet">
                     <label class="form-check-label small text-uppercase card-link-secondary" for="GameBillet">Game Billet</label>
                 </div>
                 <div class="form-check pl-0 mb-3 pb-1">
-                    <input type="checkbox" class="form-check-input filled-in" id="Voidu">
+                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="24" id="Voidu">
                     <label class="form-check-label small text-uppercase card-link-secondary" for="Voidu">Voidu</label>
                 </div>
                 <div class="form-check pl-0 mb-3 pb-1">
-                    <input type="checkbox" class="form-check-input filled-in" id="EpicGameStore">
+                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="25" id="EpicGameStore">
                     <label class="form-check-label small text-uppercase card-link-secondary" for="EpicGameStore">Epic Game Store</label>
                 </div>
                 <div class="form-check pl-0 mb-3 pb-1">
-                    <input type="checkbox" class="form-check-input filled-in" id="2Game">
+                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="29" id="2Game">
                     <label class="form-check-label small text-uppercase card-link-secondary" for="2Game">2Game</label>
                 </div>
                 <div class="form-check pl-0 mb-3 pb-1">
-                    <input type="checkbox" class="form-check-input filled-in" id="IndieGala">
+                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="30" id="IndieGala">
                     <label class="form-check-label small text-uppercase card-link-secondary" for="IndieGala">Indie Gala</label>
                 </div>
                 <div class="form-check pl-0 mb-3 pb-1">
-                    <input type="checkbox" class="form-check-input filled-in" id="BlizzardShop">
+                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="31" id="BlizzardShop">
                     <label class="form-check-label small text-uppercase card-link-secondary" for="BlizzardShop">Blizzard Shop</label>
                 </div>
-
+            </div>
             </section>
             <!-- Section: Stores -->
 
@@ -160,11 +160,39 @@ export default function Browse(){
 
 }
 
+export function sideBarCheckboxEvent(){
+
+    console.log("sideBarCheckboxEvent is called");
+
+    //lines 168-169 would hopefully join selected stores into an array so we can insert into a query
+    // let stores = [];
+    // $("#checkboxList").find('[value=' + stores.join('], [value=') + ']').prop("checked", true);
+
+    $('input[name=store]').is(':checked')
+    $('input[name=store]').attr('checked')
+
+    console.log("I made it to sideBarCheckboxEvent!")
+
+    $(this.checked).on('click', function () {
+
+        if($(this.checked)){
+            $('input[name=store]').attr('checked', true);
+            $(this).val(1);
+        }else{
+            $('input[name=store]').attr('checked', false);
+            $(this).val(0);
+        }
+
+            });
+
+}
+
 export function sideBarSearchEvent(){
+
+    console.log("sideBarSearchEvent is called");
 
     $(".btn-sidebar").on('click', function () {
 
-        console.log("sidebar button has been pressed!");
         let searchQuery = $("#sidebar-input").val();
 
         console.log("sidebar value is: " + searchQuery);
@@ -180,6 +208,7 @@ export function sideBarSearchEvent(){
             .then(data => {
                 console.log(data);
                 renderSearchQueryResults(data)
+                infiniteScrollingEvent();
             })
             .catch(err => {
                 console.error(err);
@@ -188,6 +217,9 @@ export function sideBarSearchEvent(){
 }
 
 export function infiniteScrollingEvent(value){
+
+    console.log("infiniteScrollingEvent is called");
+
     let page = 1;
     let currentScrollHeight = 0;
 
@@ -234,9 +266,10 @@ export function cheapSharkBrowseGet(){
             SetFavoriteEvent();
             ratingEvent();
             searchBarEvent();
+            sideBarSearchEvent();
+            sideBarCheckboxEvent();
             urlRedirectEvent();
             infiniteScrollingEvent();
-
         })
         .catch(err => {
             console.error(err);
