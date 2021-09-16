@@ -173,17 +173,17 @@ export function sideBarCheckboxEvent(){
 
     console.log("I made it to sideBarCheckboxEvent!")
 
-    $(this.checked).on('click', function () {
-
-        if($(this.checked)){
-            $('input[name=store]').attr('checked', true);
-            $(this).val(1);
-        }else{
-            $('input[name=store]').attr('checked', false);
-            $(this).val(0);
-        }
-
-            });
+    // $(this.checked).on('click', function () {
+    //
+    //     if($(this.checked)){
+    //         $('input[name=store]').attr('checked', true);
+    //         $(this).val(1);
+    //     }else{
+    //         $('input[name=store]').attr('checked', false);
+    //         $(this).val(0);
+    //     }
+    //
+    //         });
 
 }
 
@@ -230,7 +230,7 @@ export function infiniteScrollingEvent(value){
 
         if (isBottom && currentScrollHeight < scrollHeight) {
 
-            fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?lowerPrice=0&desc=0&output=json&steamworks=0&sortBy=Reviews&AAA=true&pageSize=60&exact=0&upperPrice=${value}&pageNumber=${page}&onSale=0&metacritic=0&storeID=1`, {
+            fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?lowerPrice=0&desc=0&output=json&steamworks=0&sortBy=Reviews&AAA=true&pageSize=60&exact=0&upperPrice=60&pageNumber=${page}&onSale=0&metacritic=0&storeID=1`, {
                 "method": "GET",
                 "headers": {
                     "x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",
