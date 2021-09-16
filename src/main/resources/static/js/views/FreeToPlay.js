@@ -34,7 +34,7 @@ export function freeCardBuilder(listOfGames) {
       <h5 class="card-title" > ${game.title}</h5>
      	<p class="card-text" > ${game.short_description} </p>
     	<p class="card-text" > Free to play </p>
-    	<a class="review-btn"  href="/review" onclick=" window.location.href = '/review'" > Leave Review</a>
+    	<a class="review-btn"  href="/review" onclick="window.location.href = '/review'" > Leave Review</a>
     	<form>
     	    <input class="editRating" type="number" min="0" max="10" step="0.5">
     	    <button class="submitForm">Submit</button>

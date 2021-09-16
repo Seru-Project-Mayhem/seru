@@ -7,16 +7,23 @@ export default function Home(props) {
         <h1 class="text-center">Seru</h1>
     </header>
     <main>
+       
+             
         <div class="container-parent">
-
-            <div class="row d-flex justify-content-center" id="container-games">
-
-            </div>
+    
+            <div class="container" id="container-carousel"></div>
+            <div class="container" id="container-empty"></div> 
+            <div class="row d-flex justify-content-center" id="container-games"></div>
         </div>
+ 
         <footer style="margin-top: 10em"></footer>
     </main>
     `;
 }
+
+
+
+
 
 export function freeToGameCarouselView(data){
 
@@ -26,8 +33,93 @@ export function freeToGameCarouselView(data){
     //COD warzone is 320
     //Genshin Impact is 343
 
+    let num, num2, num3, num4, num5;
+
+
+    for(let i = 0; i <= 4; i++){
+        let random = Math.floor(Math.random() * 366);
+
+        if(i == 0){
+            num = random;
+            console.log("first random number: " + num);
+        } if(i == 1){
+            num2 = random;
+            console.log("second random number: " + num2);
+        } if(i == 2){
+            num3 = random;
+            console.log("third random number: " + num3);
+        } if(i == 3){
+            num4 = random;
+            console.log("fourth random number: " + num4);
+        } if(i == 4) {
+            num5 = random;
+            console.log("fifth random number: " + num5);
+        }
+    }
+
+    console.log(data[20].game_url);
+
+    return `
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+    
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="${data[num].thumbnail}" class="d-block w-100" alt="..." onClick="window.open('${data[num].game_url}','_blank')">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>${data[num].title}</h5>
+        <p>${data[num].short_description}</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="${data[num2].thumbnail}" class="d-block w-100" alt="..." onClick="window.open('${data[num2].game_url}','_blank')">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>${data[num2].title}</h5>
+        <p>${data[num2].short_description}</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="${data[num3].thumbnail}" class="d-block w-100" alt="..." onClick="window.open('${data[num3].game_url}','_blank')">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>${data[num3].title}</h5>
+        <p>${data[num3].short_description}</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="${data[num4].thumbnail}" class="d-block w-100" alt="..." onClick="window.open('${data[num4].game_url}','_blank')">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>${data[num4].title}</h5>
+        <p>${data[num4].short_description}</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="${data[num5].thumbnail}" class="d-block w-100" alt="..." onClick="window.open('${data[num5].game_url}','_blank')">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>${data[num5].title}</h5>
+        <p>${data[num5].short_description}</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+    `;
 
 }
+
+
 
 export function cheapSharkCardBuilder(listOfGames) {
 
@@ -57,10 +149,10 @@ export function cheapSharkCardBuilder(listOfGames) {
             </div>
             <div class="flip-card-back">
                 <h5 class="card-title game-title"> ${game.title}</h5>
-                <p class="steam-id">${game.steamAppID}</p>
+                <p class="steam-id d-none">${game.steamAppID}</p>
                 <a>
                      <img src= ${store} style="height: 50px; width: 50px">
-                     <p class="store-id">${game.storeID}</p>
+                     <p class="store-id d-none">${game.storeID}</p>
                 </a>
                 <p class="card-text"> Current Price $${game.salePrice}</p>
                 <p class="card-text"> Total Savings ${savings}%</p>

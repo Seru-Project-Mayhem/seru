@@ -19,7 +19,7 @@ export function freeToGameHomeGet(){
 	})
 		.then(response => response.json())
 		.then(data => {
-			freeToGameCarouselView(data);
+			$("#container-carousel").append(freeToGameCarouselView(data));
 		})
 		.catch(err => {
 			console.error(err);
@@ -95,5 +95,5 @@ export function postRating(rating){
 
 export function getAllGames(){
 	cheapSharkGet();
-	freeToGameHomeGet()
+	freeToGameHomeGet();
 }

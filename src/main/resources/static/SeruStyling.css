@@ -434,7 +434,7 @@ h2 {
 }
 
 .container-parent{
-    background-color: #272727;
+    /*background-color: #272727;*/
     margin-left: 15%;
     margin-right: 15%;
 
@@ -567,4 +567,32 @@ body{
     background-color: #272727;
     margin-left: 25%;
     margin-right: 15%;
+}
+
+/*Carousel container styling*/
+
+.carousel-inner > .carousel-item {
+
+    width: 80%;
+    margin-left: 10%;
+
+}
+
+#container-games {
+    background-color: #272727;
+}
+
+#container-carousel{
+    background-color: #272727;
+    /*margin-left: 15%;*/
+    /*margin-right: 15%;*/
+    /*margin-bottom: 30px;*/
+    /*border-bottom: 5px solid white;*/
+
+}
+
+#container-empty{
+    width: 100%;
+    background-color: transparent;
+    height: 100px;
 }
