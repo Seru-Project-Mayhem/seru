@@ -7,9 +7,15 @@ export default function Browse(){
 
     return `
             <header>
+             
+               
             <h1 class="text-center">Browse games</h1>
         </header>
         <main>
+        
+        <div>
+                  
+        
          <div class="left">
         <!-- Section: Sidebar -->
         <section>
@@ -18,9 +24,9 @@ export default function Browse(){
             <section class="mb-4 stores">
 
                 <h6 class="font-weight-bold mb-3">Stores</h6>
-            <div id="checkboxList">
+            <div id="checkboxList" class="form-group">
                 <div class="form-check pl-0 mb-3">
-                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="1" id="Steam">
+                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="1" id="Steam" />
                     <label class="form-check-label small text-uppercase card-link-secondary" for="Steam">Steam</label>
                 </div>
                 <div class="form-check pl-0 mb-3">
@@ -162,7 +168,11 @@ export default function Browse(){
 
 export function sideBarCheckboxEvent(){
 
-    console.log("sideBarCheckboxEvent is called");
+    console.log($('.checkbox'));
+
+
+    // $('input[type="checkbox"]').off('change'); // detach event
+    // $('input[type="checkbox"]').on('change', checkboxChanged); // add new event
 
     //lines 168-169 would hopefully join selected stores into an array so we can insert into a query
     // let stores = [];
@@ -170,11 +180,15 @@ export function sideBarCheckboxEvent(){
 
     $('input[name=store]').is(':checked')
     $('input[name=store]').attr('checked')
+    $('input[name=store]').attr('checked', false);
 
     console.log("I made it to sideBarCheckboxEvent!")
 
-    // $(this.checked).on('click', function () {
+    $("input[name=store]").on('click', function () {
     //
+        console.log("hello from inside")
+    $(this).attr('checked', true);
+
     //     if($(this.checked)){
     //         $('input[name=store]').attr('checked', true);
     //         $(this).val(1);
@@ -183,7 +197,7 @@ export function sideBarCheckboxEvent(){
     //         $(this).val(0);
     //     }
     //
-    //         });
+            });
 
 }
 
@@ -197,7 +211,7 @@ export function sideBarSearchEvent(){
 
         console.log("sidebar value is: " + searchQuery);
 
-        fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?lowerPrice=0&steamRating=0&title=${searchQuery}&desc=0&output=json&steamworks=0&sortBy=Deal%20Rating&AAA=0&pageSize=60&exact=0&upperPrice=50&pageNumber=0&onSale=0&metacritic=0&storeID=1%2C2%2C3`, {
+        fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?storeID=1%2C2%2C3%2C7%2C11%2C15%2C16%2C23%2C24%2C25%2C29%2C30%2C31&metacritic=0&onSale=0&pageNumber=0&upperPrice=50&exact=0&pageSize=60&AAA=0&sortBy=Title&steamworks=0&output=json&desc=0&title=${searchQuery}&steamRating=0&lowerPrice=0`, {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",
@@ -208,6 +222,12 @@ export function sideBarSearchEvent(){
             .then(data => {
                 console.log(data);
                 renderSearchQueryResults(data)
+                SetFavoriteEvent();
+                ratingEvent();
+                searchBarEvent();
+                sideBarSearchEvent();
+                sideBarCheckboxEvent();
+                urlRedirectEvent();
                 infiniteScrollingEvent();
             })
             .catch(err => {
@@ -253,7 +273,7 @@ export function infiniteScrollingEvent(value){
 }
 
 export function cheapSharkBrowseGet(){
-    fetch("https://cheapshark-game-deals.p.rapidapi.com/deals?lowerPrice=0&steamRating=0&desc=true&output=json&steamworks=false&sortBy=Savings&AAA=0&pageSize=60&exact=0&upperPrice=60&pageNumber=0&onSale=0&metacritic=0", {
+    fetch("https://cheapshark-game-deals.p.rapidapi.com/deals?storeID=1%2C2%2C3%2C7%2C11%2C15%2C16%2C23%2C24%2C25%2C29%2C30%2C31&metacritic=0&onSale=0&pageNumber=1&upperPrice=50&exact=0&pageSize=60&AAA=0&sortBy=Savings&steamworks=0&output=json&desc=0&steamRating=0&lowerPrice=0", {
         "method": "GET",
         "headers": {
             "x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",
