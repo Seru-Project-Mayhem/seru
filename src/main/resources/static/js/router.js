@@ -48,7 +48,8 @@ export default function router(URI) {
         '/review': {
             returnView: Review,
             state: {},
-            uri: '/Review',
+            uri: '/review',
+            title: "Review Page",
             viewEvent: reviewEvent
         },
         '/browse': {

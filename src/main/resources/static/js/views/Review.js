@@ -18,8 +18,10 @@ export default function Review() {
   <label for="review" class="form-label">Leave your review</label>
   <textarea class="form-control" id="review" rows="3"></textarea>
 <button id="review-btn">Submit Your Review</button>
-
 </div>
+
+
+
 
 </body>
 `;
@@ -32,30 +34,44 @@ export function reviewEvent() {
 
     $("#review-btn").click(function () {
 
-        let post = {
-            email: $('#email').val(),
-            password: $('#review').val()
-        }
 
-        console.log(post);
-
-        let request = {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json',
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(post)
+        let userRequest = {
+            method: "GET",
         };
 
-        fetch("http://localhost:8080/api/users/create", request)
+        fetch(`http://localhost:8080/api/users/findByEmail?email=${encodeURIComponent($('#email').val())}`, userRequest)
             .then((response) => {
                 console.log(response.status)
                 if (response.status === 200) {
-                    login(post.email, post.password);
+                 response.json().then(user=>{
+
+                     let post = {
+                         user: user,
+                         review: $('#review').val()
+                     }
+
+                     console.log(post);
+
+                     let request = {
+                         method: "POST",
+                         headers: {
+                             'Accept': 'application/json',
+                             "Content-Type": "application/json"
+                         },
+                         body: JSON.stringify(post)
+                     };
+
+                     fetch("http://localhost:8080/api/review", request)
+                         .then((response) => {
+                             console.log(response.status)
+                             if (response.status === 200) {
+                                 createView("/review");
+                             }
+                         });
+                 });
                 }
-                createView("/");
             });
+
 
     })
 }

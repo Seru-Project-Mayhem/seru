@@ -1,6 +1,7 @@
 package com.codeup.capstonestarter.data.user;
 
 import com.codeup.capstonestarter.data.rating.Rating;
+import com.codeup.capstonestarter.data.review.Review;
 import com.codeup.capstonestarter.data.wishlist.Wishlist;
 
 import javax.persistence.*;
@@ -32,19 +33,19 @@ public class User {
     public enum Role {USER, ADMIN};
 
     @OneToMany(mappedBy = "user")
-    private Collection<Rating> ratings;
+    private Collection<Review> reviews;
 
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="Wishlist_id", referencedColumnName = "id")
     private Wishlist wishlist;
 
-    public User(Long user_ID, String username, String email, String password, Role role, Collection<Rating> ratings, Wishlist wishlist) {
+    public User(Long user_ID, String username, String email, String password, Role role, Collection<Review> reviews, Wishlist wishlist) {
         this.User_ID = user_ID;
         this.username = username;
         this.email = email;
         this.password = password;
         this.role = role;
-        this.ratings = ratings;
+        this.reviews = reviews;
         this.wishlist = wishlist;
     }
 
@@ -95,19 +96,19 @@ public class User {
         this.role = role;
     }
 
-    public Collection<Rating> getRatings() {
-        return ratings;
-    }
-
-    public void setRatings(Collection<Rating> ratings) {
-        this.ratings = ratings;
-    }
-
     public Wishlist getWishlist() {
         return wishlist;
     }
 
     public void setWishlist(Wishlist wishlist) {
         this.wishlist = wishlist;
+    }
+
+    public Collection<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Collection<Review> reviews) {
+        this.reviews = reviews;
     }
 }
