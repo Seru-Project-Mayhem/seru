@@ -146,8 +146,8 @@ export function cheapSharkCardBuilder(listOfGames) {
                 <h5 class="card-title game-title"> ${game.title}</h5>
                 <p class="steam-id d-none">${game.steamAppID}</p>
                 <a>
-                     <img src= ${store} style="height: 80px; width: 150px; background-color: #272727;">
-                     <p class="store-id ">${game.storeID}</p>
+                     <img src= ${store} style="height: 80px; width: 100px;">
+                     <p class="store-id d-none">${game.storeID}</p>
                 </a>
                 <p class="card-text"> Current Price $${game.salePrice}</p>
                 <p class="card-text"> Total Savings ${savings}%</p>
