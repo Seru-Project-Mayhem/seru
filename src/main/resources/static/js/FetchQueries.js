@@ -1,16 +1,12 @@
 import {
 	cheapSharkCardBuilder, freeToGameCarouselView, reviewRedirect,
-	SetFavoriteEvent, urlRedirectEvent,
+	SetFavoriteEvent, urlRedirectEvent
 } from "./views/Home.js";
 import {rapidApi_token} from "./ApiKeys/keys.js";
 import {apiData} from "./views/FreeToPlay.js";
 import {sideBarCheckboxEvent, sideBarSearchEvent} from "./views/Browse.js";
 
 import {searchBarEvent} from "./views/partials/Navbar.js";
-
-import createView from "./createView.js";
-
-
 
 export function freeToGameHomeGet(){
 	fetch("https://free-to-play-games-database.p.rapidapi.com/api/games", {
@@ -55,14 +51,9 @@ export function cheapSharkGet(){
 		}
 	})
 		.then(response => response.json())
-
-		.then(data => {
-			$("#container-games").append(cheapSharkCardBuilder(data));
-			reviewRedirect();
-		})
 		.then(games => {
 			$("#container-games").append(cheapSharkCardBuilder(games));
-
+			reviewRedirect();
 			SetFavoriteEvent();
 			sideBarSearchEvent();
 			sideBarCheckboxEvent()
