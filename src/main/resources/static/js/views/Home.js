@@ -215,17 +215,13 @@ export function cheapSharkCardBuilder(listOfGames) {
 
 }
 
-
-    });
-}
-
-export function ratingEvent(){
+export function ratingEvent() {
     $("form").hide();
-	$(".review-btn").on("click", function () {
-		$(this).siblings("form").toggle();
-	});
+    $(".review-btn").on("click", function () {
+        $(this).siblings("form").toggle();
+    });
 
-
+}
 
 export function SetFavoriteEvent() {
     console.log("Set favorite event was called")
@@ -244,11 +240,12 @@ export function SetFavoriteEvent() {
 
 }
 
-export function urlRedirectEvent(){
-    $(".btn-cheapshark-get").on("click", function(){
-       let store_id = $(this).siblings(".store-id").text();
+export function urlRedirectEvent() {
+    $(".btn-cheapshark-get").on("click", function () {
+        let store_id = $(this).siblings(".store-id").text();
         let gameTitle = $(this).siblings(".game-title").text();
         let steam_id = $(this).siblings(".steam-id").text()
         returnValidURL(steam_id, gameTitle, store_id);
-    })
-}
+    });
+    }
+

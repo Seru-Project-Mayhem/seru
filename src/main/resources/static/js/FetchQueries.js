@@ -59,7 +59,7 @@ export function cheapSharkGet(){
 		.then(data => {
 			$("#container-games").append(cheapSharkCardBuilder(data));
 			reviewRedirect();
-
+		})
 		.then(games => {
 			$("#container-games").append(cheapSharkCardBuilder(games));
 
