@@ -6,7 +6,8 @@
 import Navbar from "./views/partials/Navbar.js";
 
 export default function render(props, route) {
-    console.log("this is my route: " + route);
+    console.log("this is my route: ");
+    console.log(route);
     const app = document.querySelector('#app');
     const title = `REST Blog - ${route.title}`;
     history.pushState(props, title, route.uri);

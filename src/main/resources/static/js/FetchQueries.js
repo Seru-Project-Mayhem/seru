@@ -1,6 +1,5 @@
 import {
-	cheapSharkCardBuilder, freeToGameCarouselView,
-	ratingEvent,
+	cheapSharkCardBuilder, freeToGameCarouselView, reviewRedirect,
 	SetFavoriteEvent, urlRedirectEvent,
 } from "./views/Home.js";
 import {rapidApi_token} from "./ApiKeys/keys.js";
@@ -53,10 +52,15 @@ export function cheapSharkGet(){
 		}
 	})
 		.then(response => response.json())
+
+		.then(data => {
+			$("#container-games").append(cheapSharkCardBuilder(data));
+			reviewRedirect();
+
 		.then(games => {
 			$("#container-games").append(cheapSharkCardBuilder(games));
+
 			SetFavoriteEvent();
-			ratingEvent();
 			sideBarSearchEvent();
 			sideBarCheckboxEvent()
 			searchBarEvent();
