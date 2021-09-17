@@ -124,7 +124,7 @@ export function reviewRedirect(){
 
 
 export function cheapSharkCardBuilder(listOfGames) {
-
+    console.log(listOfGames);
     return listOfGames.map(game => {
     let savings = parseFloat(game.savings).toFixed(1);
     let url = "assets/LOGOS/";
@@ -158,7 +158,7 @@ export function cheapSharkCardBuilder(listOfGames) {
                 <p class="steam-id d-none">${game.steamAppID}</p>
                 <a>
                      <img src= ${store} style="height: 80px; width: 100px;">
-                     <p class="store-id d-none">${game.storeID}</p>
+                     <p class="store-id ">${game.storeID}</p>
                 </a>
                 <p class="card-text"> Current Price $${game.salePrice}</p>
                 <p class="card-text"> Total Savings ${savings}%</p>
@@ -242,8 +242,9 @@ export function SetFavoriteEvent() {
 
 export function urlRedirectEvent() {
     $(".btn-cheapshark-get").on("click", function () {
-        let store_id = $(this).siblings(".store-id").text();
+        let store_id = $(this).siblings().children(".store-id").text();
         let gameTitle = $(this).siblings(".game-title").text();
+        console.log(gameTitle)
         let steam_id = $(this).siblings(".steam-id").text()
         returnValidURL(steam_id, gameTitle, store_id);
     });
