@@ -8,6 +8,7 @@ export default function Home(props) {
     return `
           <header>
         <h1 class="text-center">Seru</h1>
+
     </header>
     <main>
        
@@ -30,14 +31,7 @@ export default function Home(props) {
 
 export function freeToGameCarouselView(data){
 
-    console.log(data);
-    //Destiny 2 is 20
-    //Apex Legends is 22
-    //COD warzone is 320
-    //Genshin Impact is 343
-
     let num, num2, num3, num4, num5;
-
 
     for(let i = 0; i <= 4; i++){
         let random = Math.floor(Math.random() * 366);
@@ -59,8 +53,6 @@ export function freeToGameCarouselView(data){
             console.log("fifth random number: " + num5);
         }
     }
-
-    console.log(data[20].game_url);
 
     return `
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -141,11 +133,14 @@ export function cheapSharkCardBuilder(listOfGames) {
     let savings = parseFloat(game.savings).toFixed(1);
     let url = "assets/LOGOS/";
     let svg = ".svg";
+    let png = ".png";
     let store = url + game.storeID;
+
     if(game.storeID == 1 || game.storeID == 3 || game.storeID == 7 || game.storeID == 11 || game.storeID == 15 ||
-       game.storeID == 25 || game.storeID == 30 || game.storeID == 31){
-        // store = url + game.storeID + svg;
+       game.storeID == 25 || game.storeID == 29 || game.storeID == 30 || game.storeID == 31){
          store = store + svg;
+    } else if(game.storeID == 2 || game.storeID == 16 || game.storeID == 23 ||  game.storeID == 24){
+        store = store + png;
     }
         // reviewRedirect(game);
 
@@ -166,7 +161,7 @@ export function cheapSharkCardBuilder(listOfGames) {
                 <h5 class="card-title game-title"> ${game.title}</h5>
                 <p class="steam-id d-none">${game.steamAppID}</p>
                 <a>
-                     <img src= ${store} style="height: 50px; width: 50px">
+                     <img src= ${store} style="height: 80px; width: 100px;">
                      <p class="store-id d-none">${game.storeID}</p>
                 </a>
                 <p class="card-text"> Current Price $${game.salePrice}</p>
@@ -219,9 +214,20 @@ export function cheapSharkCardBuilder(listOfGames) {
         </div>
     </div>`
 
+
     });
 
 }
+
+
+    });
+}
+
+export function ratingEvent(){
+    $("form").hide();
+	$(".review-btn").on("click", function () {
+		$(this).siblings("form").toggle();
+	});
 
 
 
