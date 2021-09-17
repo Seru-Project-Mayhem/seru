@@ -170,6 +170,13 @@ export function sideBarCheckboxEvent(){
 
     console.log($('.checkbox'));
 
+    console.log($('.checkbox'));
+    $('.form-check-input').change(function () {
+        if(this.checked){
+            console.log(this + " was changed");
+        }
+    })
+
 
     // $('input[type="checkbox"]').off('change'); // detach event
     // $('input[type="checkbox"]').on('change', checkboxChanged); // add new event
@@ -178,16 +185,16 @@ export function sideBarCheckboxEvent(){
     // let stores = [];
     // $("#checkboxList").find('[value=' + stores.join('], [value=') + ']').prop("checked", true);
 
-    $('input[name=store]').is(':checked')
-    $('input[name=store]').attr('checked')
-    $('input[name=store]').attr('checked', false);
-
-    console.log("I made it to sideBarCheckboxEvent!")
-
-    $("input[name=store]").on('click', function () {
+    // $('input[name=store]').is(':checked')
+    // $('input[name=store]').attr('checked')
+    // $('input[name=store]').attr('checked', false);
     //
-        console.log("hello from inside")
-    $(this).attr('checked', true);
+    // console.log("I made it to sideBarCheckboxEvent!")
+    //
+    // $("input[name=store]").on('click', function () {
+    // //
+    //     console.log("hello from inside")
+    // $(this).attr('checked', true);
 
     //     if($(this.checked)){
     //         $('input[name=store]').attr('checked', true);
@@ -197,7 +204,7 @@ export function sideBarCheckboxEvent(){
     //         $(this).val(0);
     //     }
     //
-            });
+    //         });
 
 }
 
