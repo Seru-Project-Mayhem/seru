@@ -1,5 +1,5 @@
 import {rapidApi_token} from "../ApiKeys/keys.js";
-import {cheapSharkCardBuilder, ratingEvent, SetFavoriteEvent, urlRedirectEvent} from "./Home.js";
+import {cheapSharkCardBuilder, SetFavoriteEvent, urlRedirectEvent} from "./Home.js";
 import {renderSearchQueryResults, searchBarEvent} from "./partials/Navbar.js";
 
 
@@ -215,11 +215,35 @@ export function infiniteScrollingEvent(value){
 
 }
 
+
 export function initBrowse(){
 
     infiniteScrollingEvent();
     sideBarSearchEvent();
     sideBarCheckboxEvent();
+
+export function cheapSharkBrowseGet(){
+    fetch("https://cheapshark-game-deals.p.rapidapi.com/deals?storeID=1%2C2%2C3%2C7%2C11%2C15%2C16%2C23%2C24%2C25%2C29%2C30%2C31&metacritic=0&onSale=0&pageNumber=1&upperPrice=50&exact=0&pageSize=60&AAA=0&sortBy=Savings&steamworks=0&output=json&desc=0&steamRating=0&lowerPrice=0", {
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",
+            "x-rapidapi-key": rapidApi_token,
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            $("#container-browse-games").append(cheapSharkCardBuilder(data));
+            SetFavoriteEvent();
+            searchBarEvent();
+            sideBarSearchEvent();
+            sideBarCheckboxEvent();
+            urlRedirectEvent();
+            infiniteScrollingEvent();
+        })
+        .catch(err => {
+            console.error(err);
+        });
+
 }
 
 // export function cheapSharkBrowseGet(){

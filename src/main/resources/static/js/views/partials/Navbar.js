@@ -1,5 +1,5 @@
 import {rapidApi_token} from "../../ApiKeys/keys.js";
-import {ratingEvent, SetFavoriteEvent, urlRedirectEvent} from "../Home.js";
+import {SetFavoriteEvent, urlRedirectEvent} from "../Home.js";
 import {sideBarSearchEvent} from "../Browse.js";
 
 export default function Navbar(props) {
@@ -48,7 +48,6 @@ export function searchBarEvent(){
             .then(data => {
                 renderSearchQueryResults(data)
                 SetFavoriteEvent();
-                ratingEvent();
                 sideBarSearchEvent();
                 searchBarEvent();
                 urlRedirectEvent();

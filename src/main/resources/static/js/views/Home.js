@@ -1,5 +1,8 @@
 import {postRating} from "../FetchQueries.js";
 import {returnValidURL} from "./UrlBuilder.js";
+import render from "../render.js";
+import router from "../router.js";
+import {getGameInfo} from "./Review.js";
 
 export default function Home(props) {
     return `
@@ -107,6 +110,17 @@ export function freeToGameCarouselView(data){
 
 }
 
+export function reviewRedirect(){
+    // console.log($(".review-btn"));
+    $(".review-btn").on("click", function(){
+        render(null, router("/review"))
+        // let gameinRedirect = games.map(gameReview=>{return gameReview});
+        console.log($(this).data("id"));
+        // console.log("review clicked");
+        let gameInfo = $(this).data("id");
+        getGameInfo(gameInfo);
+    });
+}
 
 
 export function cheapSharkCardBuilder(listOfGames) {
@@ -124,6 +138,7 @@ export function cheapSharkCardBuilder(listOfGames) {
     } else if(game.storeID == 2 || game.storeID == 16 || game.storeID == 23 ||  game.storeID == 24){
         store = store + png;
     }
+        // reviewRedirect(game);
 
         return  `
     <div class="flip-card" style="width: 18rem;">
@@ -149,7 +164,7 @@ export function cheapSharkCardBuilder(listOfGames) {
                 <p class="card-text"> Total Savings ${savings}%</p>
                 <p class="card-text"> Normal Price ${game.normalPrice}</p>
                 <p class="card-text"> Steam Rating: ${game.steamRatingPercent}</p>
-                <a class="review-btn"  href="/review" onclick="window.location.href = '/review'" > Leave Review</a>
+                <a class="review-btn"  href="/review" data-id=“${game.gameID}”> Leave Review</a>
                 <div class="var2">
                     <a class="button two inactive desktop">
                         <div class="icon-with-text">
@@ -194,6 +209,13 @@ export function cheapSharkCardBuilder(listOfGames) {
             </div>
         </div>
     </div>`
+
+
+    });
+
+}
+
+
     });
 }
 
@@ -203,11 +225,7 @@ export function ratingEvent(){
 		$(this).siblings("form").toggle();
 	});
 
-    $('.submitForm').on('click', function(){
-        let rating = $(this).siblings('editRating').val()
-        postRating(rating);
-    });
-}
+
 
 export function SetFavoriteEvent() {
     console.log("Set favorite event was called")
