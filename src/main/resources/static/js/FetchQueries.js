@@ -4,9 +4,12 @@ import {
 } from "./views/Home.js";
 import {rapidApi_token} from "./ApiKeys/keys.js";
 import {apiData} from "./views/FreeToPlay.js";
-import {searchBarEvent} from "./views/partials/Navbar.js";
 import {sideBarCheckboxEvent, sideBarSearchEvent} from "./views/Browse.js";
+
+import {searchBarEvent} from "./views/partials/Navbar.js";
+
 import createView from "./createView.js";
+
 
 
 export function freeToGameHomeGet(){

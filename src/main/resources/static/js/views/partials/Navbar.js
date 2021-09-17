@@ -16,7 +16,7 @@ export default function Navbar(props) {
               </div>
               <form class="d-flex" id="navbar-search">
                     <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search" id="navbar-input">
-                    <button href="/browse" data-link class="btn btn-outline-success btn-search nav-link" type="submit" id="btn-navbar">Search</button>
+                    <button class="btn btn-outline-success btn-search nav-link" type="submit" id="btn-navbar">Search</a></button>
               </form>
             </div>
         </nav>
@@ -26,10 +26,15 @@ export default function Navbar(props) {
 
 export function searchBarEvent(){
 
-    $("#btn-navbar").on('click', function () {
+
+    $("#btn-navbar").on("click",function () {
+
 
         let searchQuery = $("#navbar-input").val();
-
+        localStorage.setItem("userSearchQuery", `${searchQuery}`);
+        console.log(searchQuery);
+        $(location).attr('href', '/browse');
+        localStorage.getItem("userSearchQuery");
 
 
         fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?lowerPrice=0&steamRating=0&title=${searchQuery}&desc=0&output=json&steamworks=0&sortBy=Deal%20Rating&AAA=0&pageSize=60&exact=0&upperPrice=50&pageNumber=0&onSale=0&metacritic=0&storeID=1%2C2%2C3`, {
@@ -60,7 +65,7 @@ export function renderSearchQueryResults(gamesResults) {
     gamesResults.forEach(function (games) {
         searchQueryCardBuilder(games);
 
-    })
+    });
 
 }
 
@@ -121,6 +126,5 @@ export function searchQueryCardBuilder(results){
 </div>`
 
     $("#container-browse-games").append(gameCard);
-
 
 }

@@ -20,66 +20,26 @@ export default function Browse(){
         <!-- Section: Sidebar -->
         <section>
 
-            <!-- Section: Store -->
-            <section class="mb-4 stores">
+           <!-- Section: Categories -->
+            <section>
+            
+              <h5>Stores</h5>
+            
+              <div class="mb-5">
+               
+               <ul>
+               <li class="stores" value="1">Steam</li>
+               <li class="stores" value="2">GOG</li>
+               </ul>
+            
+             
+               <input class="stores" value="3"><a>Epic Game Store</a></input>
 
-                <h6 class="font-weight-bold mb-3">Stores</h6>
-            <div id="checkboxList" class="form-group">
-                <div class="form-check pl-0 mb-3">
-                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="1" id="Steam" />
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="Steam">Steam</label>
-                </div>
-                <div class="form-check pl-0 mb-3">
-                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="2" id="GamersGate">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="GamersGate">Gamers Gate</label>
-                </div>
-                <div class="form-check pl-0 mb-3">
-                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="3" id="GreenManGaming">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="GreenManGaming">Green Man Gaming</label>
-                </div>
-                <div class="form-check pl-0 mb-3 pb-1">
-                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="7" id="GOG">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="GOG">GOG</label>
-                </div>
-                <div class="form-check pl-0 mb-3 pb-1">
-                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="11" id="HumbleStore">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="HumbleStore">Humble Store</label>
-                </div>
-                <div class="form-check pl-0 mb-3 pb-1">
-                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" id="Fanatical">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="Fanatical">Fanatical</label>
-                </div>
-                <div class="form-check pl-0 mb-3 pb-1">
-                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="15" id="GamesRocket">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="GamesRocket">Games Rocket</label>
-                </div>
-                <div class="form-check pl-0 mb-3 pb-1">
-                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="23" id="GameBillet">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="GameBillet">Game Billet</label>
-                </div>
-                <div class="form-check pl-0 mb-3 pb-1">
-                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="24" id="Voidu">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="Voidu">Voidu</label>
-                </div>
-                <div class="form-check pl-0 mb-3 pb-1">
-                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="25" id="EpicGameStore">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="EpicGameStore">Epic Game Store</label>
-                </div>
-                <div class="form-check pl-0 mb-3 pb-1">
-                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="29" id="2Game">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="2Game">2Game</label>
-                </div>
-                <div class="form-check pl-0 mb-3 pb-1">
-                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="30" id="IndieGala">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="IndieGala">Indie Gala</label>
-                </div>
-                <div class="form-check pl-0 mb-3 pb-1">
-                    <input type="checkbox" class="form-check-input filled-in checkbox" name="store" value="31" id="BlizzardShop">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="BlizzardShop">Blizzard Shop</label>
-                </div>
-            </div>
+               
+              </div>
+            
             </section>
-            <!-- Section: Stores -->
+            <!-- Section: Categories -->
 
             <!-- Section: Search Box -->
             <section class="mb-4 search-box">
@@ -166,45 +126,20 @@ export default function Browse(){
 
 }
 
+
 export function sideBarCheckboxEvent(){
 
-    console.log($('.checkbox'));
+    console.log("We made it to sideBarCheckboxEvent!");
 
-    console.log($('.checkbox'));
-    $('.form-check-input').change(function () {
-        if(this.checked){
-            console.log(this + " was changed");
-        }
+    $('.stores').on('click',function () {
+        $(this).css({background: "red"});
+        console.log($(this).val());
     })
-
-
-    // $('input[type="checkbox"]').off('change'); // detach event
-    // $('input[type="checkbox"]').on('change', checkboxChanged); // add new event
-
-    //lines 168-169 would hopefully join selected stores into an array so we can insert into a query
-    // let stores = [];
-    // $("#checkboxList").find('[value=' + stores.join('], [value=') + ']').prop("checked", true);
-
-    // $('input[name=store]').is(':checked')
-    // $('input[name=store]').attr('checked')
-    // $('input[name=store]').attr('checked', false);
     //
-    // console.log("I made it to sideBarCheckboxEvent!")
-    //
-    // $("input[name=store]").on('click', function () {
-    // //
-    //     console.log("hello from inside")
-    // $(this).attr('checked', true);
-
-    //     if($(this.checked)){
-    //         $('input[name=store]').attr('checked', true);
-    //         $(this).val(1);
-    //     }else{
-    //         $('input[name=store]').attr('checked', false);
-    //         $(this).val(0);
-    //     }
-    //
-    //         });
+    // $('.stores').on('click',function () {
+    //     $('.stores').css({background: "red"});
+    //     console.log($('.stores').val());
+    // })
 
 }
 
@@ -227,6 +162,7 @@ export function sideBarSearchEvent(){
         })
             .then(response => response.json())
             .then(data => {
+
                 console.log(data);
                 renderSearchQueryResults(data)
                 SetFavoriteEvent();
@@ -279,6 +215,13 @@ export function infiniteScrollingEvent(value){
 
 }
 
+
+export function initBrowse(){
+
+    infiniteScrollingEvent();
+    sideBarSearchEvent();
+    sideBarCheckboxEvent();
+
 export function cheapSharkBrowseGet(){
     fetch("https://cheapshark-game-deals.p.rapidapi.com/deals?storeID=1%2C2%2C3%2C7%2C11%2C15%2C16%2C23%2C24%2C25%2C29%2C30%2C31&metacritic=0&onSale=0&pageNumber=1&upperPrice=50&exact=0&pageSize=60&AAA=0&sortBy=Savings&steamworks=0&output=json&desc=0&steamRating=0&lowerPrice=0", {
         "method": "GET",
@@ -300,4 +243,29 @@ export function cheapSharkBrowseGet(){
         .catch(err => {
             console.error(err);
         });
+
 }
+
+// export function cheapSharkBrowseGet(){
+//     fetch("https://cheapshark-game-deals.p.rapidapi.com/deals?storeID=1%2C2%2C3%2C7%2C11%2C15%2C16%2C23%2C24%2C25%2C29%2C30%2C31&metacritic=0&onSale=0&pageNumber=1&upperPrice=50&exact=0&pageSize=60&AAA=0&sortBy=Savings&steamworks=0&output=json&desc=0&steamRating=0&lowerPrice=0", {
+//         "method": "GET",
+//         "headers": {
+//             "x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",
+//             "x-rapidapi-key": rapidApi_token,
+//         }
+//     })
+//         .then(response => response.json())
+//         .then(data => {
+//             $("#container-browse-games").append(cheapSharkCardBuilder(data));
+//             SetFavoriteEvent();
+//             ratingEvent();
+//             searchBarEvent();
+//             sideBarSearchEvent();
+//             sideBarCheckboxEvent();
+//             urlRedirectEvent();
+//             infiniteScrollingEvent();
+//         })
+//         .catch(err => {
+//             console.error(err);
+//         });
+// }

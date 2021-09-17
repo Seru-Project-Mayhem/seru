@@ -25,10 +25,6 @@ export default function Home(props) {
     `;
 }
 
-
-
-
-
 export function freeToGameCarouselView(data){
 
     let num, num2, num3, num4, num5;
