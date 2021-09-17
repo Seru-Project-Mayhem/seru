@@ -1,5 +1,6 @@
 import createView from "../createView.js";
 import {login} from "../auth.js";
+import {rapidApi_token} from "../ApiKeys/keys.js";
 
 export default function Review() {
     return `<!DOCTYPE html>
@@ -9,11 +10,7 @@ export default function Review() {
     <title>Game Reviews</title>
 </head>
 <body>
-
- <div class="mb-3">
-  <label for="email" class="form-label">Email address</label>
-  <input type="email" class="form-control" id="email" placeholder="name@example.com">
-</div>
+<h1 id="game-title"></h1>
 <div class="mb-3">
   <label for="review" class="form-label">Leave your review</label>
   <textarea class="form-control" id="review" rows="3"></textarea>
@@ -28,12 +25,30 @@ export default function Review() {
 
 }
 
+export function getGameInfo(gameInfo){
+
+    let id = gameInfo;
+    console.log("this is our id: " + id);
+    fetch(`https://cheapshark-game-deals.p.rapidapi.com/games?id=${id}`, {
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",
+            "x-rapidapi-key": rapidApi_token,
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            // $("#game-title").append(data);
+            console.log(data);
+            // console.log();
+        })
+        .catch(err => {
+            console.error(err);
+        });
+}
 
 export function reviewEvent() {
-
-
     $("#review-btn").click(function () {
-
 
         let userRequest = {
             method: "GET",

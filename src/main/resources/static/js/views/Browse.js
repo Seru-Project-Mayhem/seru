@@ -1,5 +1,5 @@
 import {rapidApi_token} from "../ApiKeys/keys.js";
-import {cheapSharkCardBuilder, ratingEvent, SetFavoriteEvent, urlRedirectEvent} from "./Home.js";
+import {cheapSharkCardBuilder, SetFavoriteEvent, urlRedirectEvent} from "./Home.js";
 import {renderSearchQueryResults, searchBarEvent} from "./partials/Navbar.js";
 
 
@@ -264,7 +264,6 @@ export function cheapSharkBrowseGet(){
         .then(data => {
             $("#container-browse-games").append(cheapSharkCardBuilder(data));
             SetFavoriteEvent();
-            ratingEvent();
             searchBarEvent();
             sideBarSearchEvent();
             sideBarCheckboxEvent();
