@@ -43,6 +43,7 @@ export default function Browse(){
                 <li class="stores" value="31">Blizzard</li>
                 </ul>
                 <button type="button" class="btn btn-primary" id="btn-stores">Get</button>
+                <input class="btn btn-primary" type="reset" value="Reset" id="reset-store-selection">
               </div>
             
             </section>
@@ -140,14 +141,31 @@ export function sideBarStoreEvent(){
 
     let storesNum = [];
 
+    $('#reset-store-selection').on('click', function () {
+        window.location.reload();
+    })
+
     $('.stores').on('click',function () {
-        $(this).css({background: "red"});
+
+        $(this).css({color: '#ffffff', backgroundColor: "#900DFF"});
         storesNum.push($(this).val());
+
+        // $(this).toggle(
+        // function () {
+        //     $(this).css({color: '#ffffff', backgroundColor: "#900DFF"});
+        //     storesNum.push($(this).val());
+        // }, function (){
+        //     $(this).css({color: '#000000', backgroundColor: '#ffffff'});
+        //         console.log(storesNum);
+        //     })
+
+        // storesNum.pop();
         $('#btn-stores').on('click', function () {
             queryStoresEvent(storesNum);
         })
 
     })
+
 
 }
 
