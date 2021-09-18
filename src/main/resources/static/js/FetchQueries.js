@@ -4,7 +4,7 @@ import {
 } from "./views/Home.js";
 import {rapidApi_token} from "./ApiKeys/keys.js";
 import {apiData} from "./views/FreeToPlay.js";
-import {sideBarCheckboxEvent, sideBarSearchEvent} from "./views/Browse.js";
+import {sideBarStoreEvent, sideBarSearchEvent} from "./views/Browse.js";
 
 import {searchBarEvent} from "./views/partials/Navbar.js";
 
@@ -56,7 +56,7 @@ export function cheapSharkGet(){
 			reviewRedirect();
 			SetFavoriteEvent();
 			sideBarSearchEvent();
-			sideBarCheckboxEvent()
+			sideBarStoreEvent();
 			searchBarEvent();
 			urlRedirectEvent();
 		})

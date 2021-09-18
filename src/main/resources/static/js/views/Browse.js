@@ -1,5 +1,5 @@
 import {rapidApi_token} from "../ApiKeys/keys.js";
-import {cheapSharkCardBuilder, SetFavoriteEvent, urlRedirectEvent} from "./Home.js";
+import {cheapSharkCardBuilder, reviewRedirect, SetFavoriteEvent, urlRedirectEvent} from "./Home.js";
 import {renderSearchQueryResults, searchBarEvent} from "./partials/Navbar.js";
 
 
@@ -27,15 +27,22 @@ export default function Browse(){
             
               <div class="mb-5">
                
-               <ul>
-               <li class="stores" value="1">Steam</li>
-               <li class="stores" value="2">GOG</li>
-               </ul>
-            
-             
-               <input class="stores" value="3"><a>Epic Game Store</a></input>
-
-               
+                <ul style="list-style-type: none">
+                <li class="stores" value="1">Steam</li>
+                <li class="stores" value="2">GamersGate</li>
+                <li class="stores" value="3">Green Man Gaming</li>
+                <li class="stores" value="7">GOG</li>
+                <li class="stores" value="11">Humble Store</li>
+                <li class="stores" value="15">Fanatical</li>
+                <li class="stores" value="16">Games Rocket</li>
+                <li class="stores" value="23">GameBillet</li>
+                <li class="stores" value="24">Voidu</li>
+                <li class="stores" value="25">Epic Game Store</li>
+                <li class="stores" value="29">2Game</li>
+                <li class="stores" value="30">IndieGala</li>
+                <li class="stores" value="31">Blizzard</li>
+                </ul>
+                <button type="button" class="btn btn-primary" id="btn-stores">Get</button>
               </div>
             
             </section>
@@ -127,21 +134,67 @@ export default function Browse(){
 }
 
 
-export function sideBarCheckboxEvent(){
+export function sideBarStoreEvent(){
 
     console.log("We made it to sideBarCheckboxEvent!");
 
+    let storesNum = [];
+
     $('.stores').on('click',function () {
         $(this).css({background: "red"});
-        console.log($(this).val());
+        storesNum.push($(this).val());
+        $('#btn-stores').on('click', function () {
+            queryStoresEvent(storesNum);
+        })
+
     })
-    //
-    // $('.stores').on('click',function () {
-    //     $('.stores').css({background: "red"});
-    //     console.log($('.stores').val());
-    // })
 
 }
+
+export function queryStoresEvent(storesNum){
+
+    let additionalStore = "";
+    let storequery = storesNum[0];
+
+    if(storesNum.length > 1){
+        for(let i = 0; i < storesNum.length; i++){
+
+            let storeOne = storesNum[0];
+
+            if(i > 0){
+                additionalStore += "%2C" + storesNum[i];
+
+                storequery = storeOne + additionalStore;
+            }
+        }
+    }
+
+    fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?storeID=${storequery}&metacritic=0&onSale=0&pageNumber=0&upperPrice=50&exact=0&pageSize=60&AAA=0&sortBy=Deal%20Rating&steamworks=0&output=json&desc=0&steamRating=0&lowerPrice=0`, {
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",
+            "x-rapidapi-key": rapidApi_token
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            $("#container-browse-games").empty();
+            $("#container-browse-games").append(cheapSharkCardBuilder(data));
+            sideBarStoreEvent();
+            sideBarSearchEvent();
+            infiniteScrollingEvent();
+            reviewRedirect();
+            SetFavoriteEvent();
+            urlRedirectEvent();
+        })
+        .catch(err => {
+            console.error(err);
+        });
+
+
+}
+
+
 
 export function sideBarSearchEvent(){
 
@@ -169,7 +222,7 @@ export function sideBarSearchEvent(){
                 ratingEvent();
                 searchBarEvent();
                 sideBarSearchEvent();
-                sideBarCheckboxEvent();
+                sideBarStoreEvent();
                 urlRedirectEvent();
                 infiniteScrollingEvent();
             })
@@ -220,7 +273,7 @@ export function initBrowse() {
 
     infiniteScrollingEvent();
     sideBarSearchEvent();
-    sideBarCheckboxEvent();
+    sideBarStoreEvent();
 
 }
 

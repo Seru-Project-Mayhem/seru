@@ -1,4 +1,3 @@
-import {postRating} from "../FetchQueries.js";
 import {returnValidURL} from "./UrlBuilder.js";
 import render from "../render.js";
 import router from "../router.js";
