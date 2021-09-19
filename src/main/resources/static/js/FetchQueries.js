@@ -6,8 +6,6 @@ import {rapidApi_token} from "./ApiKeys/keys.js";
 import {apiData} from "./views/FreeToPlay.js";
 import {sideBarStoreEvent, sideBarSearchEvent} from "./views/Browse.js";
 
-import {searchBarEvent} from "./views/partials/Navbar.js";
-
 export function freeToGameHomeGet(){
 	fetch("https://free-to-play-games-database.p.rapidapi.com/api/games", {
 		"method": "GET",
@@ -55,9 +53,8 @@ export function cheapSharkGet(){
 			$("#container-games").append(cheapSharkCardBuilder(games));
 			reviewRedirect();
 			SetFavoriteEvent();
-			sideBarSearchEvent();
-			sideBarStoreEvent();
-			searchBarEvent();
+			// sideBarSearchEvent();
+			// sideBarStoreEvent();
 			urlRedirectEvent();
 		})
 		.catch(err => {

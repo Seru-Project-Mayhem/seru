@@ -1,6 +1,5 @@
 import {rapidApi_token} from "../ApiKeys/keys.js";
 import {cheapSharkCardBuilder, reviewRedirect, SetFavoriteEvent, urlRedirectEvent} from "./Home.js";
-import {renderSearchQueryResults, searchBarEvent} from "./partials/Navbar.js";
 
 
 export default function Browse(){
@@ -42,8 +41,8 @@ export default function Browse(){
                 <li class="stores" value="30">IndieGala</li>
                 <li class="stores" value="31">Blizzard</li>
                 </ul>
-                <button type="button" class="btn btn-primary" id="btn-stores">Get</button>
-                <input class="btn btn-primary" type="reset" value="Reset" id="reset-store-selection">
+                <button type="button" class="btn btn-primary pl-3" id="btn-stores">Get</button>
+                <input class="btn btn-primary pl-3" type="reset" value="Reset" id="reset-store-selection">
               </div>
             
             </section>
@@ -65,35 +64,6 @@ export default function Browse(){
 
             </section>
             <!-- Section: Search Box -->
-
-            <!-- Section: Price -->
-            <section class="mb-4 price-selection">
-
-                <h6 class="font-weight-bold mb-3">Price</h6>
-
-                <div class="form-check pl-0 mb-3">
-                    <input type="radio" class="form-check-input" id="under25" name="materialExampleRadios">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="under25">Under $25</label>
-                </div>
-                <div class="form-check pl-0 mb-3">
-                    <input type="radio" class="form-check-input" id="2550" name="materialExampleRadios">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="2550">$25 to $50</label>
-                </div>
-                <div class="form-check pl-0 mb-3">
-                    <input type="radio" class="form-check-input" id="50100" name="materialExampleRadios">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="50100">$50 to $100</label>
-                </div>
-                <div class="form-check pl-0 mb-3">
-                    <input type="radio" class="form-check-input" id="100200" name="materialExampleRadios">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="100200">$100 to $200</label>
-                </div>
-                <div class="form-check pl-0 mb-3">
-                    <input type="radio" class="form-check-input" id="200above" name="materialExampleRadios">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="200above">$200 & Above</label>
-                </div>
-
-            </section>
-            <!-- Section: Price -->
 
             <!-- Section: Price -->
             <section class="mb-4 min-max-selection">
@@ -209,7 +179,6 @@ export function queryStoresEvent(storesNum){
             console.error(err);
         });
 
-
 }
 
 
@@ -235,10 +204,9 @@ export function sideBarSearchEvent(){
             .then(data => {
 
                 console.log(data);
-                renderSearchQueryResults(data)
+                $("#container-browse-games").empty();
+                $("#container-browse-games").append(cheapSharkCardBuilder(data));
                 SetFavoriteEvent();
-                ratingEvent();
-                searchBarEvent();
                 sideBarSearchEvent();
                 sideBarStoreEvent();
                 urlRedirectEvent();

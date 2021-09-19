@@ -40,7 +40,6 @@ export default function Login(props) {
 
             <hr class="my-4">
 
-            <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;" type="submit"><i class="fab fa-google me-2"></i> Sign in with google</button>
 
           </div>
         </div>

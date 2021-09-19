@@ -423,11 +423,11 @@ h1 {
     color: #ffffff;
 }
 
-.container {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
+/*.container {*/
+/*    display: block;*/
+/*    margin-left: auto;*/
+/*    margin-right: auto;*/
+/*}*/
 
 h2 {
     color: white;
@@ -444,12 +444,14 @@ h2 {
 
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
-    background-color: transparent;
+    /*background-color: transparent;*/
+    background-color: #ff8928;
     width: 288px;
     height: 395px;
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
-    margin-bottom: 25px;
+    margin-bottom: 75px;
     margin-top: 25px;
+    margin-left: 10px;
 }
 
 /* This container is needed to position the front and back side */
@@ -496,9 +498,6 @@ h2 {
     background-color: #FF0181;
 }
 
-#navbar-search {
-
-}
 
 /*Register page styling*/
 
@@ -518,12 +517,6 @@ h2 {
     letter-spacing: 0.05rem;
     padding: 0.75rem 1rem;
 }
-
-.btn-google {
-    color: white !important;
-    background-color: #ea4335;
-}
-
 
 /*Splash page styling*/
 
@@ -583,16 +576,29 @@ body{
 }
 
 #container-carousel{
-    background-color: #272727;
-    /*margin-left: 15%;*/
-    /*margin-right: 15%;*/
-    /*margin-bottom: 30px;*/
-    /*border-bottom: 5px solid white;*/
+    /*background-color: #272727;*/
+    background-color: transparent;
+    margin: 0 auto;
+}
 
+.carousel-container {
+    margin-left: 25%;
+    margin-right: 25%;
 }
 
 .carousel-caption{
     background-color: rgba(0,0,0,0.8);
+}
+
+.carousel {
+    width:640px;
+    height:360px;
+}
+
+.carousel-caption {
+    position: relative;
+    left: 0;
+    top: 0;
 }
 
 #container-empty{
