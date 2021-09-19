@@ -2,10 +2,7 @@
 export default function FreeToPlayView(){
 
     return `
-    <div class="container-parent">
-    <header>
-        <h1 class="text-center">Free to Play</h1>
-    </header>    
+    <div class="container-parent mt-5">  
     <main>
     <div class="row d-flex justify-content-center" id="container-free-to-play-page">
     </div>
@@ -72,6 +69,7 @@ export function freeCardBuilder(listOfGames) {
 }
 
 export function apiData(data){
+
     let counter = 0;
     let jsonData = data;
     console.log(jsonData);

@@ -415,19 +415,13 @@ body {
 }
 /*Code block above is for our wishlist animation*/
 
-#navbar {
-    background-color: #32DBF0;
-}
+/*#navbar {*/
+/*    background-color: #eb1736;*/
+/*}*/
 
 h1 {
     color: #ffffff;
 }
-
-/*.container {*/
-/*    display: block;*/
-/*    margin-left: auto;*/
-/*    margin-right: auto;*/
-/*}*/
 
 h2 {
     color: white;
@@ -435,8 +429,8 @@ h2 {
 
 .container-parent{
     /*background-color: #272727;*/
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 10%;
+    margin-right: 10%;
 
 }
 
@@ -445,13 +439,16 @@ h2 {
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
     /*background-color: transparent;*/
-    background-color: #ff8928;
+    background-color: #eb1736;
+    /*background-color: #ffffff;*/
     width: 288px;
     height: 395px;
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
-    margin-bottom: 75px;
-    margin-top: 25px;
-    margin-left: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 15px;
+    padding: 0;
+
 }
 
 /* This container is needed to position the front and back side */
@@ -491,12 +488,11 @@ h2 {
     transform: rotateY(180deg);
 }
 
-
 /*Navbar styling*/
 
-.nav:hover {
-    background-color: #FF0181;
-}
+/*.nav:hover {*/
+/*    background-color: #FF0181;*/
+/*}*/
 
 
 /*Register page styling*/
@@ -521,8 +517,19 @@ h2 {
 /*Splash page styling*/
 
 body{
-    background: linear-gradient(to right, #0062E6, #33AEFF);
+    /*background: linear-gradient(to right, #0062E6, #33AEFF);*/
+    background-image: url("assets/luke-chesser-eICUFSeirc0-unsplash.jpg");
+    object-fit: contain;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: auto;
+    height: 100%;
 }
+html {
+    overflow: hidden;
+    height: 100%;
+}
+
 
 /*Sidebar styling*/
 
@@ -572,7 +579,8 @@ body{
 }
 
 #container-games {
-    background-color: #272727;
+    /*background-color: #272727;*/
+    background-color: transparent;
 }
 
 #container-carousel{

@@ -9,6 +9,7 @@ import Register, {RegisterEvent} from "./views/Register.js";
 import FreeToPlayView from "./views/FreeToPlay.js";
 import Review, {reviewEvent} from "./views/Review.js";
 import Browse, {initBrowse} from "./views/Browse.js";
+import {User, userEvent} from "./views/User.js";
 
 /**
  * Returns the route object for a specific route based on the given URI
@@ -60,6 +61,12 @@ export default function router(URI) {
             },
             uri: '/browse',
             viewEvent: initBrowse
+        },
+        '/user': {
+            returnView: User,
+            state: {},
+            uri: '/user',
+            viewEvent: userEvent
         }
 
     };

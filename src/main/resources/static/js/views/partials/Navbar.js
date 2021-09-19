@@ -1,22 +1,23 @@
-import {rapidApi_token} from "../../ApiKeys/keys.js";
-import {SetFavoriteEvent, urlRedirectEvent} from "../Home.js";
-import {sideBarSearchEvent} from "../Browse.js";
 
 export default function Navbar(props) {
 
     return `
-        <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark mb-5" id="navbar">
           <div class="container-fluid">
               <div class="navbar-nav">
                     <a href="/" data-link class="nav-link nav" style="color: white ">Home</a>
                     <a href="/freetoplay" data-link class="nav-link nav" style="color: white">Free to Play</a>
                     <a href="/browse" data-link class="nav-link nav" style="color: white">Browse</a>
+              </div>
+               <h1 class="text-center w-90">Seru</h1>
+              <div class="navbar-nav" style="float: right">
                     <a href="/login" data-link class="nav-link nav" style="color: white">Login</a>
                     <a href="/register" data-link class="nav-link nav" style="color: white">Register</a>
+                    <a href="/user" data-link class="nav-link nav" style="color: white">User</a>
               </div>
-             
             </div>
         </nav>
+
     `;
 }
 

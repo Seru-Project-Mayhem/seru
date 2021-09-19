@@ -6,7 +6,7 @@ export default function Register(){
     return `
     <header>
     </header>
-    <body class="body-register">
+    <body class="body-register mt-5">
     
 
     <div class="container">

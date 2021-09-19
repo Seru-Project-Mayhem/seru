@@ -5,16 +5,8 @@ import {cheapSharkCardBuilder, reviewRedirect, SetFavoriteEvent, urlRedirectEven
 export default function Browse(){
 
     return `
-            <header>
-             
-               
-            <h1 class="text-center">Browse games</h1>
-        </header>
         <main>
-        
-        <div>
-                  
-        
+        <div>        
          <div class="left">
         <!-- Section: Sidebar -->
         <section>
@@ -89,7 +81,7 @@ export default function Browse(){
         <!-- Section: Sidebar -->
     </div>
         
-         <div class="container-parent-browse">
+         <div class="container-parent-browse mt-5">
        
             <hr><hr><hr>
             
