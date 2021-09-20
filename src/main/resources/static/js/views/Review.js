@@ -1,5 +1,4 @@
 import createView from "../createView.js";
-import {login} from "../auth.js";
 import {rapidApi_token} from "../ApiKeys/keys.js";
 
 export default function Review() {
