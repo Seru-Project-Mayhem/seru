@@ -364,7 +364,10 @@ export function SetFavoriteEvent() {
             $(this).toggleClass("active");
             $(this).toggleClass("inactive");
         });
-
+    $('.flip-card .flip-card-inner').dblclick(function() {
+        $(this).closest('.flip-card').toggleClass('hover');
+        $(this).css('transform, rotateY(180deg)');
+    });
 }
 
 export function urlRedirectEvent() {
