@@ -25,7 +25,6 @@ export default function Browse(){
                 <li class="stores" value="7">GOG</li>
                 <li class="stores" value="11">Humble Store</li>
                 <li class="stores" value="15">Fanatical</li>
-                <li class="stores" value="16">Games Rocket</li>
                 <li class="stores" value="23">GameBillet</li>
                 <li class="stores" value="24">Voidu</li>
                 <li class="stores" value="25">Epic Game Store</li>
@@ -185,7 +184,7 @@ export function sideBarSearchEvent(){
 
         console.log("sidebar value is: " + searchQuery);
 
-        fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?storeID=1%2C2%2C3%2C7%2C11%2C15%2C16%2C23%2C24%2C25%2C29%2C30%2C31&metacritic=0&onSale=0&pageNumber=0&upperPrice=50&exact=0&pageSize=60&AAA=0&sortBy=Title&steamworks=0&output=json&desc=0&title=${searchQuery}&steamRating=0&lowerPrice=0`, {
+        fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?storeID=1%2C2%2C3%2C7%2C11%2C15%2C23%2C24%2C25%2C29%2C30%2C31&metacritic=0&onSale=0&pageNumber=0&upperPrice=50&exact=0&pageSize=60&AAA=0&sortBy=Title&steamworks=0&output=json&desc=0&title=${searchQuery}&steamRating=0&lowerPrice=0`, {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",

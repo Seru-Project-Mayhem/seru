@@ -2,6 +2,7 @@ import createView from "../createView.js";
 import {login} from "../auth.js";
 import {rapidApi_token} from "../keys.js";
 
+
 export default function Review() {
     return `<!DOCTYPE html>
 
@@ -16,8 +17,6 @@ export default function Review() {
   <textarea class="form-control" id="review" rows="3"></textarea>
 <button id="review-btn">Submit Your Review</button>
 </div>
-
-
 
 
 </body>
