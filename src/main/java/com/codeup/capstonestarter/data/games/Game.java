@@ -19,13 +19,13 @@ public class Game {
     @Id
     private int gameID;
 
-    @Column
+    @Column(columnDefinition = "JSON")
     private String cheapestPriceEver;
 
-    @Column
+    @Column(columnDefinition = "JSON")
     private String deals;
 
-    @Column
+    @Column(columnDefinition = "JSON")
     private String info;
 
 
