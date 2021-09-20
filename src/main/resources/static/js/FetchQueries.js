@@ -117,8 +117,7 @@ function testGetCivGames(){
 				}
 				uniqueGameIDs = uniqueGameIDs.substring(0, uniqueGameIDs.length - 3)
 				if(i === 11)
-					console.log(uniqueGameIDs)
-					// getGameDealsByID(uniqueGameIDs);
+					getGameDealsByID(uniqueGameIDs);
 			})
 			.catch(err => {
 				console.error(err);
