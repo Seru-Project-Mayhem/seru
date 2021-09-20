@@ -1,16 +1,15 @@
 package com.codeup.capstonestarter.data.games;
 
 
-import org.springframework.web.servlet.tags.form.TextareaTag;
+
+
 import org.w3c.dom.Text;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.lang.reflect.Array;
-import java.util.Collection;
-import java.util.List;
+
 
 @Entity
 @Table(name="games")
@@ -19,13 +18,13 @@ public class Game {
     @Id
     private int gameID;
 
-    @Column
+    @Column(columnDefinition = "json")
     private String cheapestPriceEver;
 
-    @Column
+    @Column(columnDefinition = "json")
     private String deals;
 
-    @Column
+    @Column(columnDefinition = "json")
     private String info;
 
 

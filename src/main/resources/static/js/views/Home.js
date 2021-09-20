@@ -302,7 +302,6 @@ export function urlRedirectEvent() {
     $(".btn-cheapshark-get").on("click", function () {
         let store_id = $(this).siblings().children(".store-id").text();
         let gameTitle = $(this).siblings(".game-title").text();
-        console.log(gameTitle)
         let steam_id = $(this).siblings(".steam-id").text()
         returnValidURL(steam_id, gameTitle, store_id);
     });
