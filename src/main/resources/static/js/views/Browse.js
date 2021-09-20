@@ -81,9 +81,7 @@ export default function Browse(){
     </div>
         
          <div class="container-parent-browse mt-5">
-       
-            <hr><hr><hr>
-            
+                   
             <div class="row d-flex justify-content-center" id="container-browse-games">
             
             </div>
