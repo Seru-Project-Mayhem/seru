@@ -439,8 +439,9 @@ h2 {
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
     /*background-color: transparent;*/
-    background-color: #eb1736;
+    /*background-color: #eb1736;*/
     /*background-color: #ffffff;*/
+    background-color: rgba(0,0,0,0.8);
     width: 288px;
     height: 395px;
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
@@ -488,13 +489,6 @@ h2 {
     transform: rotateY(180deg);
 }
 
-/*Navbar styling*/
-
-/*.nav:hover {*/
-/*    background-color: #FF0181;*/
-/*}*/
-
-
 /*Register page styling*/
 
 .body-register {
@@ -522,11 +516,12 @@ body{
     object-fit: contain;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    overflow: auto;
-    height: 100%;
+    /*overflow: auto;*/
+    /*height: 100%;*/
 }
 html {
-    overflow: hidden;
+    /*overflow: hidden;*/
+    overflow: auto;
     height: 100%;
 }
 
