@@ -1,21 +1,12 @@
 import {rapidApi_token} from "../ApiKeys/keys.js";
-import {cheapSharkCardBuilder, SetFavoriteEvent, urlRedirectEvent} from "./Home.js";
-import {renderSearchQueryResults, searchBarEvent} from "./partials/Navbar.js";
+import {cheapSharkCardBuilder, reviewRedirect, SetFavoriteEvent, urlRedirectEvent} from "./Home.js";
 
 
 export default function Browse(){
 
     return `
-            <header>
-             
-               
-            <h1 class="text-center">Browse games</h1>
-        </header>
         <main>
-        
-        <div>
-                  
-        
+        <div>        
          <div class="left">
         <!-- Section: Sidebar -->
         <section>
@@ -27,15 +18,23 @@ export default function Browse(){
             
               <div class="mb-5">
                
-               <ul>
-               <li class="stores" value="1">Steam</li>
-               <li class="stores" value="2">GOG</li>
-               </ul>
-            
-             
-               <input class="stores" value="3"><a>Epic Game Store</a></input>
-
-               
+                <ul style="list-style-type: none">
+                <li class="stores" value="1">Steam</li>
+                <li class="stores" value="2">GamersGate</li>
+                <li class="stores" value="3">Green Man Gaming</li>
+                <li class="stores" value="7">GOG</li>
+                <li class="stores" value="11">Humble Store</li>
+                <li class="stores" value="15">Fanatical</li>
+                <li class="stores" value="16">Games Rocket</li>
+                <li class="stores" value="23">GameBillet</li>
+                <li class="stores" value="24">Voidu</li>
+                <li class="stores" value="25">Epic Game Store</li>
+                <li class="stores" value="29">2Game</li>
+                <li class="stores" value="30">IndieGala</li>
+                <li class="stores" value="31">Blizzard</li>
+                </ul>
+                <button type="button" class="btn btn-primary pl-3" id="btn-stores">Get</button>
+                <input class="btn btn-primary pl-3" type="reset" value="Reset" id="reset-store-selection">
               </div>
             
             </section>
@@ -57,35 +56,6 @@ export default function Browse(){
 
             </section>
             <!-- Section: Search Box -->
-
-            <!-- Section: Price -->
-            <section class="mb-4 price-selection">
-
-                <h6 class="font-weight-bold mb-3">Price</h6>
-
-                <div class="form-check pl-0 mb-3">
-                    <input type="radio" class="form-check-input" id="under25" name="materialExampleRadios">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="under25">Under $25</label>
-                </div>
-                <div class="form-check pl-0 mb-3">
-                    <input type="radio" class="form-check-input" id="2550" name="materialExampleRadios">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="2550">$25 to $50</label>
-                </div>
-                <div class="form-check pl-0 mb-3">
-                    <input type="radio" class="form-check-input" id="50100" name="materialExampleRadios">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="50100">$50 to $100</label>
-                </div>
-                <div class="form-check pl-0 mb-3">
-                    <input type="radio" class="form-check-input" id="100200" name="materialExampleRadios">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="100200">$100 to $200</label>
-                </div>
-                <div class="form-check pl-0 mb-3">
-                    <input type="radio" class="form-check-input" id="200above" name="materialExampleRadios">
-                    <label class="form-check-label small text-uppercase card-link-secondary" for="200above">$200 & Above</label>
-                </div>
-
-            </section>
-            <!-- Section: Price -->
 
             <!-- Section: Price -->
             <section class="mb-4 min-max-selection">
@@ -111,7 +81,7 @@ export default function Browse(){
         <!-- Section: Sidebar -->
     </div>
         
-         <div class="container-parent-browse">
+         <div class="container-parent-browse mt-5">
        
             <hr><hr><hr>
             
@@ -127,21 +97,83 @@ export default function Browse(){
 }
 
 
-export function sideBarCheckboxEvent(){
+export function sideBarStoreEvent(){
 
     console.log("We made it to sideBarCheckboxEvent!");
 
-    $('.stores').on('click',function () {
-        $(this).css({background: "red"});
-        console.log($(this).val());
+    let storesNum = [];
+
+    $('#reset-store-selection').on('click', function () {
+        window.location.reload();
     })
-    //
-    // $('.stores').on('click',function () {
-    //     $('.stores').css({background: "red"});
-    //     console.log($('.stores').val());
-    // })
+
+    $('.stores').on('click',function () {
+
+        $(this).css({color: '#ffffff', backgroundColor: "#900DFF"});
+        storesNum.push($(this).val());
+
+        // $(this).toggle(
+        // function () {
+        //     $(this).css({color: '#ffffff', backgroundColor: "#900DFF"});
+        //     storesNum.push($(this).val());
+        // }, function (){
+        //     $(this).css({color: '#000000', backgroundColor: '#ffffff'});
+        //         console.log(storesNum);
+        //     })
+
+        // storesNum.pop();
+        $('#btn-stores').on('click', function () {
+            queryStoresEvent(storesNum);
+        })
+
+    })
+
 
 }
+
+export function queryStoresEvent(storesNum){
+
+    let additionalStore = "";
+    let storequery = storesNum[0];
+
+    if(storesNum.length > 1){
+        for(let i = 0; i < storesNum.length; i++){
+
+            let storeOne = storesNum[0];
+
+            if(i > 0){
+                additionalStore += "%2C" + storesNum[i];
+
+                storequery = storeOne + additionalStore;
+            }
+        }
+    }
+
+    fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?storeID=${storequery}&metacritic=0&onSale=0&pageNumber=0&upperPrice=50&exact=0&pageSize=60&AAA=0&sortBy=Deal%20Rating&steamworks=0&output=json&desc=0&steamRating=0&lowerPrice=0`, {
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",
+            "x-rapidapi-key": rapidApi_token
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            $("#container-browse-games").empty();
+            $("#container-browse-games").append(cheapSharkCardBuilder(data));
+            sideBarStoreEvent();
+            sideBarSearchEvent();
+            infiniteScrollingEvent();
+            reviewRedirect();
+            SetFavoriteEvent();
+            urlRedirectEvent();
+        })
+        .catch(err => {
+            console.error(err);
+        });
+
+}
+
+
 
 export function sideBarSearchEvent(){
 
@@ -164,12 +196,11 @@ export function sideBarSearchEvent(){
             .then(data => {
 
                 console.log(data);
-                renderSearchQueryResults(data)
+                $("#container-browse-games").empty();
+                $("#container-browse-games").append(cheapSharkCardBuilder(data));
                 SetFavoriteEvent();
-                ratingEvent();
-                searchBarEvent();
                 sideBarSearchEvent();
-                sideBarCheckboxEvent();
+                sideBarStoreEvent();
                 urlRedirectEvent();
                 infiniteScrollingEvent();
             })
@@ -220,7 +251,7 @@ export function initBrowse() {
 
     infiniteScrollingEvent();
     sideBarSearchEvent();
-    sideBarCheckboxEvent();
+    sideBarStoreEvent();
 
 }
 

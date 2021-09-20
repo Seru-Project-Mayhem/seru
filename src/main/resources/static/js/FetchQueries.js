@@ -4,9 +4,6 @@ import {
 } from "./views/Home.js";
 import {rapidApi_token} from "./ApiKeys/keys.js";
 import {apiData} from "./views/FreeToPlay.js";
-import {sideBarCheckboxEvent, sideBarSearchEvent} from "./views/Browse.js";
-
-import {searchBarEvent} from "./views/partials/Navbar.js";
 
 export function freeToGameHomeGet(){
 	fetch("https://free-to-play-games-database.p.rapidapi.com/api/games", {
@@ -36,6 +33,8 @@ export function freeToGameGet(){
 		.then(response => response.json())
 		.then(data => {
 			apiData(data)
+			SetFavoriteEvent();
+			reviewRedirect();
 		})
 		.catch(err => {
 			console.error(err);
@@ -55,9 +54,8 @@ export function cheapSharkGet(){
 			$("#container-games").append(cheapSharkCardBuilder(games));
 			reviewRedirect();
 			SetFavoriteEvent();
-			sideBarSearchEvent();
-			sideBarCheckboxEvent()
-			searchBarEvent();
+			// sideBarSearchEvent();
+			// sideBarStoreEvent();
 			urlRedirectEvent();
 		})
 		.catch(err => {
