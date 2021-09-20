@@ -155,8 +155,6 @@ export function cheapSharkCardBuilder(listOfGames) {
             store = "Humble Store";
         } else if(game.storeID == 15){
             store = "Fanatical";
-        } else if(game.storeID == 16){
-            store = "Games Rocket";
         } else if(game.storeID == 23){
             store = "GameBillet";
         } else if(game.storeID == 24){
@@ -182,6 +180,7 @@ export function cheapSharkCardBuilder(listOfGames) {
                 <p style="color: white">${savings}%</p>
                 <p style="color: white">${store}</p>
                 <hr style="color: white">
+                 <a class="review-btn"  href="/review" data-id=“${game.gameID}”> Leave Review</a>
                 <h6 class="mb-3" style="color: white">$${game.salePrice}</h6>
                 <button type="button" class="btn btn-primary btn-sm mr-1 mb-2"><i
                     class="fas fa-shopping-cart pr-2"></i>Get</button>
@@ -212,7 +211,8 @@ export function cheapSharkCardBuilder(listOfGames) {
 //                     <p class="card-text"> Current Price $${game.salePrice}</p>
 //                     <p class="card-text"> Total Savings ${savings}%</p>
 //                     <p class="card-text"> Steam Rating: ${game.steamRatingPercent}</p>
-//
+
+//              <a class="review-btn"  href="/review" data-id=“${game.gameID}”> Leave Review</a>
 //                 </div>
 //             </div>
 //             <div class="flip-card-back">
