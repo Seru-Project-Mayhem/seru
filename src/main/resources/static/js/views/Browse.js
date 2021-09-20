@@ -1,4 +1,4 @@
-import {rapidApi_token} from "../ApiKeys/keys.js";
+import {rapidApi_token} from "../keys.js";
 import {cheapSharkCardBuilder, reviewRedirect, SetFavoriteEvent, urlRedirectEvent} from "./Home.js";
 
 

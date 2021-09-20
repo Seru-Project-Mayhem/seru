@@ -29,19 +29,19 @@ export function freeToGameCarouselView(data){
 
         if(i == 0){
             num = random;
-            console.log("first random number: " + num);
+            // console.log("first random number: " + num);
         } if(i == 1){
             num2 = random;
-            console.log("second random number: " + num2);
+            // console.log("second random number: " + num2);
         } if(i == 2){
             num3 = random;
-            console.log("third random number: " + num3);
+            // console.log("third random number: " + num3);
         } if(i == 3){
             num4 = random;
-            console.log("fourth random number: " + num4);
+            // console.log("fourth random number: " + num4);
         } if(i == 4) {
             num5 = random;
-            console.log("fifth random number: " + num5);
+            // console.log("fifth random number: " + num5);
         }
     }
 
@@ -121,7 +121,7 @@ export function reviewRedirect(){
 
 
 export function cheapSharkCardBuilder(listOfGames) {
-    console.log(listOfGames);
+    // console.log(listOfGames);
     return listOfGames.map(game => {
 
         let savings = parseFloat(game.savings).toFixed(1);

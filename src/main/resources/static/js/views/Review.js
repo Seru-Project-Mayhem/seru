@@ -1,6 +1,6 @@
 import createView from "../createView.js";
 import {login} from "../auth.js";
-import {rapidApi_token} from "../ApiKeys/keys.js";
+import {rapidApi_token} from "../keys.js";
 
 export default function Review() {
     return `<!DOCTYPE html>
