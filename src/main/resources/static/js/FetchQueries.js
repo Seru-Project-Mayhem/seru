@@ -112,7 +112,7 @@ function testGetCivGames(){
 				for (let game of data) {
 					if(uniqueGameIDs.includes(game.gameID)){
 					} else {
-						uniqueGameIDs += (game.gameID + ",");
+						uniqueGameIDs += (game.gameID + "%2C");
 					}
 				}
 				uniqueGameIDs = uniqueGameIDs.substring(0, uniqueGameIDs.length - 3)
