@@ -33,6 +33,7 @@ export function freeToGameGet(){
 		.then(response => response.json())
 		.then(data => {
 			apiData(data)
+
 			SetFavoriteEvent();
 			reviewRedirect();
 		})

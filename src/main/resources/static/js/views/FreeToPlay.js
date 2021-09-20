@@ -1,3 +1,4 @@
+import {reviewRedirect, SetFavoriteEvent} from "./Home.js";
 
 export default function FreeToPlayView(){
 
@@ -88,6 +89,10 @@ export function apiData(data){
             size += 25;
             items = jsonData.slice(counter,size);
             $("#container-free-to-play-page").append(freeCardBuilder(items));
+
+
+            SetFavoriteEvent();
+            reviewRedirect();
         }
     });
 }
