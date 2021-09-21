@@ -547,7 +547,8 @@ html {
 /*Browse page styling*/
 
 .container-parent-browse {
-    background-color: #272727;
+    /*background-color: #272727;*/
+    background-color: transparent;
     margin-left: 25%;
     margin-right: 15%;
 }

@@ -1,9 +1,11 @@
+import {reviewRedirect, SetFavoriteEvent} from "./Home.js";
 
 export default function FreeToPlayView(){
 
     return `
-    <div class="container-parent mt-5">  
+   
     <main>
+    <div class="container-parent mt-5">  
     <div class="row d-flex justify-content-center" id="container-free-to-play-page">
     </div>
     </div>
@@ -87,6 +89,10 @@ export function apiData(data){
             size += 25;
             items = jsonData.slice(counter,size);
             $("#container-free-to-play-page").append(freeCardBuilder(items));
+
+
+            SetFavoriteEvent();
+            reviewRedirect();
         }
     });
 }
