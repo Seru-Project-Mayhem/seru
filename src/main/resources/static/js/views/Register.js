@@ -1,7 +1,7 @@
 import createView from "../createView.js";
 import {login} from "../auth.js";
 
-export default function Register(){
+export default function Register(props){
 
     return `
     <header>
