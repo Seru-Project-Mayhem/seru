@@ -33,7 +33,7 @@ export default function Browse(){
                 <li class="stores" value="31">Blizzard</li>
                 </ul>
                 <button type="button" class="btn btn-primary pl-3" id="btn-stores">Get</button>
-                <input class="btn btn-primary pl-3" type="reset" value="Reset" id="reset-store-selection">
+                <input class="btn btn-primary" type="reset" value="Reset" id="reset-store-selection">
               </div>
             
             </section>
@@ -72,7 +72,7 @@ export default function Browse(){
                             <label for="to">$ Max</label>
                         </div>
                     </div>
-     
+                <button type="button" class="btn btn-primary" id="btn-price">Get</button>
             </section>
             <!-- Section: Price -->
 
@@ -109,23 +109,46 @@ export function sideBarStoreEvent(){
         $(this).css({color: '#ffffff', backgroundColor: "#900DFF"});
         storesNum.push($(this).val());
 
-        // $(this).toggle(
-        // function () {
-        //     $(this).css({color: '#ffffff', backgroundColor: "#900DFF"});
-        //     storesNum.push($(this).val());
-        // }, function (){
-        //     $(this).css({color: '#000000', backgroundColor: '#ffffff'});
-        //         console.log(storesNum);
-        //     })
-
-        // storesNum.pop();
         $('#btn-stores').on('click', function () {
             queryStoresEvent(storesNum);
         })
 
     })
 
+    $('#btn-price').on('click', function (){
 
+        let min = $("#from").val();
+        let max = $("#to").val();
+
+        queryByPriceEvent(min, max);
+
+    })
+
+}
+
+export function queryByPriceEvent(min, max){
+
+    fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?storeID=1%2C2%2C3%2C7%2C11%2C15%2C23%2C24%2C25%2C29%2C30%2C31&metacritic=0&onSale=0&pageNumber=0&upperPrice=${max}&exact=0&pageSize=60&AAA=0&sortBy=Deal%20Rating&steamworks=0&output=json&desc=0&steamRating=0&lowerPrice=${min}`, {
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",
+            "x-rapidapi-key": rapidApi_token
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            $("#container-browse-games").empty();
+            $("#container-browse-games").append(cheapSharkCardBuilder(data));
+            sideBarStoreEvent();
+            sideBarSearchEvent();
+            infiniteScrollingEvent();
+            reviewRedirect();
+            SetFavoriteEvent();
+            urlRedirectEvent();
+        })
+        .catch(err => {
+            console.error(err);
+        });
 }
 
 export function queryStoresEvent(storesNum){
