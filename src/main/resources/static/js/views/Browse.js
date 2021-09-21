@@ -2,7 +2,7 @@ import {rapidApi_token} from "../keys.js";
 import {cheapSharkCardBuilder, reviewRedirect, SetFavoriteEvent, urlRedirectEvent} from "./Home.js";
 
 
-export default function Browse(){
+export default function Browse(props){
 
     return `
         <main>

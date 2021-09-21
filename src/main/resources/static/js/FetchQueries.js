@@ -100,7 +100,7 @@ export function getAllGames(){
 function testGetCivGames(){
 	let uniqueGameIDs = "";
 	for(let i = 0; i <= 11; i++){
-		fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?metacritic=0&onSale=0&pageNumber=${i}&upperPrice=50&exact=0&pageSize=60&AAA=0&sortBy=Deal%20Rating&steamworks=0&output=json&desc=0&title=sid%20meiers&steamRating=0&lowerPrice=0`, {
+		fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?metacritic=0&onSale=0&pageNumber=${i}&upperPrice=50&exact=0&pageSize=60&AAA=0&sortBy=Deal%20Rating&steamworks=0&output=json&desc=0&steamRating=0&lowerPrice=0`, {
 			"method": "GET",
 			"headers": {
 				"x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",
@@ -136,6 +136,7 @@ function getGameDealsByID(uniqueGameIDs) {
 		.then(response => response.json())
 		.then(data => {
 			dataBaseInsert(data);
+			getMultipleGamePricesEvent();
 		})
 		.catch(err => {
 			console.error(err);
@@ -145,7 +146,7 @@ function getGameDealsByID(uniqueGameIDs) {
 function dataBaseInsert(games){
 		for(let gameID in games){
 		let post = {
-			gameID: gameID,
+			id: gameID,
 			cheapestPriceEver: JSON.stringify(games[gameID].cheapestPriceEver),
 			deals: JSON.stringify(games[gameID].deals),
 			info: JSON.stringify(games[gameID].info)
@@ -167,4 +168,22 @@ function dataBaseInsert(games){
 			console.log(error);
 		});
 	};
+}
+
+function getMultipleGamePricesEvent(){
+	let id
+	$(".flip-card").on("click", function(){
+		id = $(this).children().children().children().children(".gameID").text();
+		getMultipleGamePricesFetch(id);
+	});
+}
+
+function getMultipleGamePricesFetch(id){
+	let request = {
+		method: "GET",
+		headers: {}
+	}
+	fetch(`http://localhost:8080/api/games/${id}`, request)
+		.then(res => console.log(res.status))
+		.catch(error => console.log(error))
 }

@@ -1,5 +1,6 @@
+import {reviewRedirect, SetFavoriteEvent} from "./Home.js";
 
-export default function FreeToPlayView(){
+export default function FreeToPlayView(props){
 
     return `
     <div class="container-parent mt-5">  
@@ -87,6 +88,10 @@ export function apiData(data){
             size += 25;
             items = jsonData.slice(counter,size);
             $("#container-free-to-play-page").append(freeCardBuilder(items));
+            // $(this).off("click", SetFavoriteEvent);
+            $(".card").off("click", SetFavoriteEvent);
+            SetFavoriteEvent();
+            reviewRedirect();
         }
     });
 }

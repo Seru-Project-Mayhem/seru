@@ -189,6 +189,7 @@ export function cheapSharkCardBuilder(listOfGames) {
                 <p class="steam-id d-none">${game.steamAppID}</p>
                 <a>
                      <p class="store-id d-none">${game.storeID}</p>
+                     <p class="gameID d-none">${game.gameID}</p>
                 </a>
                 <p class="card-text"> Current Price $${game.salePrice}</p>
                 <p class="card-text"> Total Savings ${savings}%</p>
@@ -368,6 +369,7 @@ export function SetFavoriteEvent() {
     $('.flip-card .flip-card-inner').dblclick(function() {
         $(this).closest('.flip-card').toggleClass('hover');
         $(this).css('transform, rotateY(180deg)');
+        $(this).children().children().children(".white-line").hide();
     });
 }
 
