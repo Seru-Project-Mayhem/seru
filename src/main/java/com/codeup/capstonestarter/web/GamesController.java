@@ -2,10 +2,9 @@ package com.codeup.capstonestarter.web;
 
 import com.codeup.capstonestarter.data.games.Game;
 import com.codeup.capstonestarter.data.games.GameRepository;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Collection;
 
 @RestController
 @RequestMapping(value = "/api/games", headers = "Accept=application/json",
@@ -21,5 +20,18 @@ public class GamesController {
     @PostMapping
     private void postGames(@RequestBody Game game){
         gameRepository.save(game);
+    }
+
+    @GetMapping
+    private Collection<Game> getAllGames(){
+
+
+        return gameRepository.findAll();
+    }
+
+    @GetMapping("/findByGameID")
+    private Game getGameById(@RequestParam Long gameID){
+        return gameRepository.findByGameID(gameID);
+//        return gameRepository.getById(game_id);
     }
 }

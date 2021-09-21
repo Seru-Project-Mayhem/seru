@@ -3,7 +3,7 @@ import {login} from "../auth.js";
 import {rapidApi_token} from "../keys.js";
 
 
-export default function Review() {
+export default function Review(props) {
     return `<!DOCTYPE html>
 
 <head>

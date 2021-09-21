@@ -1,4 +1,4 @@
-export function User(){
+export function User(props){
 
     return `
     <div class="row py-5 px-4">

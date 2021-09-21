@@ -175,11 +175,12 @@ export function cheapSharkCardBuilder(listOfGames) {
             <div class="flip-card-front">
                 <img class="img-fluid" src="${game.thumb}" style="width: 100%; height: 10vh; object-fit: cover" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title"> ${game.title}</h5>
-                    <p style="color: white">${store}</p>
+                    <h5 class="card-title">${game.title}</h5>
                     <p class="card-text"> Total Savings ${savings}%</p>
-                    <p class="card-text"> Normal Price <span style="text-decoration: line-through">$${game.normalPrice}</span></p>
-                    <p class="card-text"> Current Price $${game.salePrice}</p>
+                    <p style="color: white">${store}</p>
+                    <hr class="white-line" style="color: white">
+<!--                <p class="card-text"> Normal Price <span style="text-decoration: line-through">$${game.normalPrice}</span></p>-->
+                    <p class="card-text">$${game.salePrice}</p>
                     <button type="button" class="btn btn-light btn-sm mr-1 mb-2"><i class="fas fa-info-circle pr-2"></i>Details</button>
                 </div>
             </div>
@@ -188,6 +189,7 @@ export function cheapSharkCardBuilder(listOfGames) {
                 <p class="steam-id d-none">${game.steamAppID}</p>
                 <a>
                      <p class="store-id d-none">${game.storeID}</p>
+                     <p class="gameID d-none">${game.gameID}</p>
                 </a>
                 <p class="card-text"> Current Price $${game.salePrice}</p>
                 <p class="card-text"> Total Savings ${savings}%</p>
@@ -364,7 +366,11 @@ export function SetFavoriteEvent() {
             $(this).toggleClass("active");
             $(this).toggleClass("inactive");
         });
-
+    $('.flip-card .flip-card-inner').dblclick(function() {
+        $(this).closest('.flip-card').toggleClass('hover');
+        $(this).css('transform, rotateY(180deg)');
+        $(this).children().children().children(".white-line").hide();
+    });
 }
 
 export function urlRedirectEvent() {

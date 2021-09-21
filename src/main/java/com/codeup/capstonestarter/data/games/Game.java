@@ -4,10 +4,7 @@ package com.codeup.capstonestarter.data.games;
 import org.springframework.web.servlet.tags.form.TextareaTag;
 import org.w3c.dom.Text;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.List;
@@ -17,34 +14,48 @@ import java.util.List;
 public class Game {
 
     @Id
-    private int gameID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column
+    private Long gameID;
+
+    @Column(columnDefinition = "JSON")
     private String cheapestPriceEver;
 
-    @Column
+    @Column(columnDefinition = "JSON")
     private String deals;
 
-    @Column
+    @Column(columnDefinition = "JSON")
     private String info;
 
 
     public Game() {
     }
 
-    public Game(int gameID,  String cheapestPriceEver, String deals, String info) {
-        this.gameID = gameID;
+    public Game(Long id,  String cheapestPriceEver, String deals, String info,
+                Long gameID) {
+        this.id = id;
         this.deals = deals;
         this.info = info;
         this.cheapestPriceEver = cheapestPriceEver;
-    }
-
-    public int getGameID() {
-        return gameID;
-    }
-
-    public void setGameID(int gameID) {
         this.gameID = gameID;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCheapestPriceEver() {
+        return cheapestPriceEver;
+    }
+
+    public void setCheapestPriceEver(String cheapestPriceEver) {
+        this.cheapestPriceEver = cheapestPriceEver;
     }
 
     public String getDeals() {
@@ -63,11 +74,11 @@ public class Game {
         this.info = info;
     }
 
-    public String getCheapestPriceEver() {
-        return cheapestPriceEver;
+    public Long getGameID() {
+        return gameID;
     }
 
-    public void setCheapestPriceEver(String cheapestPriceEver) {
-        this.cheapestPriceEver = cheapestPriceEver;
+    public void setGameID(Long gameID) {
+        this.gameID = gameID;
     }
 }
