@@ -14,10 +14,6 @@ import java.util.List;
 public class Game {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column
     private Long gameID;
 
     @Column(columnDefinition = "JSON")
@@ -29,25 +25,15 @@ public class Game {
     @Column(columnDefinition = "JSON")
     private String info;
 
-
     public Game() {
     }
 
-    public Game(Long id,  String cheapestPriceEver, String deals, String info,
+    public Game(String cheapestPriceEver, String deals, String info,
                 Long gameID) {
-        this.id = id;
         this.deals = deals;
         this.info = info;
         this.cheapestPriceEver = cheapestPriceEver;
         this.gameID = gameID;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getCheapestPriceEver() {

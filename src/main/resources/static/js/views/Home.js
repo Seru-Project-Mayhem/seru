@@ -181,7 +181,7 @@ export function cheapSharkCardBuilder(listOfGames) {
                     <hr class="white-line" style="color: white">
 <!--                <p class="card-text"> Normal Price <span style="text-decoration: line-through">$${game.normalPrice}</span></p>-->
                     <p class="card-text">$${game.salePrice}</p>
-                    <button type="button" class="btn btn-light btn-sm mr-1 mb-2"><i class="fas fa-info-circle pr-2"></i>Details</button>
+                    <button type="button" class="btn-details btn btn-light btn-sm mr-1 mb-2"><i class="fas fa-info-circle pr-2"></i>Details</button>
                 </div>
             </div>
             <div class="flip-card-back">

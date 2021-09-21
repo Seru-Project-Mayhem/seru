@@ -5,7 +5,7 @@ import {
 import {rapidApi_token} from "./keys.js";
 import {apiData} from "./views/FreeToPlay.js";
 
-export function freeToGameHomeGet(){
+export function freeToGameHomeGet() {
 	fetch("https://free-to-play-games-database.p.rapidapi.com/api/games", {
 		"method": "GET",
 		"headers": {
@@ -22,7 +22,7 @@ export function freeToGameHomeGet(){
 		});
 }
 
-export function freeToGameGet(){
+export function freeToGameGet() {
 	fetch("https://free-to-play-games-database.p.rapidapi.com/api/games", {
 		"method": "GET",
 		"headers": {
@@ -42,7 +42,7 @@ export function freeToGameGet(){
 		});
 }
 
-export function cheapSharkGet(){
+export function cheapSharkGet() {
 	fetch("https://cheapshark-game-deals.p.rapidapi.com/deals?storeID=1%2C2%2C3%2C7%2C11%2C15%2C23%2C24%2C25%2C29%2C30%2C31&metacritic=0&onSale=0&pageNumber=0&upperPrice=50&exact=0&pageSize=60&AAA=0&sortBy=Savings&steamworks=0&output=json&desc=0&steamRating=0&lowerPrice=0", {
 		"method": "GET",
 		"headers": {
@@ -64,7 +64,7 @@ export function cheapSharkGet(){
 		});
 }
 
-export function postRating(rating){
+export function postRating(rating) {
 	let post = {
 		rating: rating,
 	}
@@ -81,7 +81,7 @@ export function postRating(rating){
 	fetch("http://localhost:8080/api/ratings", request)
 		.then(res => {
 			console.log(res.status);
-			if(res.status === 200){
+			if (res.status === 200) {
 				alert("Post was successful");
 			} else {
 				alert("A problem has occurred");
@@ -91,16 +91,16 @@ export function postRating(rating){
 	});
 }
 
-export function getAllGames(){
+export function getAllGames() {
 	cheapSharkGet();
 	freeToGameHomeGet();
 	//Remove function call and functions below later
 	testGetCivGames();
 }
 
-function testGetCivGames(){
+function testGetCivGames() {
 	let uniqueGameIDs = "";
-	for(let i = 0; i <= 11; i++){
+	for (let i = 0; i <= 11; i++) {
 		fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?metacritic=0&onSale=0&pageNumber=${i}&upperPrice=50&exact=0&pageSize=60&AAA=0&sortBy=Deal%20Rating&steamworks=0&output=json&desc=0&steamRating=0&lowerPrice=0`, {
 			"method": "GET",
 			"headers": {
@@ -111,13 +111,13 @@ function testGetCivGames(){
 			.then(response => response.json())
 			.then(data => {
 				for (let game of data) {
-					if(uniqueGameIDs.includes(game.gameID)){
+					if (uniqueGameIDs.includes(game.gameID)) {
 					} else {
 						uniqueGameIDs += (game.gameID + "%2C");
 					}
 				}
 				uniqueGameIDs = uniqueGameIDs.substring(0, uniqueGameIDs.length - 3)
-				if(i === 11)
+				if (i === 11)
 					getGameDealsByID(uniqueGameIDs);
 			})
 			.catch(err => {
@@ -144,8 +144,8 @@ function getGameDealsByID(uniqueGameIDs) {
 		});
 }
 
-function dataBaseInsert(games){
-		for(let gameID in games){
+function dataBaseInsert(games) {
+	for (let gameID in games) {
 		let post = {
 			gameID: gameID,
 			cheapestPriceEver: JSON.stringify(games[gameID].cheapestPriceEver),
@@ -168,23 +168,39 @@ function dataBaseInsert(games){
 			}).catch(error => {
 			console.log(error);
 		});
-	};
+	}
+	;
 }
 
-function getMultipleGamePricesEvent(){
+function getMultipleGamePricesEvent() {
 	let id
-	$(".flip-card").on("click", function(){
-		id = $(this).children().children().children().children(".gameID").text();
+	$(".btn-details").on("click", function () {
+		id = $(this).parent().parent().siblings(".flip-card-back").children().children(".gameID").text();
 		getMultipleGamePricesFetch(id);
 	});
 }
 
-function getMultipleGamePricesFetch(id){
+function getMultipleGamePricesFetch(id) {
 	let request = {
 		method: "GET",
 		headers: {}
 	}
 	fetch(`http://localhost:8080/api/games/findByGameID?gameID=${id}`, request)
-		.then(res => console.log(res.status))
+		.then(res => res.json())
+		.then(data => {
+			// JSON.parse(data);
+			let deals;
+			console.log(data.deals)
+			for (let deal in data.deals) {
+				deals = data.deals.substring(1, (data.deals.length - 1)).split("{");
+			}
+			console.log(deals);
+			for (let i = 1; i < deals.length; i++) {
+				// $(".flip-card-back").append(`
+				// 	<p>${deals[i].price}</p>
+				// `);
+				console.log(JSON.parse(deals[i]))
+			}
+		})
 		.catch(error => console.log(error))
 }
