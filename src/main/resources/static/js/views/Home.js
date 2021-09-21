@@ -189,7 +189,7 @@ export function cheapSharkCardBuilder(listOfGames) {
                 <p class="steam-id d-none">${game.steamAppID}</p>
                 <a>
                      <p class="store-id d-none">${game.storeID}</p>
-                     <p class="gameID d-none">${game.gameID}</p>
+                     <p class="gameID">${game.gameID}</p>
                 </a>
                 <p class="card-text"> Current Price $${game.salePrice}</p>
                 <p class="card-text"> Total Savings ${savings}%</p>

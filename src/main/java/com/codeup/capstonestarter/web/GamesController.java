@@ -29,8 +29,9 @@ public class GamesController {
         return gameRepository.findAll();
     }
 
-    @GetMapping("/findByGame_id")
-    private Game getGameById(@RequestParam Long game_id){
-        return gameRepository.findByGame_id(game_id).;
+    @GetMapping("/findByGameID")
+    private Game getGameById(@RequestParam Long gameID){
+        return gameRepository.findByGameID(gameID);
+//        return gameRepository.getById(game_id);
     }
 }

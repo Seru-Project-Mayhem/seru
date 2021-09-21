@@ -18,7 +18,7 @@ public class Game {
     private Long id;
 
     @Column
-    private Long game_id;
+    private Long gameID;
 
     @Column(columnDefinition = "JSON")
     private String cheapestPriceEver;
@@ -33,12 +33,13 @@ public class Game {
     public Game() {
     }
 
-    public Game(Long id,  String cheapestPriceEver, String deals, String info, Long game_id) {
+    public Game(Long id,  String cheapestPriceEver, String deals, String info,
+                Long gameID) {
         this.id = id;
         this.deals = deals;
         this.info = info;
         this.cheapestPriceEver = cheapestPriceEver;
-        this.game_id = game_id;
+        this.gameID = gameID;
     }
 
     public Long getId() {
@@ -73,11 +74,11 @@ public class Game {
         this.info = info;
     }
 
-    public Long getGame_id() {
-        return game_id;
+    public Long getGameID() {
+        return gameID;
     }
 
-    public void setGame_id(Long game_id) {
-        this.game_id = game_id;
+    public void setGameID(Long gameID) {
+        this.gameID = gameID;
     }
 }

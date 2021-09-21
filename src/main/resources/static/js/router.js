@@ -57,7 +57,7 @@ export default function router(URI) {
             returnView: Browse,
             state: {
                 games: "/api/games",
-                postGames: "/api/games"
+                // postGames: "/api/games"
             },
             uri: '/browse',
             viewEvent: initBrowse

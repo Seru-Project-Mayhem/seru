@@ -147,7 +147,7 @@ function getGameDealsByID(uniqueGameIDs) {
 function dataBaseInsert(games){
 		for(let gameID in games){
 		let post = {
-			game_id: gameID,
+			gameID: gameID,
 			cheapestPriceEver: JSON.stringify(games[gameID].cheapestPriceEver),
 			deals: JSON.stringify(games[gameID].deals),
 			info: JSON.stringify(games[gameID].info)
@@ -184,7 +184,7 @@ function getMultipleGamePricesFetch(id){
 		method: "GET",
 		headers: {}
 	}
-	fetch(`http://localhost:8080/api/games/${id}`, request)
+	fetch(`http://localhost:8080/api/games/findByGameID?gameID=${id}`, request)
 		.then(res => console.log(res.status))
 		.catch(error => console.log(error))
 }
