@@ -169,6 +169,13 @@ export function cheapSharkCardBuilder(listOfGames) {
             store = "Blizzard";
         }
 
+        let price;
+        if(game.salePrice == "0.00"){
+            price = "Free!";
+        } else {
+            price = ("$" + game.salePrice);
+        }
+
         return  `
             <div class="flip-card" style="width: 20rem; height: 25rem">
         <div class="flip-card-inner">
@@ -180,7 +187,7 @@ export function cheapSharkCardBuilder(listOfGames) {
                     <p style="color: white">${store}</p>
                     <hr class="white-line" style="color: white">
 <!--                <p class="card-text"> Normal Price <span style="text-decoration: line-through">$${game.normalPrice}</span></p>-->
-                    <p class="card-text">$${game.salePrice}</p>
+                    <p class="card-text">${price}</p>
                     <button type="button" class="btn-details btn btn-light btn-sm mr-1 mb-2"><i class="fas fa-info-circle pr-2"></i>Details</button>
                 </div>
             </div>

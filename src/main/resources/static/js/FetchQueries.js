@@ -189,18 +189,24 @@ function getMultipleGamePricesFetch(id) {
 		.then(res => res.json())
 		.then(data => {
 			// JSON.parse(data);
-			let deals;
+			// let deals;
 			console.log(data.deals)
-			for (let deal in data.deals) {
-				deals = data.deals.substring(1, (data.deals.length - 1)).split("{");
-			}
-			console.log(deals);
-			for (let i = 1; i < deals.length; i++) {
-				// $(".flip-card-back").append(`
-				// 	<p>${deals[i].price}</p>
-				// `);
-				console.log(JSON.parse(deals[i]))
-			}
+			// for (let deal in data.deals) {
+			// 	deals = data.deals.substring(1, (data.deals.length - 1)).split(", ");
+			// }
+			myFunction(data.deals);
+			// for (let i = 1; i < deals.length; i++) {
+			// 	// $(".flip-card-back").append(`
+			// 	// 	<p>${deals[i].price}</p>
+			// 	// `);
+			// 	console.log(deals[i])
+			// }
 		})
 		.catch(error => console.log(error))
+}
+function myFunction(dataFromServer){
+	let parsedJSON = JSON.parse(dataFromServer);
+	for (let i=0;i<parsedJSON.length;i++) {
+		console.log(parsedJSON[i].price);
+	}
 }
