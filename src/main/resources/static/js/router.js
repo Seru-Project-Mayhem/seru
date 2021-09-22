@@ -67,7 +67,7 @@ export default function router(URI) {
             state: {},
             uri: '/user',
             viewEvent: userEvent
-        }
+        },
 
     };
 

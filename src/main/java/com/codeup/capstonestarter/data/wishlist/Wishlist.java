@@ -1,8 +1,11 @@
 package com.codeup.capstonestarter.data.wishlist;
 
+import com.codeup.capstonestarter.data.games.Game;
 import com.codeup.capstonestarter.data.user.User;
+import org.hibernate.mapping.Collection;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="wishlist")
@@ -12,16 +15,19 @@ public class Wishlist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private boolean is_active;
+    private boolean isActive;
+
+    private Collection<Game> gameID;
 
     @OneToOne(mappedBy = "wishlist")
     private User user;
 
     public Wishlist() {}
 
-    public Wishlist(Long id, boolean is_active) {
+    public Wishlist(Long id, boolean isActive,  Collection<Game> gameID) {
         this.id = id;
-        this.is_active = is_active;
+        this.isActive = isActive;
+        this.gameID = gameID;
     }
 
     public Long getId() {
@@ -32,11 +38,19 @@ public class Wishlist {
         this.id = id;
     }
 
-    public boolean isIs_active() {
-        return is_active;
+    public boolean isActive() {
+        return isActive;
     }
 
-    public void setIs_active(boolean is_active) {
-        this.is_active = is_active;
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public Long getGameID() {
+        return gameID;
+    }
+
+    public void setGameID(Long gameID) {
+        this.gameID = gameID;
     }
 }
