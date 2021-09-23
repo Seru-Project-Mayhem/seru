@@ -4,6 +4,7 @@ import {
 } from "./views/Home.js";
 import {rapidApi_token} from "./keys.js";
 import {apiData} from "./views/FreeToPlay.js";
+import {returnValidURLs} from "./views/UrlBuilder.js";
 
 export function freeToGameHomeGet() {
 	fetch("https://free-to-play-games-database.p.rapidapi.com/api/games", {
@@ -58,6 +59,7 @@ export function cheapSharkGet() {
 			// sideBarSearchEvent();
 			// sideBarStoreEvent();
 			urlRedirectEvent();
+			getMultipleGamePricesEvent();
 		})
 		.catch(err => {
 			console.error(err);
@@ -98,10 +100,11 @@ export function getAllGames() {
 	testGetCivGames();
 }
 
+//Get list of games
 function testGetCivGames() {
 	let uniqueGameIDs = "";
-	for (let i = 0; i <= 11; i++) {
-		fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?metacritic=0&onSale=0&pageNumber=${i}&upperPrice=50&exact=0&pageSize=60&AAA=0&sortBy=Deal%20Rating&steamworks=0&output=json&desc=0&steamRating=0&lowerPrice=0`, {
+	for (let i = 0; i < 10; i++) {
+		fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?storeID=1%2C2%2C3%2C7%2C11%2C15%2C23%2C24%2C25%2C29%2C30%2C31&metacritic=0&onSale=0&pageNumber=${i}&upperPrice=50&exact=0&pageSize=60&AAA=0&sortBy=Savings&steamworks=0&output=json&desc=0&steamRating=0&lowerPrice=0`, {
 			"method": "GET",
 			"headers": {
 				"x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",
@@ -110,15 +113,18 @@ function testGetCivGames() {
 		})
 			.then(response => response.json())
 			.then(data => {
+				console.log(data);
+				//Loop over list of games and store unique ID
 				for (let game of data) {
 					if (uniqueGameIDs.includes(game.gameID)) {
 					} else {
 						uniqueGameIDs += (game.gameID + "%2C");
 					}
 				}
-				uniqueGameIDs = uniqueGameIDs.substring(0, uniqueGameIDs.length - 3)
-				if (i === 11)
-					getGameDealsByID(uniqueGameIDs);
+				uniqueGameIDs = uniqueGameIDs.substring(0, uniqueGameIDs.length - 3);
+				console.log(uniqueGameIDs);
+				getGameDealsByID(uniqueGameIDs);
+				uniqueGameIDs = "";
 			})
 			.catch(err => {
 				console.error(err);
@@ -126,6 +132,7 @@ function testGetCivGames() {
 	}
 }
 
+//Multiple game lookup using list of unique id's
 function getGameDealsByID(uniqueGameIDs) {
 	fetch(`https://cheapshark-game-deals.p.rapidapi.com/games?ids=${uniqueGameIDs}`, {
 		"method": "GET",
@@ -137,14 +144,15 @@ function getGameDealsByID(uniqueGameIDs) {
 		.then(response => response.json())
 		.then(data => {
 			dataBaseInsert(data);
-			getMultipleGamePricesEvent();
 		})
 		.catch(err => {
 			console.error(err);
 		});
 }
 
+//Post multiple game lookup to games table
 function dataBaseInsert(games) {
+	console.log(games)
 	for (let gameID in games) {
 		let post = {
 			gameID: gameID,
@@ -169,33 +177,55 @@ function dataBaseInsert(games) {
 			console.log(error);
 		});
 	}
-	;
 }
 
 function getMultipleGamePricesEvent() {
 	let id
 	$(".btn-details").on("click", function () {
 		id = $(this).parent().parent().siblings(".flip-card-back").children().children(".gameID").text();
-		getMultipleGamePricesFetch(id);
+		let request = {
+			method: "GET",
+			headers: {}
+		}
+		fetch(`http://localhost:8080/api/games/findByGameID?gameID=${id}`, request)
+			.then(res => res.json())
+			.then(data => {
+				console.log(data.deals)
+				let parsedJSON = JSON.parse(data.deals);
+				let steamID = $(this).parent().parent().siblings(".flip-card-back").children(".steam-id").text()
+				let gameTitle = $(this).parent().parent().siblings(".flip-card-back").children(".game-title").text()
+				let store = "";
+				for (let i=0;i<parsedJSON.length;i++) {
+					if(parsedJSON[i].storeID == 1){
+						store = "Steam";
+					} else if(parsedJSON[i].storeID == 2){
+						store = "GamersGate";
+					} else if(parsedJSON[i].storeID == 3) {
+						store = "Green Man Gaming";
+					} else if(parsedJSON[i].storeID == 7) {
+						store = "GOG";
+					} else if(parsedJSON[i].storeID == 11) {
+						store = "Humble Store";
+					} else if(parsedJSON[i].storeID == 15){
+						store = "Fanatical";
+					} else if(parsedJSON[i].storeID == 23){
+						store = "GameBillet";
+					} else if(parsedJSON[i].storeID == 24){
+						store = "Voidu";
+					} else if(parsedJSON[i].storeID == 25){
+						store = "Epic Game Store";
+					} else if(parsedJSON[i].storeID == 29){
+						store = "2Game";
+					} else if(parsedJSON[i].storeID == 30){
+						store = "IndieGala";
+					} else if(parsedJSON[i].storeID == 31){
+						store = "Blizzard";
+					} else {
+						store = parsedJSON[i].storeID;
+					}
+					$(this).parent().parent().siblings(".flip-card-back").children(".prices").append(`${store}: <a href="${returnValidURLs(steamID, gameTitle, parsedJSON[i].storeID)}">$${parsedJSON[i].price}</a><br>`);
+				}
+			})
+			.catch(error => console.log(error))
 	});
-}
-
-function getMultipleGamePricesFetch(id) {
-	let request = {
-		method: "GET",
-		headers: {}
-	}
-	fetch(`http://localhost:8080/api/games/findByGameID?gameID=${id}`, request)
-		.then(res => res.json())
-		.then(data => {
-			console.log(data.deals)
-			getGameFromTable(data.deals);
-		})
-		.catch(error => console.log(error))
-}
-function getGameFromTable(dataFromServer){
-	let parsedJSON = JSON.parse(dataFromServer);
-	for (let i=0;i<parsedJSON.length;i++) {
-		console.log(parsedJSON[i].price);
-	}
 }
