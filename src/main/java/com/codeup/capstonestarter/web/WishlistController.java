@@ -16,8 +16,11 @@ public class WishlistController {
 
     private final WishlistRepository wishlistRepository;
 
-    public WishlistController(WishlistRepository wishlistRepository) {
+    private final UsersRepository usersRepository;
+
+    public WishlistController(WishlistRepository wishlistRepository, UsersRepository usersRepository) {
         this.wishlistRepository = wishlistRepository;
+        this.usersRepository = usersRepository;
     }
 
     @PostMapping
@@ -30,14 +33,14 @@ public class WishlistController {
         return wishlistRepository.findAll();
     }
 
-    @GetMapping("{id}")
-    private Wishlist getWishlistById(@PathVariable Long id){
-        return wishlistRepository.findById(id).get();
+    @GetMapping("{wishlistID}")
+    private Wishlist getWishlistById(@PathVariable Long wishlistID){
+        return wishlistRepository.findById(wishlistID).get();
     }
 
-    @DeleteMapping("{id}")
-    private void deleteWishlistItem(@PathVariable Long id){
-        wishlistRepository.deleteById(id);
+    @DeleteMapping("{wishlistID}")
+    private void deleteWishlistItem(@PathVariable Long wishlistID){
+        wishlistRepository.deleteById(wishlistID);
     }
 
 

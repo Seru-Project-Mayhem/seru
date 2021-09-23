@@ -36,7 +36,7 @@ public class User {
     private Collection<Review> reviews;
 
     @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="Wishlist_id", referencedColumnName = "id")
+    @JoinColumn(name="Wishlist_id", referencedColumnName = "wishlistID")
     private Wishlist wishlist;
 
     public User(Long user_ID, String username, String email, String password, Role role, Collection<Review> reviews, Wishlist wishlist) {

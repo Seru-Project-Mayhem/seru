@@ -2,6 +2,8 @@ package com.codeup.capstonestarter.data.wishlist;
 
 import com.codeup.capstonestarter.data.games.Game;
 import com.codeup.capstonestarter.data.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.mapping.Collection;
 
 import javax.persistence.*;
@@ -12,30 +14,31 @@ import java.util.List;
 public class Wishlist {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long wishlistID;
 
     private boolean isActive;
 
-    private Collection<Game> gameID;
+    private Long gameID;
 
     @OneToOne(mappedBy = "wishlist")
+    @JsonIgnoreProperties({"wishlist", "password", "reviews"})
     private User user;
 
     public Wishlist() {}
 
-    public Wishlist(Long id, boolean isActive,  Collection<Game> gameID) {
-        this.id = id;
+    public Wishlist(Long wishlistID, boolean isActive, Long gameID, User user) {
+        this.wishlistID = wishlistID;
         this.isActive = isActive;
         this.gameID = gameID;
+        this.user = user;
     }
 
-    public Long getId() {
-        return id;
+    public Long getWishlistID() {
+        return wishlistID;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setWishlistID(Long wishlistID) {
+        this.wishlistID = wishlistID;
     }
 
     public boolean isActive() {
@@ -52,5 +55,13 @@ public class Wishlist {
 
     public void setGameID(Long gameID) {
         this.gameID = gameID;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
