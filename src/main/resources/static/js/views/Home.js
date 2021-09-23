@@ -20,53 +20,60 @@ export default function Home(props) {
     `;
 }
 
-export function freeToGameCarouselView(data){
+export function freeToGameCarouselView(data) {
 
     let num, num2, num3, num4, num5;
 
-    for(let i = 0; i <= 4; i++){
+    for (let i = 0; i <= 4; i++) {
         let random = Math.floor(Math.random() * 366);
 
-        if(i == 0){
+        if (i == 0) {
             num = random;
             // console.log("first random number: " + num);
-        } if(i == 1){
+        }
+        if (i == 1) {
             num2 = random;
             // console.log("second random number: " + num2);
-        } if(i == 2){
+        }
+        if (i == 2) {
             num3 = random;
             // console.log("third random number: " + num3);
-        } if(i == 3){
+        }
+        if (i == 3) {
             num4 = random;
             // console.log("fourth random number: " + num4);
-        } if(i == 4) {
+        }
+        if (i == 4) {
             num5 = random;
             // console.log("fifth random number: " + num5);
         }
     }
 
     return `
-    <div class="carousel-container">
+ 
+ 
+    <div class="carousel-container ">
+    <div class="row d-flex justify-content-center justify-content-md-start">
        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-indicators my-5">
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
-
-  </div>
+<!--  <div class="carousel-indicators my-5">-->
+<!--    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>-->
+<!--    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>-->
+<!--    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>-->
+<!--    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>-->
+<!--    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>-->
+<!--     -->
+<!--  </div>-->
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img src="${data[num].thumbnail}" class="d-block w-100" onClick="window.open('${data[num].game_url}','_blank')">
-      <div class="carousel-caption d-none d-md-block">
+      <div class="carousel-caption d-none d-md-block ">
         <h5>${data[num].title}</h5>
         <p>${data[num].short_description}</p>
       </div>
     </div>
     <div class="carousel-item">
       <img src="${data[num2].thumbnail}" class="d-block w-100" onClick="window.open('${data[num2].game_url}','_blank')">
-      <div class="carousel-caption d-none d-md-block">
+      <div class="carousel-caption d-none d-md-block ">
         <h5>${data[num2].title}</h5>
         <p>${data[num2].short_description}</p>
       </div>
@@ -103,13 +110,15 @@ export function freeToGameCarouselView(data){
   </button>
 </div>
 </div>
+</div>
+
     `;
 
 }
 
-export function reviewRedirect(){
+export function reviewRedirect() {
     // console.log($(".review-btn"));
-    $(".review-btn").on("click", function(){
+    $(".review-btn").on("click", function () {
         render(null, router("/review"))
         // let gameinRedirect = games.map(gameReview=>{return gameReview});
         console.log($(this).data("id"));
@@ -126,57 +135,58 @@ export function cheapSharkCardBuilder(listOfGames) {
 
         let savings = parseFloat(game.savings).toFixed(1);
 
-    // let url = "assets/LOGOS/";
-    // let svg = ".svg";
-    // let png = ".png";
-    // let store = url + game.storeID;
-    //
-    // if(game.storeID == 1 || game.storeID == 3 || game.storeID == 7 || game.storeID == 11 || game.storeID == 15 ||
-    //    game.storeID == 25 || game.storeID == 29 || game.storeID == 30 || game.storeID == 31){
-    //      store = store + svg;
-    // } else if(game.storeID == 2 || game.storeID == 16 || game.storeID == 23 ||  game.storeID == 24){
-    //     store = store + png;
-    // }
-    //  <img src= ${store} style="height: 80px; width: 150px;">
+        // let url = "assets/LOGOS/";
+        // let svg = ".svg";
+        // let png = ".png";
+        // let store = url + game.storeID;
+        //
+        // if(game.storeID == 1 || game.storeID == 3 || game.storeID == 7 || game.storeID == 11 || game.storeID == 15 ||
+        //    game.storeID == 25 || game.storeID == 29 || game.storeID == 30 || game.storeID == 31){
+        //      store = store + svg;
+        // } else if(game.storeID == 2 || game.storeID == 16 || game.storeID == 23 ||  game.storeID == 24){
+        //     store = store + png;
+        // }
+        //  <img src= ${store} style="height: 80px; width: 150px;">
 
         // reviewRedirect(game);
 
         let store;
 
-        if(game.storeID == 1){
+        if (game.storeID == 1) {
             store = "Steam";
-        } else if(game.storeID == 2){
+        } else if (game.storeID == 2) {
             store = "GamersGate";
-        } else if(game.storeID == 3) {
+        } else if (game.storeID == 3) {
             store = "Green Man Gaming";
-        } else if(game.storeID == 7) {
+        } else if (game.storeID == 7) {
             store = "GOG";
-        } else if(game.storeID == 11) {
+        } else if (game.storeID == 11) {
             store = "Humble Store";
-        } else if(game.storeID == 15){
+        } else if (game.storeID == 15) {
             store = "Fanatical";
-        } else if(game.storeID == 23){
+        } else if (game.storeID == 23) {
             store = "GameBillet";
-        } else if(game.storeID == 24){
+        } else if (game.storeID == 24) {
             store = "Voidu";
-        } else if(game.storeID == 25){
+        } else if (game.storeID == 25) {
             store = "Epic Game Store";
-        } else if(game.storeID == 29){
+        } else if (game.storeID == 29) {
             store = "2Game";
-        } else if(game.storeID == 30){
+        } else if (game.storeID == 30) {
             store = "IndieGala";
-        } else if(game.storeID == 31){
+        } else if (game.storeID == 31) {
             store = "Blizzard";
         }
 
         let price;
-        if(game.salePrice == "0.00"){
+        if (game.salePrice == "0.00") {
             price = "Free!";
         } else {
             price = ("$" + game.salePrice);
         }
 
-        return  `
+        return `
+
             <div class="flip-card" style="width: 20rem; height: 25rem">
         <div class="flip-card-inner">
             <div class="flip-card-front">
@@ -201,7 +211,7 @@ export function cheapSharkCardBuilder(listOfGames) {
                 <p class="card-text"> Current Price $${game.salePrice}</p>
                 <p class="card-text"> Total Savings ${savings}%</p>
                 <p class="card-text"> Steam Rating: ${game.steamRatingPercent}</p>
-                <a class="review-btn mb-3"  href="/review" data-id=“${game.gameID}”> Leave Review</a><br><br><br>
+                <a class="review-btn mb-3"  href="/review" data-id="“${game.gameID}”"> Leave Review</a><br><br><br>
                     <a class="button two inactive desktop">
                         <div class="icon-with-text">
                             <div class="icon-with-text__icon">
@@ -361,19 +371,19 @@ export function cheapSharkCardBuilder(listOfGames) {
 
 export function SetFavoriteEvent() {
     console.log("Set favorite event was called")
-        $(".button").click(function () {
-            console.log("wishlist event fired off");
-            if ($(this).hasClass("deactivate")) {
-                $(this).removeClass("deactivate")
-            }
-            if ($(this).hasClass("active")) {
-                $(this).addClass("deactivate")
-            }
-            $(this).toggleClass("animate");
-            $(this).toggleClass("active");
-            $(this).toggleClass("inactive");
-        });
-    $('.flip-card .flip-card-inner').dblclick(function() {
+    $(".button").click(function () {
+        console.log("wishlist event fired off");
+        if ($(this).hasClass("deactivate")) {
+            $(this).removeClass("deactivate")
+        }
+        if ($(this).hasClass("active")) {
+            $(this).addClass("deactivate")
+        }
+        $(this).toggleClass("animate");
+        $(this).toggleClass("active");
+        $(this).toggleClass("inactive");
+    });
+    $('.flip-card .flip-card-inner').dblclick(function () {
         $(this).closest('.flip-card').toggleClass('hover');
         $(this).css('transform, rotateY(180deg)');
         $(this).children().children().children(".white-line").hide();

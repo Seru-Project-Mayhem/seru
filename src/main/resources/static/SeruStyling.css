@@ -500,17 +500,17 @@ h2 {
 
 /*Splash page styling*/
 
-body{
-    /*background: linear-gradient(to right, #0062E6, #33AEFF);*/
-    background-image: url("assets/luke-chesser-eICUFSeirc0-unsplash.jpg");
-    object-fit: contain;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    height: 100%;
-}
+
+
+    body {
+        /*background: linear-gradient(to right, #0062E6, #33AEFF);*/
+        height: 100%;
+    }
+
 html {
     overflow: auto;
     height: 100%;
+
 }
 
 
@@ -570,8 +570,9 @@ html {
 #container-carousel{
     /*background-color: #272727;*/
     background-color: transparent;
-    margin: 0 auto;
+    margin:  auto;
 }
+
 
 .carousel-container {
     margin-left: 25%;
@@ -597,4 +598,16 @@ html {
     width: 100%;
     background-color: transparent;
     height: 100px;
+}
+
+.carousel-control-next-icon{
+    height: 50px;
+    width:50px;
+
+}
+
+.carousel-control-prev-icon{
+    height: 50px;
+    width: 50px;
+
 }
