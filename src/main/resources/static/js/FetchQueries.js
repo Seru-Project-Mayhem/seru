@@ -188,23 +188,12 @@ function getMultipleGamePricesFetch(id) {
 	fetch(`http://localhost:8080/api/games/findByGameID?gameID=${id}`, request)
 		.then(res => res.json())
 		.then(data => {
-			// JSON.parse(data);
-			// let deals;
 			console.log(data.deals)
-			// for (let deal in data.deals) {
-			// 	deals = data.deals.substring(1, (data.deals.length - 1)).split(", ");
-			// }
-			myFunction(data.deals);
-			// for (let i = 1; i < deals.length; i++) {
-			// 	// $(".flip-card-back").append(`
-			// 	// 	<p>${deals[i].price}</p>
-			// 	// `);
-			// 	console.log(deals[i])
-			// }
+			getGameFromTable(data.deals);
 		})
 		.catch(error => console.log(error))
 }
-function myFunction(dataFromServer){
+function getGameFromTable(dataFromServer){
 	let parsedJSON = JSON.parse(dataFromServer);
 	for (let i=0;i<parsedJSON.length;i++) {
 		console.log(parsedJSON[i].price);

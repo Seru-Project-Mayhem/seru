@@ -44,6 +44,7 @@ export default function router(URI) {
             returnView: FreeToPlayView,
             state: {},
             uri: '/freetoplay',
+            title: "Free to Play",
             viewEvent: freeToGameGet
         },
         '/review': {
@@ -60,12 +61,14 @@ export default function router(URI) {
                 // postGames: "/api/games"
             },
             uri: '/browse',
+            title: "Browse",
             viewEvent: initBrowse
         },
         '/user': {
             returnView: User,
             state: {},
             uri: '/user',
+            title: "Profile",
             viewEvent: userEvent
         }
 
