@@ -7,7 +7,7 @@ export default function Browse(props){
     return `
         <main>
         <div>        
-         <div class="left">
+         <div class="left mx-5" id="browse">
         <!-- Section: Sidebar -->
         <section>
 
