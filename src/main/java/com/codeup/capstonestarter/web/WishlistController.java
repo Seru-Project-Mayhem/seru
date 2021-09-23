@@ -1,11 +1,16 @@
 package com.codeup.capstonestarter.web;
 
 
+import com.codeup.capstonestarter.data.user.User;
 import com.codeup.capstonestarter.data.user.UsersRepository;
 import com.codeup.capstonestarter.data.wishlist.Wishlist;
 import com.codeup.capstonestarter.data.wishlist.WishlistRepository;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -25,7 +30,17 @@ public class WishlistController {
 
     @PostMapping
     private void createWishlist(@RequestBody Wishlist newWishlist){
-        wishlistRepository.save(newWishlist);
+
+        User user = usersRepository.findById(newWishlist.getUser().getUserID()).get();
+
+        if(user.getWishlist() != null){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User already has a wishlist");
+
+        }
+
+        Wishlist wishlist = wishlistRepository.save(newWishlist);
+        user.setWishlist(wishlist);
+        usersRepository.save(user);
     }
 
     @GetMapping
@@ -33,9 +48,9 @@ public class WishlistController {
         return wishlistRepository.findAll();
     }
 
-    @GetMapping("{wishlistID}")
-    private Wishlist getWishlistById(@PathVariable Long wishlistID){
-        return wishlistRepository.findById(wishlistID).get();
+    @GetMapping("{userID}")
+    private Wishlist getWishlistByUserID(@PathVariable Long userID){
+        return wishlistRepository.findByUserUserID(userID);
     }
 
     @DeleteMapping("{wishlistID}")

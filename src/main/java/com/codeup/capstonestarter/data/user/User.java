@@ -1,8 +1,10 @@
 package com.codeup.capstonestarter.data.user;
 
-import com.codeup.capstonestarter.data.rating.Rating;
 import com.codeup.capstonestarter.data.review.Review;
 import com.codeup.capstonestarter.data.wishlist.Wishlist;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -14,7 +16,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long User_ID;
+    private Long userID;
 
     @Column(nullable = false)
     private String username;
@@ -32,15 +34,17 @@ public class User {
 
     public enum Role {USER, ADMIN};
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Collection<Review> reviews;
 
     @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="Wishlist_id", referencedColumnName = "wishlistID")
+    @JoinColumn(name="wishlistID", referencedColumnName = "wishlistID")
+//    @JsonIgnoreProperties("user")
+    @JsonManagedReference
     private Wishlist wishlist;
 
     public User(Long user_ID, String username, String email, String password, Role role, Collection<Review> reviews, Wishlist wishlist) {
-        this.User_ID = user_ID;
+        this.userID = user_ID;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -56,12 +60,12 @@ public class User {
     public User() {
     }
 
-    public Long getUser_ID() {
-        return User_ID;
+    public Long getUserID() {
+        return userID;
     }
 
-    public void setUser_ID(Long user_ID) {
-        this.User_ID = user_ID;
+    public void setUserID(Long userID) {
+        this.userID = userID;
     }
 
     public String getUsername() {
