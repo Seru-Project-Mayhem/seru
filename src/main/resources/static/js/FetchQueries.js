@@ -60,6 +60,8 @@ export function cheapSharkGet() {
 			// sideBarStoreEvent();
 			urlRedirectEvent();
 			getMultipleGamePricesEvent();
+			var myCarousel = document.querySelector('#container-carousel')
+			var carousel = new bootstrap.Carousel(myCarousel, {ride: 'carousel', interval: 3000})
 		})
 		.catch(err => {
 			console.error(err);
@@ -122,7 +124,6 @@ function testGetCivGames() {
 					}
 				}
 				uniqueGameIDs = uniqueGameIDs.substring(0, uniqueGameIDs.length - 3);
-				console.log(uniqueGameIDs);
 				getGameDealsByID(uniqueGameIDs);
 				uniqueGameIDs = "";
 			})
@@ -152,7 +153,6 @@ function getGameDealsByID(uniqueGameIDs) {
 
 //Post multiple game lookup to games table
 function dataBaseInsert(games) {
-	console.log(games)
 	for (let gameID in games) {
 		let post = {
 			gameID: gameID,
@@ -190,7 +190,6 @@ function getMultipleGamePricesEvent() {
 		fetch(`http://localhost:8080/api/games/findByGameID?gameID=${id}`, request)
 			.then(res => res.json())
 			.then(data => {
-				console.log(data.deals)
 				let parsedJSON = JSON.parse(data.deals);
 				let steamID = $(this).parent().parent().siblings(".flip-card-back").children(".steam-id").text()
 				let gameTitle = $(this).parent().parent().siblings(".flip-card-back").children(".game-title").text()
