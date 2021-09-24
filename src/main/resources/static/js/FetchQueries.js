@@ -222,9 +222,16 @@ function getMultipleGamePricesEvent() {
 					} else {
 						store = parsedJSON[i].storeID;
 					}
-					$(this).parent().parent().siblings(".flip-card-back").children(".prices").append(`${store}: <a href="${returnValidURLs(steamID, gameTitle, parsedJSON[i].storeID)}">$${parsedJSON[i].price}</a><br>`);
+					$(this).parent().parent().siblings(".flip-card-back").children(".prices").append(`${store}: <a href="#" class="anchor" data-id="${returnValidURLs(steamID, gameTitle, parsedJSON[i].storeID)}">$${parsedJSON[i].price}</a><br>`);
 				}
+				aTagEventListener()
 			})
 			.catch(error => console.log(error))
+	});
+}
+
+function aTagEventListener(){
+	$(".anchor").on("click", function(){
+		window.open($(this).attr("data-id"));
 	});
 }
