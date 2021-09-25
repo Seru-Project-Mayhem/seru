@@ -47,7 +47,7 @@ export function freeToGameCarouselView(data){
 
     return `
     <div class="carousel-container">
-       <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+       <div id="carouselExampleCaptions" class="carousel slide">
   <div class="carousel-indicators my-5">
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -198,7 +198,7 @@ export function cheapSharkCardBuilder(listOfGames) {
                      <p class="store-id d-none">${game.storeID}</p>
                      <p class="gameID d-none">${game.gameID}</p>
                 </a>
-                <p class="card-text"> Current Price $${game.salePrice}</p>
+                <p class="card-text prices"> Current Prices<br></p>
                 <p class="card-text"> Total Savings ${savings}%</p>
                 <p class="card-text"> Steam Rating: ${game.steamRatingPercent}</p>
                 <a class="review-btn mb-3"  href="/review" data-id=“${game.gameID}”> Leave Review</a><br><br><br>
