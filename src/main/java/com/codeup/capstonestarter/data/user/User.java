@@ -39,7 +39,6 @@ public class User {
 
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="wishlistID", referencedColumnName = "wishlistID")
-//    @JsonIgnoreProperties("user")
     @JsonManagedReference
     private Wishlist wishlist;
 

@@ -55,7 +55,9 @@ public class WishlistController {
 
     @DeleteMapping("{gameID}")
     private void deleteWishlistItem(@PathVariable Long gameID){
-        wishlistRepository.deleteById(gameID);
+
+        wishlistRepository.findByGameID(gameID);
+
     }
 
 

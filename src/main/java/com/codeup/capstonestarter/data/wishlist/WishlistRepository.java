@@ -6,7 +6,7 @@ public interface WishlistRepository extends JpaRepository<Wishlist, Long> {
 
 
     Wishlist findByUserUserID (Long userID);
-
+    Wishlist findByGameID (Long gameID);
 
 
 }

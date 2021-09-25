@@ -1,6 +1,6 @@
 package com.codeup.capstonestarter.data.review;
 import com.codeup.capstonestarter.data.user.User;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
@@ -18,6 +18,7 @@ public class Review {
 
 
     @ManyToOne
+    @JsonIgnoreProperties("reviews")
     private User user;
 
     public Review(User user, String review, Long id) {

@@ -6,9 +6,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.hibernate.mapping.Collection;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -22,11 +22,22 @@ public class Wishlist {
     private boolean isActive;
 
     @ElementCollection
+//    @ManyToMany(reviews
+//            fetch = FetchType.LAZY,
+//            cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH},
+//            targetEntity = Game.class)
+//    @JoinTable(
+//            name = "wishlist_games",
+//            joinColumns = {@JoinColumn(name = "wishlist_id", nullable = false, updatable = false)},
+//            inverseJoinColumns = {@JoinColumn(name = "game_id", nullable = false, updatable = false)},
+//            foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
+//            inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
+//    )
     private List<Long> gameID;
 
     @OneToOne(mappedBy = "wishlist")
-//    @JsonIgnoreProperties({"wishlist", "password", "reviews"})
     @JsonBackReference
+    @JsonIgnoreProperties("wishlist")
     private User user;
 
     public Wishlist() {}
