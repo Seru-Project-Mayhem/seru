@@ -220,7 +220,8 @@ function getMultipleGamePricesEvent() {
 					} else if(parsedJSON[i].storeID == 31){
 						store = "Blizzard";
 					} else {
-						store = parsedJSON[i].storeID;
+						// delete parsedJSON[i];
+						continue;
 					}
 					$(this).parent().parent().siblings(".flip-card-back").children(".prices").append(`${store}: <a href="#" class="anchor" data-id="${returnValidURLs(steamID, gameTitle, parsedJSON[i].storeID)}">$${parsedJSON[i].price}</a><br>`);
 				}
