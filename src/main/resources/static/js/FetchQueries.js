@@ -56,8 +56,6 @@ export function cheapSharkGet() {
 			$("#container-games").append(cheapSharkCardBuilder(games));
 			reviewRedirect();
 			SetFavoriteEvent();
-			// sideBarSearchEvent();
-			// sideBarStoreEvent();
 			urlRedirectEvent();
 			getMultipleGamePricesEvent();
 			var myCarousel = document.querySelector('#container-carousel')
@@ -68,37 +66,10 @@ export function cheapSharkGet() {
 		});
 }
 
-export function postRating(rating) {
-	let post = {
-		rating: rating,
-	}
-
-	let request = {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		redirect: 'follow',
-		body: JSON.stringify(post)
-	}
-
-	fetch("http://localhost:8080/api/ratings", request)
-		.then(res => {
-			console.log(res.status);
-			if (res.status === 200) {
-				alert("Post was successful");
-			} else {
-				alert("A problem has occurred");
-			}
-		}).catch(error => {
-		console.log(error);
-	});
-}
 
 export function getAllGames() {
 	cheapSharkGet();
 	freeToGameHomeGet();
-	//Remove function call and functions below later
 	testGetCivGames();
 }
 
@@ -115,7 +86,6 @@ function testGetCivGames() {
 		})
 			.then(response => response.json())
 			.then(data => {
-				console.log(data);
 				//Loop over list of games and store unique ID
 				for (let game of data) {
 					if (uniqueGameIDs.includes(game.gameID)) {
@@ -220,7 +190,6 @@ function getMultipleGamePricesEvent() {
 					} else if(parsedJSON[i].storeID == 31){
 						store = "Blizzard";
 					} else {
-						// delete parsedJSON[i];
 						continue;
 					}
 					$(this).parent().parent().siblings(".flip-card-back").children(".prices").append(`${store}: <a href="#" class="anchor" data-id="${returnValidURLs(steamID, gameTitle, parsedJSON[i].storeID)}">$${parsedJSON[i].price}</a><br>`);
@@ -232,7 +201,7 @@ function getMultipleGamePricesEvent() {
 }
 
 function aTagEventListener(){
-	$(".anchor").on("click", function(){
+	$(".anchor").unbind().on("click", function(){
 		window.open($(this).attr("data-id"));
 	});
 }

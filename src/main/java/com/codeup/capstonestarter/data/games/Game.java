@@ -1,13 +1,5 @@
 package com.codeup.capstonestarter.data.games;
-
-
-import org.springframework.web.servlet.tags.form.TextareaTag;
-import org.w3c.dom.Text;
-
 import javax.persistence.*;
-import java.lang.reflect.Array;
-import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Table(name="games")

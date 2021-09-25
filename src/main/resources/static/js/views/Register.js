@@ -74,8 +74,6 @@ export function RegisterEvent() {
             password: $('#password').val()
         }
 
-        console.log(post);
-
         let request = {
             method: "POST",
             headers: {

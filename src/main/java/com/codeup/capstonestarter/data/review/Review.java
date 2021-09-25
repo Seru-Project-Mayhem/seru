@@ -1,6 +1,5 @@
 package com.codeup.capstonestarter.data.review;
 import com.codeup.capstonestarter.data.user.User;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import javax.persistence.*;
 

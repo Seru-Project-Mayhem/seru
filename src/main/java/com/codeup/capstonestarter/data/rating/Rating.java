@@ -2,7 +2,6 @@ package com.codeup.capstonestarter.data.rating;
 
 import com.codeup.capstonestarter.data.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.mapping.PrimaryKey;
 
 import javax.persistence.*;
 

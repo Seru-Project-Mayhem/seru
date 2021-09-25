@@ -39,7 +39,3 @@ export function User(props){
 </div>
     `
 }
-
-export function userEvent(){
-
-}
