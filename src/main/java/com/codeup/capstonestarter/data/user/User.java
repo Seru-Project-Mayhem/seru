@@ -1,4 +1,7 @@
 package com.codeup.capstonestarter.data.user;
+import com.codeup.capstonestarter.data.review.Review;
+import com.codeup.capstonestarter.data.wishlist.Wishlist;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.Collection;

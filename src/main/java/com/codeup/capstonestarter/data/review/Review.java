@@ -1,6 +1,8 @@
 package com.codeup.capstonestarter.data.review;
 import com.codeup.capstonestarter.data.games.Game;
 import com.codeup.capstonestarter.data.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;

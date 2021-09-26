@@ -1,6 +1,13 @@
 package com.codeup.capstonestarter.data.games;
 
+import com.codeup.capstonestarter.data.review.Review;
+import com.codeup.capstonestarter.data.wishlist.Wishlist;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name="games")
