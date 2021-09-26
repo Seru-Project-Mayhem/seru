@@ -2,10 +2,8 @@ package com.codeup.capstonestarter.data.wishlist;
 
 import com.codeup.capstonestarter.data.games.Game;
 import com.codeup.capstonestarter.data.user.User;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -32,11 +30,11 @@ public class Wishlist {
             foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
             inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
     )
-    @JsonIgnoreProperties({"wishlist", "cheapest_price_ever", "deals"})
+    @JsonIgnoreProperties({"reviews"})
     private List<Game> games;
 
     @OneToOne
-    @JsonIgnoreProperties("wishlist")
+    @JsonIgnoreProperties({"wishlist", "reviews"})
     private User user;
 
     public Wishlist() {}
