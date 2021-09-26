@@ -17,35 +17,18 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @Column
     private String review;
-
 
     @ManyToOne
     @JsonIgnoreProperties("reviews")
     private User user;
 
-//    @Column
-//    @ManyToOne
-//    @JoinColumn(name = "reviewGameID",
-//        referencedColumnName = "gameID"
-//    )
-//    private List<Long> gameID;
-
     @ManyToOne
-    @JoinColumn(name = "game",
-        referencedColumnName = "gameID"
+    @JoinColumn(
+        referencedColumnName = "id"
     )
-    @JsonManagedReference
     private Game game;
-
-    public Review(User user, String review, Long id, Game game) {
-        this.user = user;
-        this.review = review;
-        this.id = id;
-        this.game = game;
-    }
 
     public Review() {
     }

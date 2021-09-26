@@ -31,7 +31,6 @@ public class GamesController {
 
     @GetMapping("/findByGameID")
     private Game getGameById(@RequestParam Long gameID){
-        return gameRepository.findByGameID(gameID);
-//        return gameRepository.getById(game_id);
+        return gameRepository.findById(gameID).get();
     }
 }

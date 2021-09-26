@@ -1,7 +1,6 @@
 package com.codeup.capstonestarter.web;
 
-import com.codeup.capstonestarter.data.rating.Rating;
-import com.codeup.capstonestarter.data.rating.RatingRepository;
+
 import com.codeup.capstonestarter.data.review.Review;
 import com.codeup.capstonestarter.data.review.ReviewRepository;
 import com.codeup.capstonestarter.data.user.UsersRepository;

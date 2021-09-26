@@ -31,7 +31,7 @@ public class WishlistController {
     @PostMapping
     private void createWishlist(@RequestBody Wishlist newWishlist){
 
-        User user = usersRepository.findById(newWishlist.getUser().getUserID()).get();
+        User user = usersRepository.findById(newWishlist.getUser().getId()).get();
 
         if(user.getWishlist() != null){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User already has a wishlist");
@@ -50,13 +50,13 @@ public class WishlistController {
 
     @GetMapping("{userID}")
     private Wishlist getWishlistByUserID(@PathVariable Long userID){
-        return wishlistRepository.findByUserUserID(userID);
+        return usersRepository.findById(userID).get().getWishlist();
     }
 
-    @DeleteMapping("{gameID}")
-    private void deleteWishlistItem(@PathVariable Long gameID){
+    @PutMapping
+    private void update(@RequestBody Wishlist wishlist){
 
-        wishlistRepository.findByGameID(gameID);
+        wishlistRepository.save(wishlist);
 
     }
 
