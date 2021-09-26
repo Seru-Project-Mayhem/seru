@@ -123,12 +123,12 @@ function getGameDealsByID(uniqueGameIDs) {
 
 //Post multiple game lookup to games table
 function dataBaseInsert(games) {
-	for (let gameID in games) {
+	for (let id in games) {
 		let post = {
-			gameID: gameID,
-			cheapestPriceEver: JSON.stringify(games[gameID].cheapestPriceEver),
-			deals: JSON.stringify(games[gameID].deals),
-			info: JSON.stringify(games[gameID].info)
+			id: id,
+			cheapestPriceEver: JSON.stringify(games[id].cheapestPriceEver),
+			deals: JSON.stringify(games[id].deals),
+			info: JSON.stringify(games[id].info)
 		}
 
 		let request = {
