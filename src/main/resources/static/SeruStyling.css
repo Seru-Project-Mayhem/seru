@@ -424,12 +424,9 @@ h2 {
 }
 
 .container-parent{
-    /*background-color: #272727;*/
     margin-left: 10%;
     margin-right: 10%;
 }
-
-/* Do Not add or delete below this comment, code is responsible for  card flip*/
 
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
@@ -547,7 +544,6 @@ html {
 /*Browse page styling*/
 
 .container-parent-browse {
-    /*background-color: #272727;*/
     background-color: transparent;
     margin-left: 25%;
     margin-right: 15%;
@@ -563,12 +559,10 @@ html {
 }
 
 #container-games {
-    /*background-color: #272727;*/
     background-color: transparent;
 }
 
 #container-carousel{
-    /*background-color: #272727;*/
     background-color: transparent;
     margin: 0 auto;
 }

@@ -1,17 +1,6 @@
 package com.codeup.capstonestarter.data.games;
 
-
-import com.codeup.capstonestarter.data.review.Review;
-import com.codeup.capstonestarter.data.wishlist.Wishlist;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.web.servlet.tags.form.TextareaTag;
-import org.w3c.dom.Text;
-
 import javax.persistence.*;
-import java.lang.reflect.Array;
-import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Table(name="games")

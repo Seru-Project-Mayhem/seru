@@ -1,11 +1,4 @@
 package com.codeup.capstonestarter.data.user;
-
-import com.codeup.capstonestarter.data.review.Review;
-import com.codeup.capstonestarter.data.wishlist.Wishlist;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.Collection;
