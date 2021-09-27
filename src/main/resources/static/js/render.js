@@ -9,7 +9,7 @@ export default function render(props, route) {
     console.log("this is my route: ");
     console.log(route);
     const app = document.querySelector('#app');
-    const title = `REST Blog - ${route.title}`;
+    const title = `${route.title}`;
     history.pushState(props, title, route.uri);
     document.title = title;
     // add view and navbar to DOM

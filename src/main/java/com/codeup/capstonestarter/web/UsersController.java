@@ -2,7 +2,6 @@ package com.codeup.capstonestarter.web;
 
 import com.codeup.capstonestarter.data.user.User;
 import com.codeup.capstonestarter.data.user.UsersRepository;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 

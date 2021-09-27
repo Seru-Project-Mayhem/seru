@@ -1,11 +1,11 @@
 package com.codeup.capstonestarter.data.games;
 
-
-import org.springframework.web.servlet.tags.form.TextareaTag;
-import org.w3c.dom.Text;
+import com.codeup.capstonestarter.data.review.Review;
+import com.codeup.capstonestarter.data.wishlist.Wishlist;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
 public class Game {
 
     @Id
-    private Long gameID;
+    private Long id;
 
     @Column(columnDefinition = "JSON")
     private String cheapestPriceEver;
@@ -25,15 +25,33 @@ public class Game {
     @Column(columnDefinition = "JSON")
     private String info;
 
+    @OneToMany
+    @JsonIgnoreProperties("game")
+    private Collection<Review> reviews;
+
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.DETACH},
+            targetEntity = Wishlist.class)
+    @JoinTable(
+            name = "wishlist_games",
+            joinColumns = {@JoinColumn(name = "game_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "wishlist_id", nullable = false, updatable = false)},
+            foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
+            inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
+    )
+    @JsonIgnore
+    private List<Wishlist> wishlists;
+
     public Game() {
     }
 
-    public Game(String cheapestPriceEver, String deals, String info,
-                Long gameID) {
-        this.deals = deals;
-        this.info = info;
-        this.cheapestPriceEver = cheapestPriceEver;
-        this.gameID = gameID;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCheapestPriceEver() {
@@ -60,11 +78,19 @@ public class Game {
         this.info = info;
     }
 
-    public Long getGameID() {
-        return gameID;
+    public List<Wishlist> getWishlists() {
+        return wishlists;
     }
 
-    public void setGameID(Long gameID) {
-        this.gameID = gameID;
+    public void setWishlists(List<Wishlist> wishlists) {
+        this.wishlists = wishlists;
+    }
+
+    public Collection<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Collection<Review> reviews) {
+        this.reviews = reviews;
     }
 }

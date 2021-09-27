@@ -1,8 +1,14 @@
 package com.codeup.capstonestarter.data.wishlist;
 
+import com.codeup.capstonestarter.data.games.Game;
 import com.codeup.capstonestarter.data.user.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="wishlist")
@@ -12,17 +18,29 @@ public class Wishlist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private boolean is_active;
+    private boolean isActive;
 
-    @OneToOne(mappedBy = "wishlist")
+
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.DETACH},
+            targetEntity = Game.class)
+    @JoinTable(
+            name = "wishlist_games",
+            joinColumns = {@JoinColumn(name = "wishlist_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "game_id", nullable = false, updatable = false)},
+            foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
+            inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
+    )
+    @JsonIgnoreProperties({"wishlist", "cheapest_price_ever", "deals"})
+    private List<Game> games;
+
+    @OneToOne
+    @JsonIgnoreProperties("wishlist")
     private User user;
 
     public Wishlist() {}
 
-    public Wishlist(Long id, boolean is_active) {
-        this.id = id;
-        this.is_active = is_active;
-    }
 
     public Long getId() {
         return id;
@@ -32,11 +50,27 @@ public class Wishlist {
         this.id = id;
     }
 
-    public boolean isIs_active() {
-        return is_active;
+    public boolean isActive() {
+        return isActive;
     }
 
-    public void setIs_active(boolean is_active) {
-        this.is_active = is_active;
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public List<Game> getGames() {
+        return games;
+    }
+
+    public void setGames(List<Game> games) {
+        this.games = games;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
