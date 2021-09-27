@@ -176,10 +176,10 @@ export function cheapSharkCardBuilder(listOfGames) {
                      <p class="gameID d-none">${game.gameID}</p>
                 </a>
 
-                <p class="card-text prices" id="current-price"> Current Prices<br></p>
-                <p class="card-text" id="total-savings"> Total Savings ${savings}%</p>
-                <p class="card-text"  id="rating"> Steam Rating: ${game.steamRatingPercent}</p>
-                <a class="review-btn mb-3"  href="/review" data-id=“${game.gameID}” id="review-btn"> Leave Review</a><br><br><br>
+                <p class="card-text prices current-price"> Current Prices<br></p>
+                <p class="card-text total-savings"> Total Savings ${savings}%</p>
+                <p class="card-text rating"> Steam Rating: ${game.steamRatingPercent}</p>
+                <a class="review-btn mb-3"  href="/review" data-id="${game.gameID}"> Leave Review</a><br><br><br>
 
                     <a class="button two inactive desktop">
                         <div class="icon-with-text">

@@ -26,6 +26,14 @@ public class Game {
     private String info;
 
     @OneToMany
+    @JoinTable(
+            name = "games_reviews",
+            joinColumns = {@JoinColumn(name = "id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "review_id", nullable = false,
+                    updatable = false)},
+            foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
+            inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
+    )
     @JsonIgnoreProperties("game")
     private Collection<Review> reviews;
 
