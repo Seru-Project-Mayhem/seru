@@ -18,7 +18,6 @@ public class Wishlist {
 
     private boolean isActive;
 
-
     @ManyToMany(
             fetch = FetchType.LAZY,
             cascade = {CascadeType.DETACH},
@@ -34,7 +33,7 @@ public class Wishlist {
     private List<Game> games;
 
     @OneToOne
-    @JsonIgnoreProperties({"wishlist", "reviews"})
+    @JsonIgnoreProperties(value = {"wishlist", "reviews"})
     private User user;
 
     public Wishlist() {}
