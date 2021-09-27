@@ -1,6 +1,7 @@
 package com.codeup.capstonestarter.web;
 
 
+import com.codeup.capstonestarter.data.games.Game;
 import com.codeup.capstonestarter.data.user.User;
 import com.codeup.capstonestarter.data.user.UsersRepository;
 import com.codeup.capstonestarter.data.wishlist.Wishlist;
@@ -56,12 +57,43 @@ public class WishlistController {
     @PutMapping
     private void update(@RequestBody Wishlist wishlist){
 
-        wishlistRepository.save(wishlist);
 
+        Wishlist wishlist1 = wishlistRepository.findByUserId(wishlist.getUser().getId()).get();
+        List<Game> games = wishlist1.getGames();
+        games.addAll(wishlist.getGames());
+        wishlist1.setGames(games);
+
+        wishlistRepository.save(wishlist1);
+
+    }
+
+    @PutMapping("/removeGames")
+    private void removeGames(@RequestBody Wishlist wishlist){
+
+        wishlistRepository.save(getUpdatedWishlist(wishlist));
     }
 
 
 
+    private Wishlist getUpdatedWishlist(Wishlist wishlist){
 
+        Wishlist wishlist1 = wishlistRepository.findByUserId(wishlist.getUser().getId()).get();
+
+        for (Game gameToRemove: wishlist.getGames()) {
+            Game gr = null;
+            for (Game existingGame: wishlist1.getGames()) {
+                if(existingGame.getId().equals(gameToRemove.getId())){
+                    gr = existingGame;
+
+                }
+
+            }
+            if(gr != null) {
+                wishlist1.getGames().remove(gr);
+            }
+        }
+        return wishlist1;
+    }
 
 }
+
