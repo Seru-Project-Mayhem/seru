@@ -111,7 +111,7 @@ export function reviewRedirect(){
 }
 
 
-export function cheapSharkCardBuilder(listOfGames) {
+export function cheapSharkCardBuilder(listOfGames, props) {
     return listOfGames.map(game => {
 
         let savings = parseFloat(game.savings).toFixed(1);
@@ -234,22 +234,47 @@ export function cheapSharkCardBuilder(listOfGames) {
 }
 
 export function SetFavoriteEvent() {
+
         $(".button").click(function () {
             if ($(this).hasClass("deactivate")) {
                 $(this).removeClass("deactivate")
+
+
+
             }
             if ($(this).hasClass("active")) {
                 $(this).addClass("deactivate")
+
+                let post = {
+                    games:{
+                        id: $()
+                    } ,
+                    user:{
+                        id: $()
+                    },
+                    active: true
+                }
+
+                let request = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+
+                }
+
             }
             $(this).toggleClass("animate");
             $(this).toggleClass("active");
             $(this).toggleClass("inactive");
         });
+
     $('.flip-card .flip-card-inner').dblclick(function() {
         $(this).closest('.flip-card').toggleClass('hover');
         $(this).css('transform, rotateY(180deg)');
         $(this).children().children().children(".white-line").hide();
     });
+
 }
 
 export function urlRedirectEvent() {
