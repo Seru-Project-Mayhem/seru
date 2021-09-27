@@ -25,6 +25,8 @@ public class ReviewsController {
 
     @PostMapping
     private void createReview(@RequestBody Review newReview, OAuth2Authentication auth){
+        System.out.println(auth);
+        newReview.setUser( usersRepository.findByEmail(auth.getName()).get());
         reviewRepository.save(newReview);
     }
 

@@ -1,6 +1,5 @@
 import createView from "../createView.js";
-import {login} from "../auth.js";
-import {rapidApi_token} from "../keys.js";
+import {getHeaders} from "../auth.js";
 
 
 export default function Review(props) {
@@ -12,7 +11,6 @@ export default function Review(props) {
 </head>
 <body>
 <h1 id="game-title"></h1>
-<p class="d-none" id="userID">${props.users.getId()}</p>
 <p class="d-none" id="gameID"></p>
 <div class="mb-3">
   <label for="review" class="form-label">Leave your review</label>
@@ -29,6 +27,9 @@ export default function Review(props) {
 `;
 
 }
+
+// <!-- <p class="d-none" id="userID">${props.users.getId()}</p> -->
+
 
 export function getGameInfo(gameInfo) {
 	let id = gameInfo;
@@ -60,16 +61,25 @@ export function reviewEvent() {
 		}
 
 		console.log(post);
+		const token = localStorage.getItem("access_token");
+
+		//{
+		// 				'Accept': 'application/json',
+		// 				"Content-Type": "application/json",
+		// 				'Authorization': 'Bearer ' + `${token}`
+		// 			},
+
 		let request = {
 			method: "POST",
 			headers: {
-				'Accept': 'application/json',
-				"Content-Type": "application/json"
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
 			},
 			body: JSON.stringify(post)
 		};
 
 		fetch("http://localhost:8080/api/review", request)
+
 			.then((response) => {
 				console.log(response.status)
 				if (response.status === 200) {

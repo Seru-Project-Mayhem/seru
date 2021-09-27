@@ -32,12 +32,14 @@ export function login(email, password){
         body: `grant_type=password&username=${email}&password=${password}&client_id=rest-blog-client`
     };
 
-    fetchData(
-        {
-            route: `/oauth/token`
-        },
+    fetch(
+
+            `/oauth/token`,
+
         request).then((data) => {
-        setTokens(data);
+            return data.json();
+    }).then(tokens => {
+        setTokens(tokens);
         createView("/");
     });
 }
@@ -61,13 +63,13 @@ export function getHeaders() {
  * @param responseData
  */
 function setTokens(responseData) {
-
-    if (responseData.route['access_token']) {
-        localStorage.setItem("access_token", responseData.route['access_token']);
+    console.log(responseData);
+    if (responseData['access_token']) {
+        localStorage.setItem("access_token", responseData['access_token']);
         console.log("Access token set");
     }
-    if (responseData.route['refresh_token']) {
-        localStorage.setItem("refresh_token", responseData.route['refresh_token']);
+    if (responseData['refresh_token']) {
+        localStorage.setItem("refresh_token", responseData['refresh_token']);
         console.log("Refresh token set")
     }
 }
