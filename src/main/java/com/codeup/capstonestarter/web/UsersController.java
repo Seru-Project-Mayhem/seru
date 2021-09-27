@@ -3,6 +3,7 @@ package com.codeup.capstonestarter.web;
 import com.codeup.capstonestarter.data.user.User;
 import com.codeup.capstonestarter.data.user.UsersRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,10 +22,8 @@ public class UsersController {
 
     @PostMapping("/create")
     public void createUser(@RequestBody User user){
-
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         usersRepository.save(user);
-
     }
 
     @GetMapping("/findByEmail")
@@ -42,5 +41,10 @@ public class UsersController {
     private List<User> getUsers(){
         return usersRepository.findAll();
 }
+
+    @GetMapping("/authUser")
+    private User getAuthenticatedUser(OAuth2Authentication auth){
+        return usersRepository.findByEmail(auth.getName()).get();
+    }
 
 }
