@@ -592,3 +592,52 @@ html {
     background-color: transparent;
     height: 100px;
 }
+
+#navbar{
+    font-size: larger;
+}
+
+#savings{
+    font-size: medium;
+}
+
+#store{
+    font-size: medium;
+}
+
+#sale-price{
+    font-size: medium;
+}
+
+#current-price{
+    font-size: medium;
+}
+
+#total-savings{
+    font-size: medium;
+}
+
+#rating{
+    font-size: medium;
+}
+
+#review-btn{
+    font-size: medium;
+}
+
+#card-back{
+    padding: 65px 0;
+}
+
+#browse{
+    position: fixed;
+}
+
+/*#details-btn{*/
+/*    position: fixed ;*/
+/*}*/
+
+#free-to-play-card-back{
+    padding: 65px 0;
+    font-size: larger;
+}

@@ -9,7 +9,7 @@ export default function Navbar(props) {
                     <a href="/freetoplay" data-link class="nav-link nav" style="color: white">Free to Play</a>
                     <a href="/browse" data-link class="nav-link nav" style="color: white">Browse</a>
               </div>
-               <h1 class="text-center w-90">Seru</h1>
+               <h1 class="text-center w-90" id="seru">Seru</h1>
               <div class="navbar-nav" style="float: right">
                     <a href="/login" data-link class="nav-link nav" style="color: white">Login</a>
                     <a href="/register" data-link class="nav-link nav" style="color: white">Register</a>

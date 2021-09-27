@@ -155,27 +155,32 @@ export function cheapSharkCardBuilder(listOfGames) {
             <div class="flip-card" style="width: 20rem; height: 25rem">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <img class="img-fluid" src="${game.thumb}" style="width: 100%; height: 10vh; object-fit: cover" alt="Card image cap">
+                <img class="img-fluid" src="${game.thumb}" style="width: 100%; height: 20vh; object-fit: cover" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">${game.title}</h5>
-                    <p class="card-text"> Total Savings ${savings}%</p>
-                    <p style="color: white">${store}</p>
+                    <p class="card-text" id="savings"> Total Savings ${savings}%</p>
+                    <p style="color: white" id="store">${store}</p>
                     <hr class="white-line" style="color: white">
+             
                     <p class="card-text">${price}</p>
                     <button type="button" class="btn-details btn btn-light btn-sm mr-1 mb-2"><i class="fas fa-info-circle pr-2"></i>Details</button>
+
                 </div>
             </div>
-            <div class="flip-card-back">
+            <div class="flip-card-back" id="card-back">
                 <h5 class="card-title game-title"> ${game.title}</h5>
                 <p class="steam-id d-none">${game.steamAppID}</p>
+                 <hr class="white-line" style="color: white">
                 <a>
                      <p class="store-id d-none">${game.storeID}</p>
                      <p class="gameID d-none">${game.gameID}</p>
                 </a>
-                <p class="card-text prices"> Current Prices<br></p>
-                <p class="card-text"> Total Savings ${savings}%</p>
-                <p class="card-text"> Steam Rating: ${game.steamRatingPercent}</p>
-                <a class="review-btn mb-3"  href="/review" data-id=“${game.gameID}”> Leave Review</a><br><br><br>
+
+                <p class="card-text prices" id="current-price"> Current Prices<br></p>
+                <p class="card-text" id="total-savings"> Total Savings ${savings}%</p>
+                <p class="card-text"  id="rating"> Steam Rating: ${game.steamRatingPercent}</p>
+                <a class="review-btn mb-3"  href="/review" data-id=“${game.gameID}” id="review-btn"> Leave Review</a><br><br><br>
+
                     <a class="button two inactive desktop">
                         <div class="icon-with-text">
                             <div class="icon-with-text__icon">
@@ -214,6 +219,8 @@ export function cheapSharkCardBuilder(listOfGames) {
                             </div>
                         </div>
                     </a>
+                    <br>
+                    <br>
                 <button class="btn btn-primary btn-cheapshark-get">Get Now</button>
             </div>
         </div>
