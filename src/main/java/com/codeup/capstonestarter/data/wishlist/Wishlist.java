@@ -29,11 +29,11 @@ public class Wishlist {
             foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
             inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
     )
-    @JsonIgnoreProperties({"reviews"})
+    @JsonIgnoreProperties({"reviews", "cheapestPriceEver", "deals", "info"})
     private List<Game> games;
 
     @OneToOne
-    @JsonIgnoreProperties(value = {"wishlist", "reviews"})
+    @JsonIgnoreProperties(value = {"wishlist", "reviews", "password", "role", "email"}, allowSetters = true)
     private User user;
 
     public Wishlist() {}

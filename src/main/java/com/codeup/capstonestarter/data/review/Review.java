@@ -22,9 +22,16 @@ public class Review {
     private User user;
 
     @ManyToOne
-    @JoinColumn(
-        referencedColumnName = "id"
+    @JoinTable(
+            name = "games_review",
+            joinColumns = {@JoinColumn(name = "id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "review_id", nullable = false, updatable = false)},
+            foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
+            inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
     )
+//    @JoinColumn(
+//        referencedColumnName = "id"
+//    )
     private Game game;
 
     public Review() {
