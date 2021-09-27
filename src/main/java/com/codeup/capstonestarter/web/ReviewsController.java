@@ -3,10 +3,12 @@ package com.codeup.capstonestarter.web;
 
 import com.codeup.capstonestarter.data.review.Review;
 import com.codeup.capstonestarter.data.review.ReviewRepository;
+import com.codeup.capstonestarter.data.user.User;
 import com.codeup.capstonestarter.data.user.UsersRepository;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -25,8 +27,9 @@ public class ReviewsController {
 
     @PostMapping
     private void createReview(@RequestBody Review newReview, OAuth2Authentication auth){
-        System.out.println(auth);
-        newReview.setUser( usersRepository.findByEmail(auth.getName()).get());
+
+        newReview.setUser(usersRepository.findByEmail(auth.getName()).get());
+
         reviewRepository.save(newReview);
     }
 
