@@ -164,6 +164,7 @@ function getMultipleGamePricesEvent() {
 				let steamID = $(this).parent().parent().siblings(".flip-card-back").children(".steam-id").text()
 				let gameTitle = $(this).parent().parent().siblings(".flip-card-back").children(".game-title").text()
 				let store = "";
+				$(this).parent().parent().siblings(".flip-card-back").children(".prices").empty();
 				for (let i=0;i<parsedJSON.length;i++) {
 					if(parsedJSON[i].storeID == 1){
 						store = "Steam";
