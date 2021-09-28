@@ -167,13 +167,13 @@ export function cheapSharkCardBuilder(listOfGames) {
 
                 </div>
             </div>
-            <div class="flip-card-back" id="card-back">
+            <div class="flip-card-back overflow-auto" id="card-back">
                 <h5 class="card-title game-title"> ${game.title}</h5>
                 <p class="steam-id d-none">${game.steamAppID}</p>
                  <hr class="white-line" style="color: white">
                 <a>
                      <p class="store-id d-none">${game.storeID}</p>
-                     <p class="gameID d-none">${game.gameID}</p>
+                     <p class="gameID d-none ">${game.gameID}</p>
                 </a>
 
                 <p class="card-text prices current-price"> Current Prices<br></p>
