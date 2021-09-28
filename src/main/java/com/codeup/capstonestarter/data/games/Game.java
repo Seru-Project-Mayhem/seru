@@ -25,15 +25,19 @@ public class Game {
     @Column(columnDefinition = "JSON")
     private String info;
 
-    @OneToMany
-    @JoinTable(
-            name = "games_reviews",
-            joinColumns = {@JoinColumn(name = "game_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "review_id", nullable = false,
-                    updatable = false)},
-            foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
-            inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
-    )
+    @OneToMany(mappedBy = "game")
+//    @ManyToMany(
+//        fetch = FetchType.LAZY,
+//        cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE},
+//        targetEntity = Review.class)
+//    @JoinTable(
+//            name = "games_reviews",
+//            joinColumns = {@JoinColumn(name = "game_id", nullable = false, updatable = false)},
+//            inverseJoinColumns = {@JoinColumn(name = "review_id", nullable = false,
+//                    updatable = false)},
+//            foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
+//            inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
+//    )
     @JsonIgnoreProperties("game")
     private Collection<Review> reviews;
 

@@ -29,7 +29,6 @@ public class ReviewsController {
     private void createReview(@RequestBody Review newReview, OAuth2Authentication auth){
 
         newReview.setUser(usersRepository.findByEmail(auth.getName()).get());
-
         reviewRepository.save(newReview);
     }
 
@@ -41,6 +40,13 @@ public class ReviewsController {
     @GetMapping("{id}")
     private Review getReviewById(@PathVariable Long id){
         return reviewRepository.findById(id).get();
+    }
+
+    @GetMapping("/users/{userId}")
+    private List<Review> getReviewsByUserId(@PathVariable Long userId){
+
+        return usersRepository.findById(userId).get().getReviews();
+
     }
 
 

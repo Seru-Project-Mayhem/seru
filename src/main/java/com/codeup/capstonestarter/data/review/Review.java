@@ -4,6 +4,7 @@ import com.codeup.capstonestarter.data.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 
 @Entity
@@ -22,13 +23,19 @@ public class Review {
     private User user;
 
     @ManyToOne
-    @JoinTable(
-            name = "games_reviews",
-            joinColumns = {@JoinColumn(name = "review_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "game_id", nullable = false, updatable = false)},
-            foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
-            inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
-    )
+//    @ManyToMany(
+//        fetch = FetchType.LAZY,
+//        cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE},
+//        targetEntity = Game.class)
+//    @JoinTable(
+//            name = "games_reviews",
+//            joinColumns = {@JoinColumn(name = "review_id", nullable = false, updatable = false)},
+//            inverseJoinColumns = {@JoinColumn(name = "game_id", nullable = false, updatable = false)},
+//            foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
+//            inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
+//    )
+//    private Collection<Game> games;
+    @JsonIgnoreProperties("reviews")
     private Game game;
 
     public Review() {
@@ -65,4 +72,13 @@ public class Review {
     public void setGameID(Game game) {
         this.game = game;
     }
+
+
+//    public Collection<Game> getGames() {
+//        return games;
+//    }
+//
+//    public void setGames(Collection<Game> games) {
+//        this.games = games;
+//    }
 }
