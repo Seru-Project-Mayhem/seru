@@ -20,14 +20,14 @@ export default function Home(props) {
     `;
 }
 
-export function freeToGameCarouselView(data){
+export function freeToGameCarouselView(data) {
 
     let num, num2, num3, num4, num5;
 
-    for(let i = 0; i <= 4; i++){
+    for (let i = 0; i <= 4; i++) {
         let random = Math.floor(Math.random() * 366);
 
-        if(i == 0){
+        if (i == 0) {
             num = random;
         } if(i == 1){
             num2 = random;
@@ -41,27 +41,30 @@ export function freeToGameCarouselView(data){
     }
 
     return `
-    <div class="carousel-container">
-       <div id="carouselExampleCaptions" class="carousel slide">
-  <div class="carousel-indicators my-5">
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
-
-  </div>
+ 
+ 
+    <div class="carousel-container ">
+    <div class="row d-flex justify-content-center justify-content-md-start">
+       <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+<!--  <div class="carousel-indicators my-5">-->
+<!--    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>-->
+<!--    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>-->
+<!--    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>-->
+<!--    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>-->
+<!--    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>-->
+<!--     -->
+<!--  </div>-->
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img src="${data[num].thumbnail}" class="d-block w-100" onClick="window.open('${data[num].game_url}','_blank')">
-      <div class="carousel-caption d-none d-md-block">
+      <div class="carousel-caption d-none d-md-block ">
         <h5>${data[num].title}</h5>
         <p>${data[num].short_description}</p>
       </div>
     </div>
     <div class="carousel-item">
       <img src="${data[num2].thumbnail}" class="d-block w-100" onClick="window.open('${data[num2].game_url}','_blank')">
-      <div class="carousel-caption d-none d-md-block">
+      <div class="carousel-caption d-none d-md-block ">
         <h5>${data[num2].title}</h5>
         <p>${data[num2].short_description}</p>
       </div>
@@ -98,9 +101,12 @@ export function freeToGameCarouselView(data){
   </button>
 </div>
 </div>
+</div>
+
     `;
 
 }
+
 
 export function reviewRedirect(){
     $(".review-btn").on("click", function(){
@@ -118,40 +124,41 @@ export function cheapSharkCardBuilder(listOfGames) {
 
         let store;
 
-        if(game.storeID == 1){
+        if (game.storeID == 1) {
             store = "Steam";
-        } else if(game.storeID == 2){
+        } else if (game.storeID == 2) {
             store = "GamersGate";
-        } else if(game.storeID == 3) {
+        } else if (game.storeID == 3) {
             store = "Green Man Gaming";
-        } else if(game.storeID == 7) {
+        } else if (game.storeID == 7) {
             store = "GOG";
-        } else if(game.storeID == 11) {
+        } else if (game.storeID == 11) {
             store = "Humble Store";
-        } else if(game.storeID == 15){
+        } else if (game.storeID == 15) {
             store = "Fanatical";
-        } else if(game.storeID == 23){
+        } else if (game.storeID == 23) {
             store = "GameBillet";
-        } else if(game.storeID == 24){
+        } else if (game.storeID == 24) {
             store = "Voidu";
-        } else if(game.storeID == 25){
+        } else if (game.storeID == 25) {
             store = "Epic Game Store";
-        } else if(game.storeID == 29){
+        } else if (game.storeID == 29) {
             store = "2Game";
-        } else if(game.storeID == 30){
+        } else if (game.storeID == 30) {
             store = "IndieGala";
-        } else if(game.storeID == 31){
+        } else if (game.storeID == 31) {
             store = "Blizzard";
         }
 
         let price;
-        if(game.salePrice == "0.00"){
+        if (game.salePrice == "0.00") {
             price = "Free!";
         } else {
             price = ("$" + game.salePrice);
         }
 
-        return  `
+        return `
+
             <div class="flip-card" style="width: 20rem; height: 25rem">
         <div class="flip-card-inner">
             <div class="flip-card-front">
@@ -175,12 +182,10 @@ export function cheapSharkCardBuilder(listOfGames) {
                      <p class="store-id d-none">${game.storeID}</p>
                      <p class="gameID d-none ">${game.gameID}</p>
                 </a>
-
                 <p class="card-text prices current-price"> Current Prices<br></p>
                 <p class="card-text total-savings"> Total Savings ${savings}%</p>
                 <p class="card-text rating"> Steam Rating: ${game.steamRatingPercent}</p>
                 <a class="review-btn mb-3"  href="/review" data-id="${game.gameID}"> Leave Review</a><br><br><br>
-
                     <a class="button two inactive desktop">
                         <div class="icon-with-text">
                             <div class="icon-with-text__icon">
