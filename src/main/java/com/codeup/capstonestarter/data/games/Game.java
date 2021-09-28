@@ -39,7 +39,7 @@ public class Game {
 //            inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
 //    )
     @JsonIgnoreProperties("game")
-    private Collection<Review> reviews;
+    private List<Review> reviews;
 
     @ManyToMany(
             fetch = FetchType.LAZY,
@@ -98,11 +98,11 @@ public class Game {
         this.wishlists = wishlists;
     }
 
-    public Collection<Review> getReviews() {
+    public List<Review> getReviews() {
         return reviews;
     }
 
-    public void setReviews(Collection<Review> reviews) {
+    public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
     }
 }

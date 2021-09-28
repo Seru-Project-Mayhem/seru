@@ -1,5 +1,5 @@
 import createView from "../createView.js";
-import {getHeaders} from "../auth.js";
+import {getHeaders, login} from "../auth.js";
 
 
 export default function Review(props) {
@@ -38,8 +38,7 @@ export function getGameInfo(gameInfo) {
 	})
 		.then(response => response.json())
 		.then(data => {
-			$("#other-reviews").append(`<p>${data.review}</p>`);
-			console.log(data.id)
+			displayReviewsByGameId(data.id)
 			$("#gameID").append(data.id)
 		})
 		.catch(err => {
@@ -90,6 +89,21 @@ export function reviewEvent() {
 
 }
 
-// function getUserInfo(users){
-// 	return users.map(user => user.id);
-// }
+function displayReviewsByGameId(gameId){
+	let request = {
+		method: "GET",
+	};
+
+	fetch(`http://localhost:8080/api/review/games/${gameId}`, request)
+		.then(response => response.json())
+		.then(data => {
+			console.log(data);
+			if (data.status === 200) {
+				createView("/review");
+				$("#other-reviews").append(`<p>${data.review}</p>`);
+			}
+		})
+		.catch(err => {
+			console.error(err)
+		})
+}
