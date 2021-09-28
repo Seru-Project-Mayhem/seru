@@ -25,17 +25,21 @@ public class Game {
     @Column(columnDefinition = "JSON")
     private String info;
 
-    @OneToMany
-    @JoinTable(
-            name = "games_reviews",
-            joinColumns = {@JoinColumn(name = "id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "review_id", nullable = false,
-                    updatable = false)},
-            foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
-            inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
-    )
+    @OneToMany(mappedBy = "game")
+//    @ManyToMany(
+//        fetch = FetchType.LAZY,
+//        cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE},
+//        targetEntity = Review.class)
+//    @JoinTable(
+//            name = "games_reviews",
+//            joinColumns = {@JoinColumn(name = "game_id", nullable = false, updatable = false)},
+//            inverseJoinColumns = {@JoinColumn(name = "review_id", nullable = false,
+//                    updatable = false)},
+//            foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
+//            inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
+//    )
     @JsonIgnoreProperties("game")
-    private Collection<Review> reviews;
+    private List<Review> reviews;
 
     @ManyToMany(
             fetch = FetchType.LAZY,
@@ -94,11 +98,11 @@ public class Game {
         this.wishlists = wishlists;
     }
 
-    public Collection<Review> getReviews() {
+    public List<Review> getReviews() {
         return reviews;
     }
 
-    public void setReviews(Collection<Review> reviews) {
+    public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
     }
 }

@@ -1,10 +1,12 @@
 package com.codeup.capstonestarter.data.user;
 import com.codeup.capstonestarter.data.review.Review;
 import com.codeup.capstonestarter.data.wishlist.Wishlist;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -25,9 +27,11 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Collection<Review> reviews;
+    @JsonIgnoreProperties("user")
+    private List<Review> reviews;
 
     @OneToOne(mappedBy = "user")
+    @JsonIgnoreProperties("user")
     private Wishlist wishlist;
 
     @Enumerated(EnumType.STRING)
@@ -79,11 +83,11 @@ public class User {
         this.wishlist = wishlist;
     }
 
-    public Collection<Review> getReviews() {
+    public List<Review> getReviews() {
         return reviews;
     }
 
-    public void setReviews(Collection<Review> reviews) {
+    public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
     }
 

@@ -164,33 +164,47 @@ function getMultipleGamePricesEvent() {
 				let steamID = $(this).parent().parent().siblings(".flip-card-back").children(".steam-id").text()
 				let gameTitle = $(this).parent().parent().siblings(".flip-card-back").children(".game-title").text()
 				let store = "";
+				$(this).parent().parent().siblings(".flip-card-back").children(".prices").empty();
 				for (let i=0;i<parsedJSON.length;i++) {
-					if(parsedJSON[i].storeID == 1){
-						store = "Steam";
-					} else if(parsedJSON[i].storeID == 2){
-						store = "GamersGate";
-					} else if(parsedJSON[i].storeID == 3) {
-						store = "Green Man Gaming";
-					} else if(parsedJSON[i].storeID == 7) {
-						store = "GOG";
-					} else if(parsedJSON[i].storeID == 11) {
-						store = "Humble Store";
-					} else if(parsedJSON[i].storeID == 15){
-						store = "Fanatical";
-					} else if(parsedJSON[i].storeID == 23){
-						store = "GameBillet";
-					} else if(parsedJSON[i].storeID == 24){
-						store = "Voidu";
-					} else if(parsedJSON[i].storeID == 25){
-						store = "Epic Game Store";
-					} else if(parsedJSON[i].storeID == 29){
-						store = "2Game";
-					} else if(parsedJSON[i].storeID == 30){
-						store = "IndieGala";
-					} else if(parsedJSON[i].storeID == 31){
-						store = "Blizzard";
-					} else {
-						continue;
+					switch (parsedJSON[i].storeID) {
+						case 1:
+							store = "Steam";
+							break;
+						case 2:
+							store = "GamersGate";
+							break;
+						case 3:
+							store = "Green Man Gaming";
+							break;
+						case 7:
+							store = "GOG";
+							break;
+						case 11:
+							store = "Humble Store";
+							break;
+						case 15:
+							store = "Fanatical";
+							break;
+						case 23:
+							store = "GameBillet";
+							break;
+						case 24:
+							store = "Voidu";
+							break;
+						case 25:
+							store = "Epic Game Store";
+							break;
+						case 29:
+							store = "2Game";
+							break;
+						case 30:
+							store = "IndieGala";
+							break;
+						case 31:
+							store = "Blizzard";
+							break;
+						default:
+							continue;
 					}
 					$(this).parent().parent().siblings(".flip-card-back").children(".prices").append(`${store}: <a href="#" class="anchor" data-id="${returnValidURLs(steamID, gameTitle, parsedJSON[i].storeID)}">$${parsedJSON[i].price}</a><br>`);
 				}
