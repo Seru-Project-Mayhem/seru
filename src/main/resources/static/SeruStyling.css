@@ -424,12 +424,9 @@ h2 {
 }
 
 .container-parent{
-    /*background-color: #272727;*/
     margin-left: 10%;
     margin-right: 10%;
 }
-
-/* Do Not add or delete below this comment, code is responsible for  card flip*/
 
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
@@ -547,7 +544,6 @@ html {
 /*Browse page styling*/
 
 .container-parent-browse {
-    /*background-color: #272727;*/
     background-color: transparent;
     margin-left: 25%;
     margin-right: 15%;
@@ -563,12 +559,10 @@ html {
 }
 
 #container-games {
-    /*background-color: #272727;*/
     background-color: transparent;
 }
 
 #container-carousel{
-    /*background-color: #272727;*/
     background-color: transparent;
     margin:  auto;
 }
@@ -600,6 +594,7 @@ html {
     height: 100px;
 }
 
+
 .carousel-control-next-icon{
     height: 50px;
     width:50px;
@@ -609,5 +604,54 @@ html {
 .carousel-control-prev-icon{
     height: 50px;
     width: 50px;
+
+
+#navbar{
+    font-size: larger;
+}
+
+#savings{
+    font-size: medium;
+}
+
+#store{
+    font-size: medium;
+}
+
+#sale-price{
+    font-size: medium;
+}
+
+#current-price{
+    font-size: medium;
+}
+
+#total-savings{
+    font-size: medium;
+}
+
+#rating{
+    font-size: medium;
+}
+
+#review-btn{
+    font-size: medium;
+}
+
+#card-back{
+    padding: 65px 0;
+}
+
+#browse{
+    position: fixed;
+}
+
+/*#details-btn{*/
+/*    position: fixed ;*/
+/*}*/
+
+#free-to-play-card-back{
+    padding: 65px 0;
+    font-size: larger;
 
 }

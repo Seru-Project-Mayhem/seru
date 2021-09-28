@@ -7,7 +7,7 @@ export default function Browse(props){
     return `
         <main>
         <div>        
-         <div class="left">
+         <div class="left mx-5" id="browse">
         <!-- Section: Sidebar -->
         <section>
 
@@ -95,9 +95,6 @@ export default function Browse(props){
 
 
 export function sideBarStoreEvent(){
-
-    console.log("We made it to sideBarCheckboxEvent!");
-
     let storesNum = [];
 
     $('#reset-store-selection').on('click', function () {
@@ -196,14 +193,9 @@ export function queryStoresEvent(storesNum){
 
 
 export function sideBarSearchEvent(){
-
-    console.log("sideBarSearchEvent is called");
-
     $(".btn-sidebar").on('click', function () {
 
         let searchQuery = $("#sidebar-input").val();
-
-        console.log("sidebar value is: " + searchQuery);
 
         fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?storeID=1%2C2%2C3%2C7%2C11%2C15%2C23%2C24%2C25%2C29%2C30%2C31&metacritic=0&onSale=0&pageNumber=0&upperPrice=50&exact=0&pageSize=60&AAA=0&sortBy=Title&steamworks=0&output=json&desc=0&title=${searchQuery}&steamRating=0&lowerPrice=0`, {
             "method": "GET",
@@ -214,8 +206,6 @@ export function sideBarSearchEvent(){
         })
             .then(response => response.json())
             .then(data => {
-
-                console.log(data);
                 $("#container-browse-games").empty();
                 $("#container-browse-games").append(cheapSharkCardBuilder(data));
                 SetFavoriteEvent();
@@ -231,9 +221,6 @@ export function sideBarSearchEvent(){
 }
 
 export function infiniteScrollingEvent(){
-
-    console.log("infiniteScrollingEvent is called");
-
     let page = 1;
     let currentScrollHeight = 0;
 
@@ -243,8 +230,6 @@ export function infiniteScrollingEvent(){
         const isBottom = scrollHeight - 300 < scrollPos;
 
         if (isBottom && currentScrollHeight < scrollHeight) {
-
-
             fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?lowerPrice=0&desc=0&output=json&steamworks=0&sortBy=Reviews&AAA=true&pageSize=60&exact=0&upperPrice=60&pageNumber=${page}&onSale=0&metacritic=0&storeID=1`, {
                 "method": "GET",
                 "headers": {
@@ -254,10 +239,8 @@ export function infiniteScrollingEvent(){
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log("Another 60 games are being added to the view");
                     $("#container-browse-games").append(cheapSharkCardBuilder(data));
                     page += 1;
-                    console.log(page);
                 })
                 .catch(err => {
                     console.error(err);
@@ -265,37 +248,9 @@ export function infiniteScrollingEvent(){
             currentScrollHeight = scrollHeight;
         }
     });
-
 }
-
 
 export function initBrowse() {
-
     sideBarSearchEvent();
     sideBarStoreEvent();
-
 }
-
-// export function cheapSharkBrowseGet(){
-//     fetch("https://cheapshark-game-deals.p.rapidapi.com/deals?storeID=1%2C2%2C3%2C7%2C11%2C15%2C16%2C23%2C24%2C25%2C29%2C30%2C31&metacritic=0&onSale=0&pageNumber=1&upperPrice=50&exact=0&pageSize=60&AAA=0&sortBy=Savings&steamworks=0&output=json&desc=0&steamRating=0&lowerPrice=0", {
-//         "method": "GET",
-//         "headers": {
-//             "x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",
-//             "x-rapidapi-key": rapidApi_token,
-//         }
-//     })
-//         .then(response => response.json())
-//         .then(data => {
-//             $("#container-browse-games").append(cheapSharkCardBuilder(data));
-//             SetFavoriteEvent();
-//             ratingEvent();
-//             searchBarEvent();
-//             sideBarSearchEvent();
-//             sideBarCheckboxEvent();
-//             urlRedirectEvent();
-//             infiniteScrollingEvent();
-//         })
-//         .catch(err => {
-//             console.error(err);
-//         });
-// }

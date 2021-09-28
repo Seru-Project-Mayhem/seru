@@ -2,7 +2,6 @@ package com.codeup.capstonestarter.web;
 
 import com.codeup.capstonestarter.data.user.User;
 import com.codeup.capstonestarter.data.user.UsersRepository;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +33,12 @@ public class UsersController {
         return usersRepository.findByEmail(email).get();
     }
 
-@GetMapping
+    @GetMapping("/findById")
+    private User findById(@RequestParam Long id){
+        return usersRepository.findById(id).get();
+    }
+
+    @GetMapping
     private List<User> getUsers(){
         return usersRepository.findAll();
 }

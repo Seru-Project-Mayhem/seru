@@ -27,19 +27,12 @@ export default function Review(props) {
 export function getGameInfo(gameInfo){
 
     let id = gameInfo;
-    console.log("this is our id: " + id);
-    fetch(`https://cheapshark-game-deals.p.rapidapi.com/games?id=${id}`, {
+    fetch(`http://localhost:8080/api/games/findByGameID?gameID=${id}`, {
         "method": "GET",
-        "headers": {
-            "x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",
-            "x-rapidapi-key": rapidApi_token,
-        }
     })
         .then(response => response.json())
         .then(data => {
-            // $("#game-title").append(data);
             console.log(data);
-            // console.log();
         })
         .catch(err => {
             console.error(err);
@@ -85,7 +78,5 @@ export function reviewEvent() {
                  });
                 }
             });
-
-
     })
 }
