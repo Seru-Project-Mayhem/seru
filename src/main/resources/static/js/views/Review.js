@@ -18,7 +18,7 @@ export default function Review(props) {
 <button id="review-btn">Submit Your Review</button>
 </div>
 
-<div id="other-reviews">
+<div id="other-reviews" style="background-color: white; height: 15em">
 
 </div>
 
@@ -38,8 +38,12 @@ export function getGameInfo(gameInfo) {
 	})
 		.then(response => response.json())
 		.then(data => {
-			displayReviewsByGameId(data.id)
-			$("#gameID").append(data.id)
+			displayReviewsByGameId(data.id);
+			$("#gameID").append(data.id);
+			let gameTitle = JSON.parse(data.info);
+			$("#game-title").append(gameTitle.title);
+
+			console.log(JSON.parse(data.info));
 		})
 		.catch(err => {
 			console.error(err);
@@ -61,12 +65,6 @@ export function reviewEvent() {
 
 		console.log(post);
 		const token = localStorage.getItem("access_token");
-
-		//{
-		// 				'Accept': 'application/json',
-		// 				"Content-Type": "application/json",
-		// 				'Authorization': 'Bearer ' + `${token}`
-		// 			},
 
 		let request = {
 			method: "POST",
@@ -98,12 +96,31 @@ function displayReviewsByGameId(gameId){
 		.then(response => response.json())
 		.then(data => {
 			console.log(data);
-			if (data.status === 200) {
-				createView("/review");
-				$("#other-reviews").append(`<p>${data.review}</p>`);
+
+			// createView("/review");
+
+
+			for (let i = 0; i < data.length; i++) {
+				console.log(data[i].review);
+				reviewCard(data[i])
+
 			}
+
 		})
 		.catch(err => {
 			console.error(err)
 		})
+}
+
+function reviewCard(data){
+
+	let card = `
+	
+	<p>${data.review}</p>
+	<p>Review by: ${data.user.username}</p>
+	
+	`
+
+
+	$("#other-reviews").append(card);
 }
