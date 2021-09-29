@@ -90,7 +90,6 @@ export default function Browse(props){
         </main>
 
     `;
-
 }
 
 
@@ -103,13 +102,18 @@ export function sideBarStoreEvent(){
 
     $('.stores').on('click',function () {
 
-        $(this).css({color: '#ffffff', backgroundColor: "#900DFF"});
-        storesNum.push($(this).val());
+        if($(this).css("color") === 'rgb(255, 255, 255)'){
+            $(this).css({color: '#000000', backgroundColor: "#ffffff"});
+            let index = storesNum.indexOf($(this).val());
+            storesNum.splice(index, 1);
+        } else {
+            $(this).css({color: '#ffffff', backgroundColor: "#900DFF"});
+            storesNum.push($(this).val());
+        }
+    })
 
-        $('#btn-stores').on('click', function () {
-            queryStoresEvent(storesNum);
-        })
-
+    $('#btn-stores').on('click', function () {
+        queryStoresEvent(storesNum);
     })
 
     $('#btn-price').on('click', function (){
@@ -118,7 +122,6 @@ export function sideBarStoreEvent(){
         let max = $("#to").val();
 
         queryByPriceEvent(min, max);
-
     })
 
 }
@@ -136,6 +139,7 @@ export function queryByPriceEvent(min, max){
         .then(data => {
             $("#container-browse-games").empty();
             $("#container-browse-games").append(cheapSharkCardBuilder(data));
+
             sideBarStoreEvent();
             sideBarSearchEvent();
             infiniteScrollingEvent();
@@ -177,8 +181,8 @@ export function queryStoresEvent(storesNum){
         .then(data => {
             $("#container-browse-games").empty();
             $("#container-browse-games").append(cheapSharkCardBuilder(data));
-            sideBarStoreEvent();
-            sideBarSearchEvent();
+            storesNum.length = 0;
+            $(".stores").css({color: '#000000', backgroundColor: "#ffffff"});
             infiniteScrollingEvent();
             reviewRedirect();
             SetFavoriteEvent();
