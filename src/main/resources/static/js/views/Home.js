@@ -50,14 +50,6 @@ export function freeToGameCarouselView(data) {
     <div class="carousel-container ">
     <div class="row d-flex justify-content-center justify-content-md-start">
        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-<!--  <div class="carousel-indicators my-5">-->
-<!--    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>-->
-<!--    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>-->
-<!--    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>-->
-<!--    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>-->
-<!--    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>-->
-<!--     -->
-<!--  </div>-->
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img src="${data[num].thumbnail}" class="d-block w-100" onClick="window.open('${data[num].game_url}','_blank')">
@@ -275,13 +267,8 @@ export function SetFavoriteEvent() {
         $(this).toggleClass("inactive");
     });
 
-    $('.flip-card .flip-card-inner').dblclick(function () {
-        $(this).closest('.flip-card').toggleClass('hover');
-        $(this).css('transform, rotateY(180deg)');
-        $(this).children().children().children(".white-line").hide();
-    });
 
-    // logoutEvent();
+
 }
 
 
@@ -294,12 +281,5 @@ export function urlRedirectEvent() {
         returnValidURL(steam_id, gameTitle, store_id);
     });
 
-
-// function logoutEvent() {
-//     $(".logout-btn").on("click", function () {
-//         localStorage.removeItem("access_token")
-//         localStorage.removeItem("refresh_token")
-//         console.log("You have successfully logged out")
-//     })
 }
 
