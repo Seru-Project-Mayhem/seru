@@ -149,10 +149,16 @@ function dataBaseInsert(games) {
 	}
 }
 
-function getMultipleGamePricesEvent() {
+export function getMultipleGamePricesEvent() {
 	let id
-	$(".btn-details").on("click", function () {
-		id = $(this).parent().parent().parent().siblings(".flip-card-back").children().children(".gameID").text();
+
+	$('.btn-details, .flip-card, .flip-card-inner').click(function () {
+		$(this).closest('.flip-card').toggleClass('hover');
+		$(this).css('transform, rotateY(180deg)');
+		$(this).children().children().children(".white-line").hide();
+
+		id = $(this).parent().parent().siblings(".flip-card-back").children().children(".gameID").text();
+
 		let request = {
 			method: "GET",
 			headers: {}
