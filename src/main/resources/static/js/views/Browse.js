@@ -183,8 +183,6 @@ export function queryStoresEvent(storesNum){
             $("#container-browse-games").append(cheapSharkCardBuilder(data));
             storesNum.length = 0;
             $(".stores").css({color: '#000000', backgroundColor: "#ffffff"});
-            // sideBarStoreEvent();
-            // sideBarSearchEvent();
             infiniteScrollingEvent();
             reviewRedirect();
             SetFavoriteEvent();
