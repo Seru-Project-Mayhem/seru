@@ -4,7 +4,7 @@ import {
     getAllGames
 } from "./FetchQueries.js";
 import Login from "./views/Login.js";
-import LoginEvent from "./auth.js";
+import LoginEvent, {LogoutEvent} from "./auth.js";
 import Register, {RegisterEvent} from "./views/Register.js";
 import FreeToPlayView from "./views/FreeToPlay.js";
 import Review, {reviewEvent} from "./views/Review.js";
@@ -71,6 +71,14 @@ export default function router(URI) {
             uri: '/user',
             title: "Profile",
             viewEvent: userEvent
+        },
+
+        '/logout': {
+            returnView: Home,
+            state: {},
+            uri: '/',
+            title: 'Home',
+            viewEvent: LogoutEvent
         },
 
     };

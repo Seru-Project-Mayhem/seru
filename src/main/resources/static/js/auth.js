@@ -73,3 +73,15 @@ function setTokens(responseData) {
         console.log("Refresh token set")
     }
 }
+
+export function LogoutEvent() {
+    deleteTokens();
+    createView("/")
+}
+
+function deleteTokens() {
+    localStorage.removeItem("access_token");
+    console.log("Access token deleted");
+    localStorage.removeItem("refresh_token");
+    console.log("Refresh token deleted")
+}

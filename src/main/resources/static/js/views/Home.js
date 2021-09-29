@@ -29,13 +29,17 @@ export function freeToGameCarouselView(data) {
 
         if (i == 0) {
             num = random;
-        } if(i == 1){
+        }
+        if (i == 1) {
             num2 = random;
-        } if(i == 2){
+        }
+        if (i == 2) {
             num3 = random;
-        } if(i == 3){
+        }
+        if (i == 3) {
             num4 = random;
-        } if(i == 4) {
+        }
+        if (i == 4) {
             num5 = random;
         }
     }
@@ -108,8 +112,8 @@ export function freeToGameCarouselView(data) {
 }
 
 
-export function reviewRedirect(){
-    $(".review-btn").on("click", function(){
+export function reviewRedirect() {
+    $(".review-btn").on("click", function () {
         render(null, router("/review"))
         let gameInfo = $(this).data("id");
         getGameInfo(gameInfo);
@@ -240,47 +244,47 @@ export function cheapSharkCardBuilder(listOfGames, props) {
 
 export function SetFavoriteEvent() {
 
-        $(".button").click(function () {
-            if ($(this).hasClass("deactivate")) {
-                $(this).removeClass("deactivate")
+    $(".button").click(function () {
+        if ($(this).hasClass("deactivate")) {
+            $(this).removeClass("deactivate")
+        }
+        if ($(this).hasClass("active")) {
+            $(this).addClass("deactivate")
 
+            let post = {
+                games: {
+                    id: $()
+                },
+                user: {
+                    id: $()
+                },
+                active: true
+            }
 
+            let request = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
 
             }
-            if ($(this).hasClass("active")) {
-                $(this).addClass("deactivate")
 
-                let post = {
-                    games:{
-                        id: $()
-                    } ,
-                    user:{
-                        id: $()
-                    },
-                    active: true
-                }
+        }
+        $(this).toggleClass("animate");
+        $(this).toggleClass("active");
+        $(this).toggleClass("inactive");
+    });
 
-                let request = {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-
-                }
-
-            }
-            $(this).toggleClass("animate");
-            $(this).toggleClass("active");
-            $(this).toggleClass("inactive");
-        });
-
-    $('.flip-card .flip-card-inner').dblclick(function() {
+    $('.flip-card .flip-card-inner').dblclick(function () {
         $(this).closest('.flip-card').toggleClass('hover');
         $(this).css('transform, rotateY(180deg)');
         $(this).children().children().children(".white-line").hide();
     });
 
+    // logoutEvent();
 }
+
+
 
 export function urlRedirectEvent() {
     $(".btn-cheapshark-get").on("click", function () {
@@ -289,5 +293,13 @@ export function urlRedirectEvent() {
         let steam_id = $(this).siblings(".steam-id").text()
         returnValidURL(steam_id, gameTitle, store_id);
     });
+
+
+// function logoutEvent() {
+//     $(".logout-btn").on("click", function () {
+//         localStorage.removeItem("access_token")
+//         localStorage.removeItem("refresh_token")
+//         console.log("You have successfully logged out")
+//     })
 }
 
