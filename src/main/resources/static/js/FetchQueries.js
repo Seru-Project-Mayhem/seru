@@ -149,10 +149,16 @@ function dataBaseInsert(games) {
 	}
 }
 
-function getMultipleGamePricesEvent() {
+export function getMultipleGamePricesEvent() {
 	let id
-	$(".btn-details").on("click", function () {
+
+	$('.btn-details, .flip-card, .flip-card-inner').click(function () {
+		$(this).closest('.flip-card').toggleClass('hover');
+		$(this).css('transform, rotateY(180deg)');
+		$(this).children().children().children(".white-line").hide();
+
 		id = $(this).parent().parent().siblings(".flip-card-back").children().children(".gameID").text();
+
 		let request = {
 			method: "GET",
 			headers: {}
@@ -161,11 +167,11 @@ function getMultipleGamePricesEvent() {
 			.then(res => res.json())
 			.then(data => {
 				let parsedJSON = JSON.parse(data.deals);
-				let steamID = $(this).parent().parent().siblings(".flip-card-back").children(".steam-id").text()
-				let gameTitle = $(this).parent().parent().siblings(".flip-card-back").children(".game-title").text()
+				let steamID = $(this).parent().parent().parent().siblings(".flip-card-back").children(".steam-id").text()
+				let gameTitle = $(this).parent().parent().parent().siblings(".flip-card-back").children(".game-title").text()
 				let store = "";
 				console.log(parsedJSON.length);
-				$(this).parent().parent().siblings(".flip-card-back").children(".prices").empty();
+				$(this).parent().parent().parent().siblings(".flip-card-back").children(".prices").empty();
 				for (let i=0;i<parsedJSON.length;i++) {
 					if (parsedJSON[i].storeID == 1) {
 						store = "Steam";
@@ -195,7 +201,7 @@ function getMultipleGamePricesEvent() {
 						continue;
 					}
 					console.log("appending store")
-					$(this).parent().parent().siblings(".flip-card-back").children(".prices").append(`${store}: <a href="#" class="anchor" data-id="${returnValidURLs(steamID, gameTitle, parsedJSON[i].storeID)}">$${parsedJSON[i].price}</a><br>`);
+					$(this).parent().parent().parent().siblings(".flip-card-back").children(".prices").append(`${store}: <a href="#" class="anchor" data-id="${returnValidURLs(steamID, gameTitle, parsedJSON[i].storeID)}">$${parsedJSON[i].price}</a><br>`);
 				}
 				aTagEventListener()
 			})

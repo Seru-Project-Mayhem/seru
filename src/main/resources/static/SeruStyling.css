@@ -438,6 +438,7 @@ h2 {
     margin-top: 20px;
     margin-left: 15px;
     padding: 0;
+    /*overflow-y: hidden;*/
 
 }
 
@@ -601,10 +602,10 @@ html {
 
 }
 
-.carousel-control-prev-icon{
+.carousel-control-prev-icon {
     height: 50px;
     width: 50px;
-
+}
 
 #navbar{
     font-size: larger;
