@@ -2,7 +2,7 @@ export default function Navbar(props) {
     if (localStorage.getItem("access_token")) { ////if the access toke is here ill show logout
         // if not it will return else on line 24//
         return `
-        <nav class="navbar navbar-expand-lg bg-dark navbar-dark mb-5" id="navbar">
+        <nav class="navbar sticky-top navbar-expand-lg bg-dark navbar-dark mb-5" id="navbar">
           <div class="container-fluid">
           <a class="navbar-brand" id="seru">Seru</a>
              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +33,7 @@ export default function Navbar(props) {
     `;
     } else {
         return `
-             <nav class="navbar navbar-expand-lg bg-dark navbar-dark mb-5" id="navbar">
+             <nav class="navbar sticky-top navbar-expand-lg bg-dark navbar-dark mb-5" id="navbar">
           <div class="container-fluid">
           <a class="navbar-brand" id="seru">Seru</a>
              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
