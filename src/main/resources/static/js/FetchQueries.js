@@ -157,7 +157,7 @@ export function getMultipleGamePricesEvent() {
 		$(this).css('transform, rotateY(180deg)');
 		$(this).children().children().children(".white-line").hide();
 
-		id = $(this).parent().parent().siblings(".flip-card-back").children().children(".gameID").text();
+		id = $(this).parent().parent().parent().siblings(".flip-card-back").children().children(".gameID").text();
 
 		let request = {
 			method: "GET",
@@ -167,8 +167,8 @@ export function getMultipleGamePricesEvent() {
 			.then(res => res.json())
 			.then(data => {
 				let parsedJSON = JSON.parse(data.deals);
-				let steamID = $(this).parent().parent().parent().siblings(".flip-card-back").children(".steam-id").text()
-				let gameTitle = $(this).parent().parent().parent().siblings(".flip-card-back").children(".game-title").text()
+				let steamID = $(this).parent().parent().parent().siblings(".flip-card-back").children(".steam-id").text();
+				let gameTitle = $(this).parent().parent().parent().siblings(".flip-card-back").children(".game-title").text();
 				let store = "";
 				console.log(parsedJSON.length);
 				$(this).parent().parent().parent().siblings(".flip-card-back").children(".prices").empty();

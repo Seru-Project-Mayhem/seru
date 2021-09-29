@@ -19,35 +19,18 @@ export function freeCardBuilder(listOfGames) {
 
     return listOfGames.map(game => {
         return `
-<div class="flip-card" style="width: 18rem;">
-  <div class="flip-card-inner">
-  	<div class="flip-card-front">
-    	<img class="card-img-top" src="${game.thumbnail}" alt="Card image cap">
-  		<div class="card-body">
-  		<div id="free-to-play">
-    		<h5 class="card-title" > ${game.title}</h5>
-    		<p class="card-text" > Free to play </p>
-       </div>
-    	</div>
+    <div class="flip-card" style="width: 18rem">
+  
+            <img class="card-img-top" src="${game.thumbnail}" alt="Card image cap">
+            <div class="card-body d-flex flex-column">
+                    <h5 class="card-title" style="color: white"> ${game.title}</h5>
+                    <p class="card-text" id="free-to-play" style="color: white"> Free to play </p>
+                    <p class="card-text" style="color: white"> ${game.short_description} </p>
+                    <button type="button" class="btn-get btn btn-primary" style="position: absolute; bottom: 15px"  onclick=" window.open('${game.game_url}','_blank')">Get Now</button>
+            </div>
+       
     </div>
-    <div class="flip-card-back" id="free-to-play-card-back">
-      <h5 class="card-title" > ${game.title}</h5>
-       <hr class="white-line" style="color: white">
-     	<p class="card-text" > ${game.short_description} </p>
-    	<p class="card-text" id="free-to-play"> Free to play </p>
-    	<a class="review-btn"  href="/review" onclick="window.location.href = '/review'" id="leave-review-btn"> Leave Review</a>
-<!--    	<form>-->
-<!--    	    <input class="editRating" type="number" min="0" max="10" step="0.5">-->
-<!--    	    <button class="submitForm">Submit</button>-->
-<!--        </form>-->
-       <br>
-<br>
-<br>
-            		<button type="button" class="btn-get btn btn-primary" onclick=" window.open('${game.game_url}','_blank')">Get Now</button>
-
-    </div>
-  </div>
-</div>`
+`
     });
 }
 

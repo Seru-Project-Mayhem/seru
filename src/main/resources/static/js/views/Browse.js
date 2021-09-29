@@ -17,7 +17,7 @@ export default function Browse(props){
             
               <h5>Stores</h5>
             
-              <div class="mb-5">
+              <div>
                
                 <ul style="list-style-type: none">
                 <li class="stores" value="1">Steam</li>
@@ -33,7 +33,7 @@ export default function Browse(props){
                 <li class="stores" value="30">IndieGala</li>
                 <li class="stores" value="31">Blizzard</li>
                 </ul>
-                <button type="button" class="btn btn-primary pl-3" id="btn-stores">Get</button>
+                <button type="button" class="btn btn-primary pl-3" id="btn-stores">Search</button>
                 <input class="btn btn-primary" type="reset" value="Reset" id="reset-store-selection">
               </div>
             
@@ -73,7 +73,7 @@ export default function Browse(props){
                             <label for="to">$ Max</label>
                         </div>
                     </div>
-                <button type="button" class="btn btn-primary" id="btn-price">Get</button>
+                <button type="button" class="btn btn-primary" id="btn-price">Search</button>
             </section>
             <!-- Section: Price -->
 
@@ -81,7 +81,7 @@ export default function Browse(props){
         <!-- Section: Sidebar -->
     </div>
         
-         <div class="container-parent-browse mt-5">
+         <div class="container-parent-browse">
                    
             <div class="row d-flex justify-content-center" id="container-browse-games">
             
@@ -248,6 +248,9 @@ export function infiniteScrollingEvent(){
                 .then(data => {
                     $("#container-browse-games").append(cheapSharkCardBuilder(data));
                     page += 1;
+                    urlRedirectEvent();
+                    getMultipleGamePricesEvent();
+
                 })
                 .catch(err => {
                     console.error(err);
