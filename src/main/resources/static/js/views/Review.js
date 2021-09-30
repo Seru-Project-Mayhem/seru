@@ -34,7 +34,7 @@ export default function Review(props) {
 
 export function getGameInfo(gameInfo) {
 	let id = gameInfo;
-	fetch(`http://localhost:8080/api/games/findByGameID?gameID=${id}`, {
+	fetch(`https://seru.shop/api/games/findByGameID?gameID=${id}`, {
 		"method": "GET",
 	})
 		.then(response => response.json())
@@ -83,7 +83,7 @@ export function reviewEvent() {
 			body: JSON.stringify(post)
 		};
 
-		fetch("http://localhost:8080/api/review", request)
+		fetch("https://seru.shop/api/review", request)
 
 			.then((response) => {
 				console.log(response.status)
@@ -100,7 +100,7 @@ function displayReviewsByGameId(gameId){
 		method: "GET",
 	};
 
-	fetch(`http://localhost:8080/api/review/games/${gameId}`, request)
+	fetch(`https://seru.shop/api/review/games/${gameId}`, request)
 		.then(response => response.json())
 		.then(data => {
 			console.log(data);

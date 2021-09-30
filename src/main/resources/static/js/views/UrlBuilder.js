@@ -1,11 +1,9 @@
 export function returnValidURL(steamAppID, baseGameTitle, store_ID){
 
 		let titleToChange = baseGameTitle.split("");
-		console.log(titleToChange);
 		if(titleToChange.includes(":") || titleToChange.includes(".") || titleToChange.includes("!") || titleToChange.includes("'")){
 			let unwantedCharIndex = titleToChange.indexOf(":");
 			titleToChange.splice(unwantedCharIndex, 1);
-			console.log(titleToChange);
 		}
 		let gameTitle = titleToChange.join();
 

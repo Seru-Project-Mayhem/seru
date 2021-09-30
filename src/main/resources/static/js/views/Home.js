@@ -166,14 +166,13 @@ export function cheapSharkCardBuilder(listOfGames, props) {
                    
                     <p class="card-text">${price}</p>
                     <div class="card-footer">
-                    <button type="button" class="btn-details btn btn-light btn-sm mr-1 mb-2"><i class="fas fa-info-circle pr-2"></i>Details</button>
+                        <button type="button" class="btn-details btn btn-light btn-sm mr-1 mb-2"><i class="fas fa-info-circle pr-2"></i>Details</button>
                     </div>
                 </div>
             </div>
             <div class="flip-card-back overflow-auto" id="card-back">
                 <h5 class="card-title game-title"> ${game.title}</h5>
                 <p class="steam-id d-none">${game.steamAppID}</p>
-            
                 <a>
                      <p class="store-id d-none">${game.storeID}</p>
                      <p class="gameID d-none ">${game.gameID}</p>
