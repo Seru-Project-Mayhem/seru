@@ -2,7 +2,9 @@ export default function Navbar(props) {
     if (localStorage.getItem("access_token")) { ////if the access toke is here ill show logout
         // if not it will return else on line 24//
         return `
-        <nav class="navbar sticky-top navbar-expand-lg bg-dark navbar-dark mb-5" id="navbar">
+
+        <nav class="navbar sticky-top navbar-expand-lg bg-dark navbar-dark mb-3" id="navbar">
+
           <div class="container-fluid">
           <a class="navbar-brand" id="seru">Seru</a>
              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,9 +24,7 @@ export default function Navbar(props) {
                     <li class="nav-item">
                     <a href="/logout" data-link class="nav-link nav" style="color: white" id="logout-btn">Logout</a>
                     </li>
-                    <li class="nav-item">
-                    <a href="/user" data-link class="nav-link nav" style="color: white">User</a>
-                    </li>
+             
       </ul>
          </div>
          </div>
@@ -33,7 +33,9 @@ export default function Navbar(props) {
     `;
     } else {
         return `
-             <nav class="navbar sticky-top navbar-expand-lg bg-dark navbar-dark mb-5" id="navbar">
+
+             <nav class="navbar sticky-top navbar-expand-lg bg-dark navbar-dark mb-3" id="navbar">
+
           <div class="container-fluid">
           <a class="navbar-brand" id="seru">Seru</a>
              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,9 +55,10 @@ export default function Navbar(props) {
                     <li class="nav-item">
                     <a href="/login" data-link class="nav-link nav" style="color: white" id="logout-btn">Login</a>
                     </li>
-                    <li class="nav-item">
-                    <a href="/user" data-link class="nav-link nav" style="color: white">User</a>
+                      <li class="nav-item">
+                    <a href="/register" data-link class="nav-link nav" style="color: white">Register</a>
                     </li>
+           
       </ul>
          </div>
          </div>

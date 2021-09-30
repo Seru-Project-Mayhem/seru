@@ -1,4 +1,12 @@
-export function returnValidURL(steamAppID, gameTitle, store_ID){
+export function returnValidURL(steamAppID, baseGameTitle, store_ID){
+
+		let titleToChange = baseGameTitle.split("");
+		if(titleToChange.includes(":") || titleToChange.includes(".") || titleToChange.includes("!") || titleToChange.includes("'")){
+			let unwantedCharIndex = titleToChange.indexOf(":");
+			titleToChange.splice(unwantedCharIndex, 1);
+		}
+		let gameTitle = titleToChange.join();
+
 	if(store_ID == 1){
 		let adjusted_title = gameTitle.split(" ").slice(1).join("_");
 		window.open(`https://store.steampowered.com/app/${steamAppID}/${adjusted_title}/`, '_blank');
@@ -9,13 +17,14 @@ export function returnValidURL(steamAppID, gameTitle, store_ID){
 		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("-");
 		window.open(`https://www.greenmangaming.com/games/${adjusted_title}`, '_blank');
 	}else if (store_ID == 7){
-		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("-");
+		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("_");
 		window.open(`https://www.gog.com/game/${adjusted_title}`, '_blank');
 	}else if (store_ID == 11){
 		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("-");
 		window.open(`https://www.humblebundle.com/store/${adjusted_title}`, '_blank');
 	}else if (store_ID == 15){
 		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("-");
+		console.log(adjusted_title);
 		window.open(`https://www.fanatical.com/en/game/${adjusted_title}`, "_blank");
 	}else if (store_ID == 16){
 		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("-");
@@ -53,7 +62,7 @@ export function returnValidURLs(steamAppID, gameTitle, store_ID){
 		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("-");
 		return (`https://www.greenmangaming.com/games/${adjusted_title}`);
 	}else if (store_ID == 7){
-		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("-");
+		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("_");
 		return (`https://www.gog.com/game/${adjusted_title}`);
 	}else if (store_ID == 11){
 		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("-");

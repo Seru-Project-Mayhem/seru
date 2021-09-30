@@ -140,7 +140,7 @@ function dataBaseInsert(games) {
 			body: JSON.stringify(post)
 		}
 
-		fetch(`http://localhost:8080/api/games`, request)
+		fetch(`https://localhost:8080/api/games`, request)
 			.then(res => {
 				console.log(res.status);
 			}).catch(error => {
@@ -149,64 +149,59 @@ function dataBaseInsert(games) {
 	}
 }
 
-function getMultipleGamePricesEvent() {
+export function getMultipleGamePricesEvent() {
 	let id
-	$(".btn-details").on("click", function () {
-		id = $(this).parent().parent().siblings(".flip-card-back").children().children(".gameID").text();
+
+	$('.btn-details, .flip-card, .flip-card-inner').click(function () {
+		$(this).closest('.flip-card').toggleClass('hover');
+		$(this).css('transform, rotateY(180deg)');
+		$(this).children().children().children(".white-line").hide();
+
+		id = $(this).parent().parent().parent().siblings(".flip-card-back").children().children(".gameID").text();
+
 		let request = {
 			method: "GET",
 			headers: {}
 		}
-		fetch(`http://localhost:8080/api/games/findByGameID?gameID=${id}`, request)
+		fetch(`https://localhost:8080/api/games/findByGameID?gameID=${id}`, request)
 			.then(res => res.json())
 			.then(data => {
 				let parsedJSON = JSON.parse(data.deals);
-				let steamID = $(this).parent().parent().siblings(".flip-card-back").children(".steam-id").text()
-				let gameTitle = $(this).parent().parent().siblings(".flip-card-back").children(".game-title").text()
+				let steamID = $(this).parent().parent().parent().siblings(".flip-card-back").children(".steam-id").text();
+				let gameTitle = $(this).parent().parent().parent().siblings(".flip-card-back").children(".game-title").text();
 				let store = "";
-				$(this).parent().parent().siblings(".flip-card-back").children(".prices").empty();
+				console.log(parsedJSON.length);
+				$(this).parent().parent().parent().siblings(".flip-card-back").children(".prices").empty();
 				for (let i=0;i<parsedJSON.length;i++) {
-					switch (parsedJSON[i].storeID) {
-						case 1:
-							store = "Steam";
-							break;
-						case 2:
-							store = "GamersGate";
-							break;
-						case 3:
-							store = "Green Man Gaming";
-							break;
-						case 7:
-							store = "GOG";
-							break;
-						case 11:
-							store = "Humble Store";
-							break;
-						case 15:
-							store = "Fanatical";
-							break;
-						case 23:
-							store = "GameBillet";
-							break;
-						case 24:
-							store = "Voidu";
-							break;
-						case 25:
-							store = "Epic Game Store";
-							break;
-						case 29:
-							store = "2Game";
-							break;
-						case 30:
-							store = "IndieGala";
-							break;
-						case 31:
-							store = "Blizzard";
-							break;
-						default:
-							continue;
+					if (parsedJSON[i].storeID == 1) {
+						store = "Steam";
+					} else if (parsedJSON[i].storeID == 2) {
+						store = "GamersGate";
+					} else if (parsedJSON[i].storeID == 3) {
+						store = "Green Man Gaming";
+					} else if (parsedJSON[i].storeID == 7) {
+						store = "GOG";
+					} else if (parsedJSON[i].storeID == 11) {
+						store = "Humble Store";
+					} else if (parsedJSON[i].storeID == 15) {
+						store = "Fanatical";
+					} else if (parsedJSON[i].storeID == 23) {
+						store = "GameBillet";
+					} else if (parsedJSON[i].storeID == 24) {
+						store = "Voidu";
+					} else if (parsedJSON[i].storeID == 25) {
+						store = "Epic Game Store";
+					} else if (parsedJSON[i].storeID == 29) {
+						store = "2Game";
+					} else if (parsedJSON[i].storeID == 30) {
+						store = "IndieGala";
+					} else if (parsedJSON[i].storeID == 31) {
+						store = "Blizzard";
+					} else {
+						continue;
 					}
-					$(this).parent().parent().siblings(".flip-card-back").children(".prices").append(`${store}: <a href="#" class="anchor" data-id="${returnValidURLs(steamID, gameTitle, parsedJSON[i].storeID)}">$${parsedJSON[i].price}</a><br>`);
+					console.log("appending store")
+					$(this).parent().parent().parent().siblings(".flip-card-back").children(".prices").append(`${store}: <a href="#" class="anchor" data-id="${returnValidURLs(steamID, gameTitle, parsedJSON[i].storeID)}">$${parsedJSON[i].price}</a><br>`);
 				}
 				aTagEventListener()
 			})

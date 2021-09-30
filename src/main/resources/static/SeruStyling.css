@@ -438,6 +438,7 @@ h2 {
     margin-top: 20px;
     margin-left: 15px;
     padding: 0;
+    /*overflow-y: hidden;*/
 
 }
 
@@ -499,10 +500,9 @@ h2 {
 
 
 
-    body {
-        /*background: linear-gradient(to right, #0062E6, #33AEFF);*/
-        height: 100%;
-    }
+body {
+    height: 100%;
+}
 
 html {
     overflow: auto;
@@ -601,10 +601,10 @@ html {
 
 }
 
-.carousel-control-prev-icon{
+.carousel-control-prev-icon {
     height: 50px;
     width: 50px;
-
+}
 
 #navbar{
     font-size: larger;
@@ -646,10 +646,6 @@ html {
     position: fixed;
 
 }
-
-/*#details-btn{*/
-/*    position: fixed ;*/
-/*}*/
 
 #free-to-play-card-back{
     padding: 65px 0;

@@ -11,11 +11,11 @@ export default function Home(props) {
         <div class="container-parent">
     
             <div class="container" id="container-empty"></div> 
-            <div class="row d-flex justify-content-center" id="container-games"></div>
-           
+            <div class="row d-flex justify-content-center align-items-stretch" id="container-games"></div>
+            <button href="/browse" class="btn" style="background-color: #D93280; color: white; float: right" onclick="window.location.href='/browse'">Browse more games</button>
         </div>
  
-        <footer style="margin-top: 10em"></footer>
+        <footer style="margin-top: 10em; height: 10em"></footer>
     </main>
     `;
 }
@@ -50,14 +50,6 @@ export function freeToGameCarouselView(data) {
     <div class="carousel-container ">
     <div class="row d-flex justify-content-center justify-content-md-start">
        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-<!--  <div class="carousel-indicators my-5">-->
-<!--    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>-->
-<!--    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>-->
-<!--    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>-->
-<!--    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>-->
-<!--    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>-->
-<!--     -->
-<!--  </div>-->
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img src="${data[num].thumbnail}" class="d-block w-100" onClick="window.open('${data[num].game_url}','_blank')">
@@ -163,25 +155,24 @@ export function cheapSharkCardBuilder(listOfGames, props) {
 
         return `
 
-            <div class="flip-card" style="width: 20rem; height: 25rem">
+            <div class="flip-card flex-grow-1 overflow-scroll overflow-auto" style="width: 20rem; height: 45vh">
         <div class="flip-card-inner">
             <div class="flip-card-front">
                 <img class="img-fluid" src="${game.thumb}" style="width: 100%; height: 20vh; object-fit: cover" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">${game.title}</h5>
+                <div class="card-body overflow-auto">
+                    <h5 class="card-title" style="text-overflow:ellipsis; white-space: nowrap; overflow: hidden">${game.title}</h5>
                     <p class="card-text" id="savings"> Total Savings ${savings}%</p>
                     <p style="color: white" id="store">${store}</p>
-                    <hr class="white-line" style="color: white">
-             
+                   
                     <p class="card-text">${price}</p>
-                    <button type="button" class="btn-details btn btn-light btn-sm mr-1 mb-2"><i class="fas fa-info-circle pr-2"></i>Details</button>
-
+                    <div class="card-footer">
+                        <button type="button" class="btn-details btn btn-light btn-sm mr-1 mb-2"><i class="fas fa-info-circle pr-2"></i>Details</button>
+                    </div>
                 </div>
             </div>
-            <div class="flip-card-back overflow-auto" id="card-back">
+            <div class="flip-card-back " id="card-back">
                 <h5 class="card-title game-title"> ${game.title}</h5>
                 <p class="steam-id d-none">${game.steamAppID}</p>
-                 <hr class="white-line" style="color: white">
                 <a>
                      <p class="store-id d-none">${game.storeID}</p>
                      <p class="gameID d-none ">${game.gameID}</p>
@@ -275,13 +266,6 @@ export function SetFavoriteEvent() {
         $(this).toggleClass("inactive");
     });
 
-    $('.flip-card .flip-card-inner').dblclick(function () {
-        $(this).closest('.flip-card').toggleClass('hover');
-        $(this).css('transform, rotateY(180deg)');
-        $(this).children().children().children(".white-line").hide();
-    });
-
-    // logoutEvent();
 }
 
 
@@ -294,12 +278,5 @@ export function urlRedirectEvent() {
         returnValidURL(steam_id, gameTitle, store_id);
     });
 
-
-// function logoutEvent() {
-//     $(".logout-btn").on("click", function () {
-//         localStorage.removeItem("access_token")
-//         localStorage.removeItem("refresh_token")
-//         console.log("You have successfully logged out")
-//     })
 }
 

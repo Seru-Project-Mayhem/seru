@@ -11,8 +11,9 @@ export default function Review(props) {
 </head>
 <body>
 <h1 id="game-title"></h1>
+<div id="game-thumb"></div>
 <p class="d-none" id="gameID"></p>
-<div class="mb-3">
+<div class="mb-3 ">
   <label for="review" class="form-label">Leave your review</label>
   <textarea class="form-control" id="review" rows="3"></textarea>
 <button id="review-btn">Submit Your Review</button>
@@ -33,7 +34,7 @@ export default function Review(props) {
 
 export function getGameInfo(gameInfo) {
 	let id = gameInfo;
-	fetch(`http://localhost:8080/api/games/findByGameID?gameID=${id}`, {
+	fetch(`https://seru.shop/api/games/findByGameID?gameID=${id}`, {
 		"method": "GET",
 	})
 		.then(response => response.json())
@@ -43,6 +44,13 @@ export function getGameInfo(gameInfo) {
 			let gameTitle = JSON.parse(data.info);
 			$("#game-title").append(gameTitle.title);
 
+			let image = `
+			
+			<img src="${gameTitle.thumb}"> 
+			
+			`
+
+			$("#game-thumb").append(image);
 			console.log(JSON.parse(data.info));
 		})
 		.catch(err => {
@@ -75,7 +83,7 @@ export function reviewEvent() {
 			body: JSON.stringify(post)
 		};
 
-		fetch("http://localhost:8080/api/review", request)
+		fetch("https://seru.shop/api/review", request)
 
 			.then((response) => {
 				console.log(response.status)
@@ -92,7 +100,7 @@ function displayReviewsByGameId(gameId){
 		method: "GET",
 	};
 
-	fetch(`http://localhost:8080/api/review/games/${gameId}`, request)
+	fetch(`https://seru.shop/api/review/games/${gameId}`, request)
 		.then(response => response.json())
 		.then(data => {
 			console.log(data);
@@ -120,7 +128,6 @@ function reviewCard(data){
 	<p>Review by: ${data.user.username}</p>
 	
 	`
-
 
 	$("#other-reviews").append(card);
 }

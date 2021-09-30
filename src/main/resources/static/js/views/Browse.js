@@ -1,5 +1,6 @@
 import {rapidApi_token} from "../keys.js";
 import {cheapSharkCardBuilder, reviewRedirect, SetFavoriteEvent, urlRedirectEvent} from "./Home.js";
+import {getMultipleGamePricesEvent} from "../FetchQueries.js";
 
 
 export default function Browse(props){
@@ -14,11 +15,11 @@ export default function Browse(props){
            <!-- Section: Categories -->
             <section>
             
-              <h5>Stores</h5>
+              <h5 style="margin-left: 25px">Stores</h5>
             
-              <div class="mb-5">
+              <div>
                
-                <ul style="list-style-type: none">
+                <ul style="list-style-type: none" >
                 <li class="stores" value="1">Steam</li>
                 <li class="stores" value="2">GamersGate</li>
                 <li class="stores" value="3">Green Man Gaming</li>
@@ -32,8 +33,8 @@ export default function Browse(props){
                 <li class="stores" value="30">IndieGala</li>
                 <li class="stores" value="31">Blizzard</li>
                 </ul>
-                <button type="button" class="btn btn-primary pl-3" id="btn-stores">Get</button>
-                <input class="btn btn-primary" type="reset" value="Reset" id="reset-store-selection">
+                <button type="button" class="btn mb-2" id="btn-stores" style="margin-left: 15px; background-color: #D93280; color: white">Search</button>
+                <input class="btn mb-2" type="reset" value="Reset" id="reset-store-selection" style="margin-left: 15px; background-color: #D93280; color: white">
               </div>
             
             </section>
@@ -59,7 +60,7 @@ export default function Browse(props){
             <!-- Section: Price -->
             <section class="mb-4 min-max-selection">
 
-                <h6 class="font-weight-bold mb-3">Price</h6>
+                <h6 class="font-weight-bold mb-3" style="margin-left: 25px">Price</h6>
 
                     <div class="d-flex align-items-center mt-4 pb-1">
                         <div class="md-form md-outline my-0">
@@ -72,7 +73,7 @@ export default function Browse(props){
                             <label for="to">$ Max</label>
                         </div>
                     </div>
-                <button type="button" class="btn btn-primary" id="btn-price">Get</button>
+                <button type="button" class="btn btn-primary" id="btn-price" style="margin-left: 15px; background-color: #D93280; color: white">Search</button>
             </section>
             <!-- Section: Price -->
 
@@ -80,17 +81,16 @@ export default function Browse(props){
         <!-- Section: Sidebar -->
     </div>
         
-         <div class="container-parent-browse mt-5">
+         <div class="container-parent-browse">
                    
             <div class="row d-flex justify-content-center" id="container-browse-games">
             
             </div>
             </div>
-            <footer style="margin-top: 10em"></footer>
+           <footer style="margin-top: 10em; height: 10em"></footer>
         </main>
 
     `;
-
 }
 
 
@@ -103,13 +103,18 @@ export function sideBarStoreEvent(){
 
     $('.stores').on('click',function () {
 
-        $(this).css({color: '#ffffff', backgroundColor: "#900DFF"});
-        storesNum.push($(this).val());
+        if($(this).css("color") === 'rgb(255, 255, 255)'){
+            $(this).css({color: '#000000', backgroundColor: "#ffffff"});
+            let index = storesNum.indexOf($(this).val());
+            storesNum.splice(index, 1);
+        } else {
+            $(this).css({color: '#ffffff', backgroundColor: "#900DFF"});
+            storesNum.push($(this).val());
+        }
+    })
 
-        $('#btn-stores').on('click', function () {
-            queryStoresEvent(storesNum);
-        })
-
+    $('#btn-stores').on('click', function () {
+        queryStoresEvent(storesNum);
     })
 
     $('#btn-price').on('click', function (){
@@ -118,7 +123,6 @@ export function sideBarStoreEvent(){
         let max = $("#to").val();
 
         queryByPriceEvent(min, max);
-
     })
 
 }
@@ -136,6 +140,7 @@ export function queryByPriceEvent(min, max){
         .then(data => {
             $("#container-browse-games").empty();
             $("#container-browse-games").append(cheapSharkCardBuilder(data));
+            getMultipleGamePricesEvent();
             sideBarStoreEvent();
             sideBarSearchEvent();
             infiniteScrollingEvent();
@@ -177,8 +182,9 @@ export function queryStoresEvent(storesNum){
         .then(data => {
             $("#container-browse-games").empty();
             $("#container-browse-games").append(cheapSharkCardBuilder(data));
-            sideBarStoreEvent();
-            sideBarSearchEvent();
+            storesNum.length = 0;
+            $(".stores").css({color: '#000000', backgroundColor: "#ffffff"});
+            getMultipleGamePricesEvent();
             infiniteScrollingEvent();
             reviewRedirect();
             SetFavoriteEvent();
@@ -208,6 +214,7 @@ export function sideBarSearchEvent(){
             .then(data => {
                 $("#container-browse-games").empty();
                 $("#container-browse-games").append(cheapSharkCardBuilder(data));
+                getMultipleGamePricesEvent();
                 SetFavoriteEvent();
                 sideBarSearchEvent();
                 sideBarStoreEvent();
@@ -241,6 +248,9 @@ export function infiniteScrollingEvent(){
                 .then(data => {
                     $("#container-browse-games").append(cheapSharkCardBuilder(data));
                     page += 1;
+                    urlRedirectEvent();
+                    getMultipleGamePricesEvent();
+
                 })
                 .catch(err => {
                     console.error(err);
