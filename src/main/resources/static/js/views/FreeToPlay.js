@@ -31,6 +31,9 @@ export function freeCardBuilder(listOfGames) {
        
     </div>
 `
+
+
+
     });
 }
 
