@@ -57,6 +57,7 @@ export function cheapSharkGet() {
 			reviewRedirect();
 			SetFavoriteEvent();
 			urlRedirectEvent();
+			getUniqueGameIds(games);
 			getMultipleGamePricesEvent();
 			var myCarousel = document.querySelector('#container-carousel')
 			var carousel = new bootstrap.Carousel(myCarousel, {ride: 'carousel', interval: 3000})
@@ -70,41 +71,23 @@ export function cheapSharkGet() {
 export function getAllGames() {
 	cheapSharkGet();
 	freeToGameHomeGet();
-	testGetCivGames();
 }
 
 //Get list of games
-function testGetCivGames() {
+export function getUniqueGameIds(data) {
 	let uniqueGameIDs = "";
-	for (let i = 0; i < 10; i++) {
-		fetch(`https://cheapshark-game-deals.p.rapidapi.com/deals?storeID=1%2C2%2C3%2C7%2C11%2C15%2C23%2C24%2C25%2C29%2C30%2C31&metacritic=0&onSale=0&pageNumber=${i}&upperPrice=50&exact=0&pageSize=60&AAA=0&sortBy=Savings&steamworks=0&output=json&desc=0&steamRating=0&lowerPrice=0`, {
-			"method": "GET",
-			"headers": {
-				"x-rapidapi-host": "cheapshark-game-deals.p.rapidapi.com",
-				"x-rapidapi-key": rapidApi_token
-			}
-		})
-			.then(response => response.json())
-			.then(data => {
-				//Loop over list of games and store unique ID
-				for (let game of data) {
-					if (uniqueGameIDs.includes(game.gameID)) {
-					} else {
-						uniqueGameIDs += (game.gameID + "%2C");
-					}
-				}
-				uniqueGameIDs = uniqueGameIDs.substring(0, uniqueGameIDs.length - 3);
-				getGameDealsByID(uniqueGameIDs);
-				uniqueGameIDs = "";
-			})
-			.catch(err => {
-				console.error(err);
-			});
+	for (let game of data) {
+		if (uniqueGameIDs.includes(game.gameID)) {
+		} else {
+			uniqueGameIDs += (game.gameID + "%2C");
+		}
 	}
+	uniqueGameIDs = uniqueGameIDs.substring(0, uniqueGameIDs.length - 3);
+	getGameDealsByID(uniqueGameIDs);
 }
 
 //Multiple game lookup using list of unique id's
-function getGameDealsByID(uniqueGameIDs) {
+export function getGameDealsByID(uniqueGameIDs) {
 	fetch(`https://cheapshark-game-deals.p.rapidapi.com/games?ids=${uniqueGameIDs}`, {
 		"method": "GET",
 		"headers": {
@@ -152,7 +135,7 @@ function dataBaseInsert(games) {
 export function getMultipleGamePricesEvent() {
 	let id
 
-	$('.btn-details, .flip-card, .flip-card-inner').click(function () {
+	$('.btn-details').click(function () {
 		$(this).closest('.flip-card').toggleClass('hover');
 		$(this).css('transform, rotateY(180deg)');
 		$(this).children().children().children(".white-line").hide();
@@ -172,6 +155,8 @@ export function getMultipleGamePricesEvent() {
 				let store = "";
 				console.log(parsedJSON.length);
 				$(this).parent().parent().parent().siblings(".flip-card-back").children(".prices").empty();
+				console.log("appending store")
+
 				for (let i=0;i<parsedJSON.length;i++) {
 					if (parsedJSON[i].storeID == 1) {
 						store = "Steam";
@@ -200,7 +185,6 @@ export function getMultipleGamePricesEvent() {
 					} else {
 						continue;
 					}
-					console.log("appending store")
 					$(this).parent().parent().parent().siblings(".flip-card-back").children(".prices").append(`${store}: <a href="#" class="anchor" data-id="${returnValidURLs(steamID, gameTitle, parsedJSON[i].storeID)}">$${parsedJSON[i].price}</a><br>`);
 				}
 				aTagEventListener()

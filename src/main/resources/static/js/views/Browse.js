@@ -1,6 +1,6 @@
 import {rapidApi_token} from "../keys.js";
 import {cheapSharkCardBuilder, reviewRedirect, SetFavoriteEvent, urlRedirectEvent} from "./Home.js";
-import {getMultipleGamePricesEvent} from "../FetchQueries.js";
+import {getMultipleGamePricesEvent, getUniqueGameIds} from "../FetchQueries.js";
 
 
 export default function Browse(props){
@@ -140,6 +140,7 @@ export function queryByPriceEvent(min, max){
         .then(data => {
             $("#container-browse-games").empty();
             $("#container-browse-games").append(cheapSharkCardBuilder(data));
+            getUniqueGameIds(data);
             getMultipleGamePricesEvent();
             sideBarStoreEvent();
             sideBarSearchEvent();
@@ -184,6 +185,7 @@ export function queryStoresEvent(storesNum){
             $("#container-browse-games").append(cheapSharkCardBuilder(data));
             storesNum.length = 0;
             $(".stores").css({color: '#000000', backgroundColor: "#ffffff"});
+            getUniqueGameIds(data);
             getMultipleGamePricesEvent();
             infiniteScrollingEvent();
             reviewRedirect();
@@ -214,6 +216,7 @@ export function sideBarSearchEvent(){
             .then(data => {
                 $("#container-browse-games").empty();
                 $("#container-browse-games").append(cheapSharkCardBuilder(data));
+                getUniqueGameIds(data)
                 getMultipleGamePricesEvent();
                 SetFavoriteEvent();
                 sideBarSearchEvent();
@@ -248,6 +251,7 @@ export function infiniteScrollingEvent(){
                 .then(data => {
                     $("#container-browse-games").append(cheapSharkCardBuilder(data));
                     page += 1;
+                    getUniqueGameIds(data);
                     urlRedirectEvent();
                     getMultipleGamePricesEvent();
 
