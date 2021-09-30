@@ -155,20 +155,20 @@ export function cheapSharkCardBuilder(listOfGames, props) {
 
         return `
 
-            <div class="flip-card flex-grow-1 overflow-scroll overflow-auto" style="width: 20rem; height: 45vh">
+        <div class="flip-card overflow-scroll overflow-auto" style="width: 20rem">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <img class="img-fluid" src="${game.thumb}" style="width: 100%; height: 20vh; object-fit: cover" alt="Card image cap">
-                <div class="card-body overflow-auto">
+                <img class="img-fluid" src="${game.thumb}" style="width: 100%; height: 150px; object-fit: cover" alt="Card image cap">
+                <div class="card-body"> 
                     <h5 class="card-title" style="text-overflow:ellipsis; white-space: nowrap; overflow: hidden">${game.title}</h5>
                     <p class="card-text" id="savings"> Total Savings ${savings}%</p>
                     <p style="color: white" id="store">${store}</p>
                    
                     <p class="card-text">${price}</p>
                     <div class="card-footer">
-                        <button type="button" class="btn-details btn btn-light btn-sm mr-1 mb-2"><i class="fas fa-info-circle pr-2"></i>Details</button>
+                        <button type="button" class="btn-details btn btn-sm mr-1 mb-2" style="background-color: #44118C; color: white"><i class="fas fa-info-circle pr-2"></i>More Info</button>
                     </div>
-                </div>
+                </div> 
             </div>
             <div class="flip-card-back " id="card-back">
                 <h5 class="card-title game-title"> ${game.title}</h5>
@@ -221,7 +221,7 @@ export function cheapSharkCardBuilder(listOfGames, props) {
                     </a>
                     <br>
                     <br>
-                <button class="btn btn-primary btn-cheapshark-get">Get Now</button>
+                <button class="btn btn-primary btn-cheapshark-get" style="background-color: #44118C; color: white">Get Now</button>
             </div>
         </div>
     </div>
