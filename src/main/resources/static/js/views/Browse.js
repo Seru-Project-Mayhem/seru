@@ -222,6 +222,7 @@ export function sideBarSearchEvent(){
                 sideBarSearchEvent();
                 sideBarStoreEvent();
                 urlRedirectEvent();
+                reviewRedirect();
                 infiniteScrollingEvent();
             })
             .catch(err => {
@@ -254,7 +255,7 @@ export function infiniteScrollingEvent(){
                     getUniqueGameIds(data);
                     urlRedirectEvent();
                     getMultipleGamePricesEvent();
-
+                    reviewRedirect();
                 })
                 .catch(err => {
                     console.error(err);
