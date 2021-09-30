@@ -15,7 +15,7 @@ export default function Browse(props){
            <!-- Section: Categories -->
             <section>
             
-              <h5>Stores</h5>
+              <h5 style="margin-left: 25px">Stores</h5>
             
               <div>
                
@@ -33,8 +33,8 @@ export default function Browse(props){
                 <li class="stores" value="30">IndieGala</li>
                 <li class="stores" value="31">Blizzard</li>
                 </ul>
-                <button type="button" class="btn btn-primary pl-3" id="btn-stores">Search</button>
-                <input class="btn btn-primary" type="reset" value="Reset" id="reset-store-selection">
+                <button type="button" class="btn btn-primary mb-2" id="btn-stores" style="margin-left: 15px">Search</button>
+                <input class="btn btn-primary mb-2" type="reset" value="Reset" id="reset-store-selection" style="margin-left: 15px">
               </div>
             
             </section>
@@ -60,7 +60,7 @@ export default function Browse(props){
             <!-- Section: Price -->
             <section class="mb-4 min-max-selection">
 
-                <h6 class="font-weight-bold mb-3">Price</h6>
+                <h6 class="font-weight-bold mb-3" style="margin-left: 25px">Price</h6>
 
                     <div class="d-flex align-items-center mt-4 pb-1">
                         <div class="md-form md-outline my-0">
@@ -73,7 +73,7 @@ export default function Browse(props){
                             <label for="to">$ Max</label>
                         </div>
                     </div>
-                <button type="button" class="btn btn-primary" id="btn-price">Search</button>
+                <button type="button" class="btn btn-primary" id="btn-price" style="margin-left: 10px">Search</button>
             </section>
             <!-- Section: Price -->
 
