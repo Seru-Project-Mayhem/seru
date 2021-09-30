@@ -12,10 +12,10 @@ export default function Home(props) {
     
             <div class="container" id="container-empty"></div> 
             <div class="row d-flex justify-content-center align-items-stretch" id="container-games"></div>
-           
+            <button href="/browse" class="btn" style="background-color: #D93280; color: white; float: right" onclick="window.location.href='/browse'">Browse more games</button>
         </div>
  
-        <footer style="margin-top: 10em"></footer>
+        <footer style="margin-top: 10em; height: 10em"></footer>
     </main>
     `;
 }
@@ -155,11 +155,11 @@ export function cheapSharkCardBuilder(listOfGames, props) {
 
         return `
 
-            <div class="flip-card flex-grow-1" style="width: 20rem;">
+            <div class="flip-card flex-grow-1 overflow-scroll overflow-auto" style="width: 20rem; height: 45vh">
         <div class="flip-card-inner">
             <div class="flip-card-front">
                 <img class="img-fluid" src="${game.thumb}" style="width: 100%; height: 20vh; object-fit: cover" alt="Card image cap">
-                <div class="card-body">
+                <div class="card-body overflow-auto">
                     <h5 class="card-title" style="text-overflow:ellipsis; white-space: nowrap; overflow: hidden">${game.title}</h5>
                     <p class="card-text" id="savings"> Total Savings ${savings}%</p>
                     <p style="color: white" id="store">${store}</p>
@@ -170,7 +170,7 @@ export function cheapSharkCardBuilder(listOfGames, props) {
                     </div>
                 </div>
             </div>
-            <div class="flip-card-back overflow-auto" id="card-back">
+            <div class="flip-card-back " id="card-back">
                 <h5 class="card-title game-title"> ${game.title}</h5>
                 <p class="steam-id d-none">${game.steamAppID}</p>
                 <a>
@@ -265,8 +265,6 @@ export function SetFavoriteEvent() {
         $(this).toggleClass("active");
         $(this).toggleClass("inactive");
     });
-
-
 
 }
 

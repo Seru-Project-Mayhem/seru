@@ -10,7 +10,7 @@ export default function FreeToPlayView(props){
     </div>
     </div>
     </main>
-    <footer style="margin-top: 5em"></footer>
+    <footer style="margin-top: 5em; height: 10em"></footer>
     `;
 
 }
@@ -19,10 +19,10 @@ export function freeCardBuilder(listOfGames) {
 
     return listOfGames.map(game => {
         return `
-    <div class="flip-card" style="width: 18rem">
+    <div class="flip-card overflow-hidden overflow-auto" style="width: 18rem; height: 45vh">
   
             <img class="card-img-top" src="${game.thumbnail}" alt="Card image cap">
-            <div class="card-body d-flex flex-column">
+            <div class="card-body  d-flex flex-column">
                     <h5 class="card-title" style="color: white"> ${game.title}</h5>
                     <p class="card-text" id="free-to-play" style="color: white"> Free to play </p>
                     <p class="card-text" style="color: white"> ${game.short_description} </p>

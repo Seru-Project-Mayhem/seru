@@ -140,7 +140,7 @@ function dataBaseInsert(games) {
 			body: JSON.stringify(post)
 		}
 
-		fetch(`https://seru.shop/api/games`, request)
+		fetch(`https://localhost:8080/api/games`, request)
 			.then(res => {
 				console.log(res.status);
 			}).catch(error => {
@@ -163,7 +163,7 @@ export function getMultipleGamePricesEvent() {
 			method: "GET",
 			headers: {}
 		}
-		fetch(`https://seru.shop/api/games/findByGameID?gameID=${id}`, request)
+		fetch(`https://localhost:8080/api/games/findByGameID?gameID=${id}`, request)
 			.then(res => res.json())
 			.then(data => {
 				let parsedJSON = JSON.parse(data.deals);

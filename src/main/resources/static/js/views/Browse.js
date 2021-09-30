@@ -19,7 +19,7 @@ export default function Browse(props){
             
               <div>
                
-                <ul style="list-style-type: none">
+                <ul style="list-style-type: none" >
                 <li class="stores" value="1">Steam</li>
                 <li class="stores" value="2">GamersGate</li>
                 <li class="stores" value="3">Green Man Gaming</li>
@@ -33,8 +33,8 @@ export default function Browse(props){
                 <li class="stores" value="30">IndieGala</li>
                 <li class="stores" value="31">Blizzard</li>
                 </ul>
-                <button type="button" class="btn btn-primary mb-2" id="btn-stores" style="margin-left: 15px">Search</button>
-                <input class="btn btn-primary mb-2" type="reset" value="Reset" id="reset-store-selection" style="margin-left: 15px">
+                <button type="button" class="btn mb-2" id="btn-stores" style="margin-left: 15px; background-color: #D93280; color: white">Search</button>
+                <input class="btn mb-2" type="reset" value="Reset" id="reset-store-selection" style="margin-left: 15px; background-color: #D93280; color: white">
               </div>
             
             </section>
@@ -73,7 +73,7 @@ export default function Browse(props){
                             <label for="to">$ Max</label>
                         </div>
                     </div>
-                <button type="button" class="btn btn-primary" id="btn-price" style="margin-left: 10px">Search</button>
+                <button type="button" class="btn btn-primary" id="btn-price" style="margin-left: 15px; background-color: #D93280; color: white">Search</button>
             </section>
             <!-- Section: Price -->
 
@@ -87,7 +87,7 @@ export default function Browse(props){
             
             </div>
             </div>
-            <footer style="margin-top: 10em"></footer>
+           <footer style="margin-top: 10em; height: 10em"></footer>
         </main>
 
     `;
