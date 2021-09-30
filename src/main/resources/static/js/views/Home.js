@@ -221,7 +221,7 @@ export function cheapSharkCardBuilder(listOfGames, props) {
                     </a>
                     <br>
                     <br>
-                <button class="btn btn-primary btn-cheapshark-get" style="background-color: #44118C; color: white">Get Now</button>
+                <button class="btn btn-primary btn-cheapshark-get mb-5" style="background-color: #44118C; color: white">Get Now</button>
             </div>
         </div>
     </div>
