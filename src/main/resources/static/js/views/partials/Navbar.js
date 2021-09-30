@@ -4,7 +4,7 @@ export default function Navbar(props) {
         return `
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark mb-3" id="navbar">
           <div class="container-fluid">
-          <a class="navbar-brand" id="seru">Seru</a>
+             <img src="assets/Seru-Logo.png" alt="" class="navbar-brand" id="seru" style=height:3em;>
              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -33,7 +33,7 @@ export default function Navbar(props) {
         return `
              <nav class="navbar navbar-expand-lg bg-dark navbar-dark mb-3" id="navbar">
           <div class="container-fluid">
-          <a class="navbar-brand" id="seru">Seru</a>
+          <img src="assets/Seru-Logo.png" alt="" class="navbar-brand" id="seru" style="height: 3em">
              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
