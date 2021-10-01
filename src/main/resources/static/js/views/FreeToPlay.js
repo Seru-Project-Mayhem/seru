@@ -26,12 +26,11 @@ export function freeCardBuilder(listOfGames) {
                     <h5 class="card-title" style="color: white"> ${game.title}</h5>
                     <p class="card-text" id="free-to-play" style="color: white"> Free to play </p>
                     <p class="card-text" style="color: white"> ${game.short_description} </p>
-                    <button type="button" class="btn-get btn btn-primary" style="position: absolute; bottom: 15px"  onclick=" window.open('${game.game_url}','_blank')">Get Now</button>
+                    <button type="button" class="btn-get btn btn-primary" style="background-color: #44118C; color: white; position: absolute; bottom: 15px"  onclick=" window.open('${game.game_url}','_blank')">Get Now</button>
             </div>
        
     </div>
 `
-
 
 
     });
