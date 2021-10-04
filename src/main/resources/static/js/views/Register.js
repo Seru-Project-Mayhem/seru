@@ -83,7 +83,7 @@ export function RegisterEvent() {
             body: JSON.stringify(post)
         };
 
-        fetch("http://localhost:8080/api/users/create", request)
+        fetch("https://seru.shop/api/users/create", request)
             .then((response) => {
                 console.log(response.status)
                 if (response.status === 200) {

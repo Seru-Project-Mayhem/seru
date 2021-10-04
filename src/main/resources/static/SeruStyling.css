@@ -498,12 +498,9 @@ h2 {
 
 /*Splash page styling*/
 
-
-
-    body {
-        /*background: linear-gradient(to right, #0062E6, #33AEFF);*/
-        height: 100%;
-    }
+body {
+    height: 100%;
+}
 
 html {
     overflow: auto;
@@ -645,14 +642,29 @@ html {
 
 #browse{
     position: fixed;
-}
 
-/*#details-btn{*/
-/*    position: fixed ;*/
-/*}*/
+}
 
 #free-to-play-card-back{
     padding: 65px 0;
     font-size: larger;
 
+}
+
+
+/*Browse page styling*/
+
+
+#game-thumb {
+    margin-left: 20%;
+}
+
+.review-form {
+    margin-right: 20%;
+    margin-left: 20%;
+}
+
+#other-reviews-container {
+    margin-right: 20%;
+    margin-left: 20%;
 }

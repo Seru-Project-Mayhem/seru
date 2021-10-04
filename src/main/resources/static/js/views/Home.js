@@ -12,10 +12,10 @@ export default function Home(props) {
     
             <div class="container" id="container-empty"></div> 
             <div class="row d-flex justify-content-center align-items-stretch" id="container-games"></div>
-           
+            <button href="/browse" class="btn" style="background-color: #D93280; color: white; float: right" onclick="window.location.href='/browse'">Browse more games</button>
         </div>
  
-        <footer style="margin-top: 10em"></footer>
+        <footer style="margin-top: 10em; height: 10em"></footer>
     </main>
     `;
 }
@@ -155,25 +155,24 @@ export function cheapSharkCardBuilder(listOfGames, props) {
 
         return `
 
-            <div class="flip-card flex-grow-1" style="width: 20rem;">
+        <div class="flip-card overflow-scroll overflow-auto" style="width: 20rem">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <img class="img-fluid" src="${game.thumb}" style="width: 100%; height: 20vh; object-fit: cover" alt="Card image cap">
-                <div class="card-body">
+                <img class="img-fluid" src="${game.thumb}" style="width: 100%; height: 150px; object-fit: cover" alt="Card image cap">
+                <div class="card-body"> 
                     <h5 class="card-title" style="text-overflow:ellipsis; white-space: nowrap; overflow: hidden">${game.title}</h5>
                     <p class="card-text" id="savings"> Total Savings ${savings}%</p>
                     <p style="color: white" id="store">${store}</p>
                    
                     <p class="card-text">${price}</p>
                     <div class="card-footer">
-                    <button type="button" class="btn-details btn btn-light btn-sm mr-1 mb-2"><i class="fas fa-info-circle pr-2"></i>Details</button>
+                        <button type="button" class="btn-details btn btn-sm mr-1 mb-2" style="background-color: #44118C; color: white"><i class="fas fa-info-circle pr-2"></i>More Info</button>
                     </div>
-                </div>
+                </div> 
             </div>
-            <div class="flip-card-back overflow-auto" id="card-back">
+            <div class="flip-card-back " id="card-back">
                 <h5 class="card-title game-title"> ${game.title}</h5>
                 <p class="steam-id d-none">${game.steamAppID}</p>
-            
                 <a>
                      <p class="store-id d-none">${game.storeID}</p>
                      <p class="gameID d-none ">${game.gameID}</p>
@@ -222,7 +221,7 @@ export function cheapSharkCardBuilder(listOfGames, props) {
                     </a>
                     <br>
                     <br>
-                <button class="btn btn-primary btn-cheapshark-get">Get Now</button>
+                <button class="btn btn-primary btn-cheapshark-get mb-5" style="background-color: #44118C; color: white">Get Now</button>
             </div>
         </div>
     </div>
@@ -266,8 +265,6 @@ export function SetFavoriteEvent() {
         $(this).toggleClass("active");
         $(this).toggleClass("inactive");
     });
-
-
 
 }
 
