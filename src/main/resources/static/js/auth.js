@@ -63,7 +63,6 @@ export function getHeaders() {
  * @param responseData
  */
 function setTokens(responseData) {
-    console.log(responseData);
     if (responseData['access_token']) {
         localStorage.setItem("access_token", responseData['access_token']);
         console.log("Access token set");

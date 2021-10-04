@@ -24,7 +24,6 @@ export function returnValidURL(steamAppID, baseGameTitle, store_ID){
 		window.open(`https://www.humblebundle.com/store/${adjusted_title}`, '_blank');
 	}else if (store_ID == 15){
 		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("-");
-		console.log(adjusted_title);
 		window.open(`https://www.fanatical.com/en/game/${adjusted_title}`, "_blank");
 	}else if (store_ID == 16){
 		let adjusted_title = gameTitle.toLowerCase().split(" ").slice(1).join("-");
