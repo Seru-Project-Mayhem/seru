@@ -1,11 +1,45 @@
 export function returnValidURL(steamAppID, baseGameTitle, store_ID){
 
 		let titleToChange = baseGameTitle.split("");
-		if(titleToChange.includes(":") || titleToChange.includes(".") || titleToChange.includes("!") || titleToChange.includes("'")){
-			let unwantedCharIndex = titleToChange.indexOf(":");
-			titleToChange.splice(unwantedCharIndex, 1);
+		let unwantedCharIndex;
+		let gameTitle = "";
+		if(titleToChange.includes(":")){
+			for(let char of titleToChange){
+				if(char !== ":"){
+					gameTitle += char;
+				}
+			}
+		} else if(titleToChange.includes(".")){
+			for(let char of titleToChange){
+				if(char !== "."){
+					gameTitle += char;
+				}
+			}
+		} else if(titleToChange.includes("!")){
+			console.log(baseGameTitle)
+			for(let char of titleToChange){
+				if(char !== "!"){
+					gameTitle += char;
+				}
+			}
+		} else if(titleToChange.includes("'")) {
+			for (let char of titleToChange) {
+				if (char !== "'") {
+					gameTitle += char;
+				}
+			}
+		}else if(titleToChange.includes("-")){
+			for(let char of titleToChange){
+				console.log(char);
+				if(char !== "-"){
+					gameTitle += char;
+				}
+			}
+			gameTitle.split(/\s+/).join(' ');
+			console.log(gameTitle);
+		} else {
+			gameTitle = titleToChange.join("");
 		}
-		let gameTitle = titleToChange.join();
 
 	if(store_ID == 1){
 		let adjusted_title = gameTitle.split(" ").slice(1).join("_");
